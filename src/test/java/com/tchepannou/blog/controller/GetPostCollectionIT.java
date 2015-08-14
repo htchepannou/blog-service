@@ -20,9 +20,9 @@ import static org.hamcrest.Matchers.hasSize;
 @WebIntegrationTest
 @Sql({
         "/db/clean.sql",
-        "/db/get_post_list.sql"
+        "/db/get_post_collection.sql"
 })
-public class GetPostListIT {
+public class GetPostCollectionIT {
     @Value("${server.port}")
     private int port;
 
