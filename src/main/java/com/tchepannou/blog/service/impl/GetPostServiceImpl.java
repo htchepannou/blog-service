@@ -1,5 +1,6 @@
 package com.tchepannou.blog.service.impl;
 
+import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
@@ -14,7 +15,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class GetPostServiceImpl implements GetPostService{
+public class GetPostServiceImpl extends CommandImpl<Long, PostResponse> implements GetPostService{
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -23,9 +24,14 @@ public class GetPostServiceImpl implements GetPostService{
     private TagDao tagDao;
 
 
-    //-- GetPostService overrides
+    //-- CommandImpl overrides
     @Override
-    public PostResponse execute(Long id) {
+    protected String getMetricName() {
+        return Constants.METRIC_GET_POST;
+    }
+
+    @Override
+    public PostResponse doExecute(Long id) {
         Post post = postDao.findById(id);
         List<Tag> tags = tagDao.findByPost(id);
 
