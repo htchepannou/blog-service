@@ -22,9 +22,9 @@ import static org.hamcrest.core.Is.is;
 @WebIntegrationTest
 @Sql({
         "/db/clean.sql",
-        "/db/text.sql"
+        "/db/get_post.sql"
 })
-public class BlogTextControllerIT {
+public class GetPostIT {
     @Value("${server.port}")
     private int port;
 
@@ -35,40 +35,40 @@ public class BlogTextControllerIT {
 
     //-- Test
     @Test
-    public void get_should_returns_404_for_invalid_id (){
+    public void should_returns_404_for_invalid_id (){
         // @formatter:off
         when()
             .get("/blog/v1/post/9999")
         .then()
-            .statusCode(HttpStatus.SC_NOT_FOUND)
             .log()
                 .all()
+            .statusCode(HttpStatus.SC_NOT_FOUND)
         ;
         // @formatter:on
     }
 
     @Test
-    public void get_should_returns_404_for_deleted_post (){
+    public void should_returns_404_for_deleted_post (){
         // @formatter:off
         when()
             .get("/blog/v1/post/9998")
         .then()
-            .statusCode(HttpStatus.SC_NOT_FOUND)
             .log()
                 .all()
+            .statusCode(HttpStatus.SC_NOT_FOUND)
         ;
         // @formatter:on
     }
 
     @Test
-    public void get_should_returns_text (){
+    public void should_returns_text (){
         // @formatter:off
         when()
             .get("/blog/v1/post/1000")
         .then()
-            .statusCode(HttpStatus.SC_OK)
             .log()
                 .all()
+            .statusCode(HttpStatus.SC_OK)
             .body("id", is(1000))
             .body("title", is("sample title"))
             .body("slug", is("sample slug"))

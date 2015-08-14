@@ -4,7 +4,9 @@ import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
+import com.tchepannou.blog.service.GetPostListService;
 import com.tchepannou.blog.service.GetPostService;
+import com.tchepannou.blog.service.impl.GetPostListServiceImpl;
 import com.tchepannou.blog.service.impl.GetPostServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -58,5 +60,10 @@ public class AppConfig {
     @Bean
     GetPostService getPostService(){
         return new GetPostServiceImpl();
+    }
+
+    @Bean
+    GetPostListService getPostListService(){
+        return new GetPostListServiceImpl();
     }
 }

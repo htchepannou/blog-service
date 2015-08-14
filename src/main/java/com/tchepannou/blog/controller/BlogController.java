@@ -4,6 +4,7 @@ import com.tchepannou.blog.rr.CreateTextRequest;
 import com.tchepannou.blog.rr.PostListResponse;
 import com.tchepannou.blog.rr.PostResponse;
 import com.tchepannou.blog.rr.UpdateTextRequest;
+import com.tchepannou.blog.service.GetPostListService;
 import com.tchepannou.blog.service.GetPostService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -18,12 +19,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.ws.rs.HeaderParam;
-import javax.ws.rs.QueryParam;
 
 @RestController
 @Api(basePath = "/blog/v1", value = "Blog API", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -32,6 +33,9 @@ public class BlogController {
     //-- Atributes
     @Autowired
     GetPostService getPostService;
+
+    @Autowired
+    GetPostListService getPostListService;
 
     //-- REST methods
     @RequestMapping(method = RequestMethod.GET, value="/post/{id}")
@@ -43,6 +47,23 @@ public class BlogController {
     public PostResponse get(@PathVariable long id) {
         return getPostService.execute(id);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value="/posts/{bid}")
+    @ApiOperation(value="List posts", notes = "Return a post by its ID")
+    @ApiResponses({
+            @ApiResponse(code=200, message = "Success"),
+            @ApiResponse(code=404, message = "Post not found")
+    })
+    public PostListResponse list(
+            @PathVariable long bid,
+            @RequestParam(value = "limit", defaultValue = "20") int limit,
+            @RequestParam(value="offset", defaultValue = "0") int offset
+    ) {
+        return getPostListService.execute(
+                new GetPostListService.Request(bid, limit, offset)
+        );
+    }
+
 
 
     @RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST}, value="/{bid}/text")
@@ -75,20 +96,6 @@ public class BlogController {
             @RequestBody @Valid UpdateTextRequest request
     ) {
         return new PostResponse();
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value="/{bid}/post")
-    @ApiOperation(value="List posts", notes = "Return a post by its ID")
-    @ApiResponses({
-            @ApiResponse(code=200, message = "Success"),
-            @ApiResponse(code=404, message = "Post not found")
-    })
-    public PostListResponse list(
-            @PathVariable long bid,
-            @QueryParam(value = "name") int limit,
-            @QueryParam(value="offset") int offset
-    ) {
-        return new PostListResponse();
     }
 
 
