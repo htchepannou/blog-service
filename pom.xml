@@ -10,8 +10,15 @@
 
     <groupId>com.tchepannou.blog</groupId>
     <artifactId>blog-service</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <!-- ===== Database ===== -->
@@ -38,8 +45,8 @@
                             <url>jdbc:mysql://localhost:3306</url>
                             <driver>com.mysql.jdbc.Driver</driver>
                             <username>root</username>
-                            <sqlCommand>DROP DATABASE IF EXISTS myapp;
-                                CREATE DATABASE myapp;</sqlCommand>
+                            <sqlCommand>DROP DATABASE IF EXISTS blog_db;
+                                CREATE DATABASE blog_db;</sqlCommand>
                         </configuration>
                     </execution>
                 </executions>
@@ -49,7 +56,7 @@
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>3.2.1</version>
                 <configuration>
-                    <url>jdbc:mysql://localhost:3306/uds</url>
+                    <url>jdbc:mysql://localhost:3306/blog_db</url>
                     <user>root</user>
                 </configuration>
                 <dependencies>
