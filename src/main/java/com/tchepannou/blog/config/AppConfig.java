@@ -1,8 +1,10 @@
 package com.tchepannou.blog.config;
 
 import com.tchepannou.blog.dao.PostDao;
+import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
+import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
 import com.tchepannou.blog.service.GetPostListService;
 import com.tchepannou.blog.service.GetPostService;
@@ -50,6 +52,10 @@ public class AppConfig {
     @Bean
     PostDao postDao (){
         return new JdbcPostDao(dataSource());
+    }
+
+    @Bean PostTagDao postTagDao () {
+        return new JdbcPostTagDao (dataSource());
     }
 
     @Bean
