@@ -1,12 +1,16 @@
 package com.tchepannou.blog.mapper;
 
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.Multimap;
 import com.tchepannou.blog.domain.Post;
+import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.rr.PostCollectionResponse;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 import static com.tchepannou.blog.Fixture.createPost;
+import static com.tchepannou.blog.Fixture.createTag;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PostCollectionResponseMapperTest {
@@ -17,9 +21,21 @@ public class PostCollectionResponseMapperTest {
         Post post1 = createPost(100);
         Post post2 = createPost(100);
 
+        Tag tag1 = createTag();
+        Tag tag2 = createTag();
+        Tag tag3 = createTag();
+
+        Multimap tags = LinkedListMultimap.create();
+        tags.put(post1.getId(), tag1);
+        tags.put(post1.getId(), tag3);
+
+        tags.put(post2.getId(), tag1);
+        tags.put(post2.getId(), tag2);
+
         // When
         PostCollectionResponse response = new PostCollectionResponseMapper()
                 .withPosts(Arrays.asList(post1, post2))
+                .withTags(tags)
                 .map();
 
         // Then
@@ -35,6 +51,7 @@ public class PostCollectionResponseMapperTest {
         assertThat(response.getPost(0).getTitle()).isEqualTo(post1.getTitle());
         assertThat(response.getPost(0).getType()).isEqualTo(post1.getType().name());
         assertThat(response.getPost(0).getUpdated()).isEqualTo(post1.getUpdated());
+        assertThat(response.getPost(0).getTags()).containsExactly(tag1.getName(), tag3.getName());
 
         assertThat(response.getPost(1).getBlogId()).isEqualTo(post2.getBlogId());
         assertThat(response.getPost(1).getContent()).isEqualTo(post2.getContent());
@@ -46,5 +63,6 @@ public class PostCollectionResponseMapperTest {
         assertThat(response.getPost(1).getTitle()).isEqualTo(post2.getTitle());
         assertThat(response.getPost(1).getType()).isEqualTo(post2.getType().name());
         assertThat(response.getPost(1).getUpdated()).isEqualTo(post2.getUpdated());
+        assertThat(response.getPost(1).getTags()).containsExactly(tag1.getName(), tag2.getName());
     }
 }

@@ -22,6 +22,20 @@ INSERT INTO post_entry(post_fk, blog_id, posted) VALUES(1011, 100, '2015-01-10 0
 INSERT INTO post_entry(post_fk, blog_id, posted) VALUES(1000, 101, '2015-01-10 03:14:07');
 INSERT INTO post_entry(post_fk, blog_id, posted) VALUES(1011, 101, '2015-01-10 03:14:07');
 
+INSERT INTO tag(id, name) VALUES(1001, 'tag1');
+INSERT INTO tag(id, name) VALUES(1002, 'tag2');
+INSERT INTO tag(id, name) VALUES(1003, 'tag3');
+INSERT INTO tag(id, name) VALUES(1004, 'tag4');
+
+INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(1011, 1001, 1);
+INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(1011, 1002, 2);
+
+INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(1002, 1002, 1);
+INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(1002, 1003, 2);
+
+INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(1001, 1004, 1);
+
+
 -- should_returns_list_with_limit_offset
 INSERT INTO post (id, blog_id, type, status, deleted, created, updated)
   VALUES(2000, 200, 1, 1, false, '2015-01-20 03:14:07', '2038-01-12 03:14:07');

@@ -6,12 +6,12 @@ import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.rr.PostResponse;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 public class PostResponseMapper {
     //-- Attribute
     private Post post;
-    private List<Tag> tags = new ArrayList<>();
+    private Collection<Tag> tags = new ArrayList<>();
 
     //-- Public
     public PostResponse map (){
@@ -27,8 +27,8 @@ public class PostResponseMapper {
         this.post = post;
         return this;
     }
-    public PostResponseMapper withTags (List<Tag> tags){
-        this.tags.addAll(tags);
+    public PostResponseMapper withTags (Collection<Tag> tags){
+        this.tags = tags;
         return this;
     }
 
@@ -46,7 +46,7 @@ public class PostResponseMapper {
         response.setUpdated(post.getUpdated());
     }
 
-    private void map(PostResponse response, List<Tag> tags){
+    private void map(PostResponse response, Collection<Tag> tags){
         tags.stream()
             .forEach(tag -> response.addTag(tag.getName()));
     }

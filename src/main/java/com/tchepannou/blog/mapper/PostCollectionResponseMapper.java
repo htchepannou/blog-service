@@ -1,20 +1,26 @@
 package com.tchepannou.blog.mapper;
 
+import com.google.common.collect.LinkedListMultimap;
+import com.google.common.collect.Multimap;
 import com.tchepannou.blog.domain.Post;
+import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.rr.PostCollectionResponse;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PostCollectionResponseMapper {
     //-- Attribute
     private List<Post> posts = new ArrayList<>();
+    private Multimap<Long, Tag> tags = LinkedListMultimap.create();
 
     //-- Public
     public PostCollectionResponse map (){
         PostCollectionResponse response = new PostCollectionResponse();
-        map(response, posts);
+        map(response, posts, tags);
         return response;
     }
 
@@ -23,15 +29,26 @@ public class PostCollectionResponseMapper {
         return this;
     }
 
+    public PostCollectionResponseMapper withTags(Multimap<Long, Tag> tags){
+        this.tags = tags;
+        return this;
+    }
+
     //-- Private
-    private void map(PostCollectionResponse response, List<Post> posts){
+    private void map(PostCollectionResponse response, List<Post> posts, Multimap<Long, Tag> tagMap){
         PostResponseMapper postMapper = new PostResponseMapper();
 
         response.setPosts(
-            posts
-                    .stream()
-                    .map(post -> postMapper.withPost(post).map())
-                    .collect(Collectors.toList())
+                posts
+                        .stream()
+                        .map(post -> {
+                            final long postId = post.getId();
+                            final Collection<Tag> tags = tagMap.containsKey(postId)
+                                    ? tagMap.get(postId)
+                                    : Collections.emptyList();
+                            return postMapper.withPost(post).withTags(tags).map();
+                        })
+                        .collect(Collectors.toList())
         );
     }
 }
