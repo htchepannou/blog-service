@@ -66,7 +66,7 @@ public class BlogController {
 
 
 
-    @RequestMapping(method = {RequestMethod.PUT, RequestMethod.POST}, value="/{bid}/text")
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/posts/{bid}/text")
     @ApiOperation(value="Create a new Text")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
@@ -82,7 +82,7 @@ public class BlogController {
         return new PostResponse();
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/{bid}/text")
+    @RequestMapping(method = RequestMethod.POST, value="/posts/{bid}/text/{id}")
     @ApiOperation(value="Update a Text")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),

@@ -49,6 +49,7 @@ public class JdbcPostDao implements PostDao{
         Post post = new Post ();
 
         post.setBlogId(rs.getLong("blog_id"));
+        post.setUserId(rs.getLong("user_id"));
         post.setContent(rs.getString("content"));
         post.setCreated(rs.getTimestamp("created"));
         post.setDeleted(rs.getBoolean("deleted"));

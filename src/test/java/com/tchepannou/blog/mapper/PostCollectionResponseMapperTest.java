@@ -18,8 +18,8 @@ public class PostCollectionResponseMapperTest {
     @Test
     public void testMap() throws Exception {
         // Given
-        Post post1 = createPost(100);
-        Post post2 = createPost(100);
+        Post post1 = createPost(100, 101);
+        Post post2 = createPost(100, 102);
 
         Tag tag1 = createTag();
         Tag tag2 = createTag();
@@ -52,6 +52,7 @@ public class PostCollectionResponseMapperTest {
         assertThat(response.getPost(0).getType()).isEqualTo(post1.getType().name());
         assertThat(response.getPost(0).getUpdated()).isEqualTo(post1.getUpdated());
         assertThat(response.getPost(0).getTags()).containsExactly(tag1.getName(), tag3.getName());
+        assertThat(response.getPost(0).getUserId()).isEqualTo(post1.getUserId());
 
         assertThat(response.getPost(1).getBlogId()).isEqualTo(post2.getBlogId());
         assertThat(response.getPost(1).getContent()).isEqualTo(post2.getContent());
@@ -64,5 +65,6 @@ public class PostCollectionResponseMapperTest {
         assertThat(response.getPost(1).getType()).isEqualTo(post2.getType().name());
         assertThat(response.getPost(1).getUpdated()).isEqualTo(post2.getUpdated());
         assertThat(response.getPost(1).getTags()).containsExactly(tag1.getName(), tag2.getName());
+        assertThat(response.getPost(1).getUserId()).isEqualTo(post2.getUserId());
     }
 }

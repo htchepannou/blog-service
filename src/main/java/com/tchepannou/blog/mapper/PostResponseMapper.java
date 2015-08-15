@@ -44,6 +44,7 @@ public class PostResponseMapper {
         response.setTitle(post.getTitle());
         response.setType(post.getType().name());
         response.setUpdated(post.getUpdated());
+        response.setUserId (post.getUserId());
     }
 
     private void map(PostResponse response, Collection<Tag> tags){

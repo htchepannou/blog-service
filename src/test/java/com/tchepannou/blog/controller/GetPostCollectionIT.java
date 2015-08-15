@@ -64,6 +64,7 @@ public class GetPostCollectionIT {
 
             .body("posts[0].id", is(1011))
             .body("posts[0].blogId", is(101))
+            .body("posts[0].userId", is(102))
             .body("posts[0].title", is("title1011"))
             .body("posts[0].slug", is("slug1011"))
             .body("posts[0].content", is("<div>content1011</div>"))
@@ -76,6 +77,7 @@ public class GetPostCollectionIT {
 
             .body("posts[1].id", is(1002))
             .body("posts[1].blogId", is(100))
+            .body("posts[1].userId", is(101))
             .body("posts[1].title", is("title1002"))
             .body("posts[1].slug", is("slug1002"))
             .body("posts[1].content", is("<div>content1002</div>"))
@@ -88,6 +90,7 @@ public class GetPostCollectionIT {
 
             .body("posts[2].id", is(1000))
             .body("posts[2].blogId", is(100))
+            .body("posts[2].userId", is(101))
             .body("posts[2].title", is("title1000"))
             .body("posts[2].slug", is("slug1000"))
             .body("posts[2].content", is("<div>content1000</div>"))

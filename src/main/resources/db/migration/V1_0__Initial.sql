@@ -6,6 +6,7 @@ CREATE TABLE tag(
 CREATE TABLE post(
   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   blog_id BIGINT NOT NULL,
+  user_id BIGINT NOT NULL,
   status INTEGER,
   type INTEGER,
   title VARCHAR(255),
@@ -17,6 +18,7 @@ CREATE TABLE post(
   deleted BIT
 );
 CREATE INDEX idx_post__updated ON post (updated);
+CREATE INDEX idx_post__user_id ON post (user_id);
 
 CREATE TABLE post_tag(
   post_fk BIGINT,

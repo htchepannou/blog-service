@@ -15,7 +15,7 @@ public class PostResponseMapperTest {
     @Test
     public void testMap() throws Exception {
         // Given
-        Post post = createPost(100);
+        Post post = createPost(100, 101);
         Tag tag1 = createTag();
         Tag tag2 = createTag();
         Tag tag3 = createTag();
@@ -38,6 +38,7 @@ public class PostResponseMapperTest {
         assertThat(response.getTags()).containsExactly(tag1.getName(), tag2.getName(), tag3.getName());
         assertThat(response.getType()).isEqualTo(post.getType().name());
         assertThat(response.getUpdated()).isEqualTo(post.getUpdated());
+        assertThat(response.getUserId()).isEqualTo(post.getUserId());
     }
 
     @Test(expected = IllegalStateException.class)

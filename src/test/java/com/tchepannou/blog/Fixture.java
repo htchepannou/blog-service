@@ -18,12 +18,13 @@ public class Fixture {
         return tag;
     }
 
-    public static Post createPost (long blogId){
+    public static Post createPost (long blogId, long userId){
         long id = ++uid;
 
         Post post = new Post ();
         post.setId(id);
         post.setBlogId(blogId);
+        post.setUserId(userId);
         post.setContent("<p>This is content" + id + "</b>");
         post.setCreated(DateUtils.addDays(new Date(), -10));
         post.setPublished(DateUtils.addDays(new Date(), -10));

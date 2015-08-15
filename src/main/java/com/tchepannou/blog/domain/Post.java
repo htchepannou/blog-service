@@ -46,6 +46,7 @@ public class Post {
     //-- Attributes
     private long id;
     private long blogId;
+    private long userId;
     private String title;
     private String slug;
     private String content;
@@ -144,5 +145,13 @@ public class Post {
 
     public void setSlug(String slug) {
         this.slug = slug;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

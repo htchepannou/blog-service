@@ -8,13 +8,14 @@ import java.util.List;
 
 public class PostRequest {
     //-- Attributes
-    @NotBlank(message = "title")
+    @NotBlank(message = "missing_title")
     private String title;
 
     @ApiModelProperty(allowableValues = "draft,published")
+    private String status;
+
     private String content;
     private List<String> tags;
-    private String status;
     private Date published;
 
     //-- Getter/Setter
