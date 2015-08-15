@@ -70,6 +70,7 @@ public class GetPostIT {
                 .all()
             .statusCode(HttpStatus.SC_OK)
             .body("id", is(1000))
+            .body("blogId", is(100))
             .body("title", is("sample title"))
             .body("slug", is("sample slug"))
             .body("content", is("<div>This is the content</div>"))

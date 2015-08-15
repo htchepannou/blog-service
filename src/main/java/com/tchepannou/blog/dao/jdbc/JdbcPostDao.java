@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class JdbcPostDao implements PostDao{
     //-- Private
@@ -21,13 +22,27 @@ public class JdbcPostDao implements PostDao{
     //-- PostDao overrides
     @Override
     public Post findById(long id) {
+        final String sql = "SELECT * FROM post WHERE id=? AND deleted=?";
         return template.queryForObject(
-                "SELECT * FROM post WHERE id=? AND deleted=?",
+                sql,
                 new Object[]{id, false},
                 (rs, i) -> map(rs)
         );
     }
 
+    @Override
+    public List<Post> findByBlog(long blogId, int limit, int offset) {
+        final String sql = "SELECT P.*"
+                + " FROM post P JOIN post_entry E ON P.id=E.post_fk"
+                + " WHERE E.blog_id=? AND P.deleted=?"
+                + " ORDER BY P.updated DESC"
+                + " LIMIT ? OFFSET ?";
+        return template.query(
+                sql,
+                new Object[] {blogId, false, limit, offset},
+                (rs, i) -> map(rs)
+        );
+    }
 
     //-- Private
     public Post map(ResultSet rs) throws SQLException {

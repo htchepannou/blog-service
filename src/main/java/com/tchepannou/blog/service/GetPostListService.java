@@ -1,9 +1,8 @@
 package com.tchepannou.blog.service;
 
-import com.tchepannou.blog.rr.PostListResponse;
+import com.tchepannou.blog.rr.PostCollectionResponse;
 
-public interface GetPostListService extends Command<GetPostListService.Request, PostListResponse> {
-    PostListResponse execute (Request request);
+public interface GetPostListService extends Command<GetPostListService.Request, PostCollectionResponse> {
 
     //-- Inner class
     class Request {

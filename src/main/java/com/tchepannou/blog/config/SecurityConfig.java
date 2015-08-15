@@ -51,9 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authenticationEntryPoint())
                 */
         ;
-
-        configureAuthentication(http);
-        configureAuthorization(http);
     }
 
 
@@ -82,20 +79,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationEntryPoint authenticationEntryPoint() {
         return new AuthenticationEntryPoint() {
             @Override public void commence(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e)
-                    throws IOException, ServletException {
+                    throws IOException, ServletException {  // NOSONAR
 
             }
         };
     }
 
     //-- Protected
-    protected void configureAuthentication(final HttpSecurity http) {
-
-    }
-
-    protected void configureAuthorization(final HttpSecurity http) {
-
-    }
 
     protected String[] getActuatorEndpoints(){
         return ACTUATOR_ENDPOINTS;

@@ -6,7 +6,7 @@ import java.util.Date;
 public class Post {
     //-- Enums
     public enum Type {
-        text(1);
+        text(1), url(2);
 
         int val;
         Type (int value){

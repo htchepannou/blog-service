@@ -16,6 +16,7 @@ CREATE TABLE post(
   published DATETIME,
   deleted BIT
 );
+CREATE INDEX idx_post__updated ON post (updated);
 
 CREATE TABLE post_tag(
   post_fk BIGINT,
@@ -29,7 +30,9 @@ CREATE TABLE post_tag(
 CREATE TABLE post_entry(
   post_fk BIGINT NOT NULL,
   blog_id BIGINT NOT NULL,
+  posted DATETIME,
 
   PRIMARY KEY(post_fk, blog_id),
   CONSTRAINT fk_post_entry__post_fk FOREIGN KEY (post_fk) REFERENCES post(id)
 );
+CREATE INDEX idx_post_entry__posted ON post_entry (posted);

@@ -1,7 +1,7 @@
 package com.tchepannou.blog.controller;
 
 import com.tchepannou.blog.rr.CreateTextRequest;
-import com.tchepannou.blog.rr.PostListResponse;
+import com.tchepannou.blog.rr.PostCollectionResponse;
 import com.tchepannou.blog.rr.PostResponse;
 import com.tchepannou.blog.rr.UpdateTextRequest;
 import com.tchepannou.blog.service.GetPostListService;
@@ -54,7 +54,7 @@ public class BlogController {
             @ApiResponse(code=200, message = "Success"),
             @ApiResponse(code=404, message = "Post not found")
     })
-    public PostListResponse list(
+    public PostCollectionResponse list(
             @PathVariable long bid,
             @RequestParam(value = "limit", defaultValue = "20") int limit,
             @RequestParam(value="offset", defaultValue = "0") int offset
