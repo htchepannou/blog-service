@@ -3,13 +3,14 @@ package com.tchepannou.blog.service.impl;
 import com.tchepannou.blog.domain.AccessToken;
 import com.tchepannou.blog.service.AccessTokenService;
 import com.tchepannou.blog.service.CommandContext;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
 
 import java.util.OptionalLong;
 
 public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O> {
     //-- Attributes
-    //@Autowired
+    @Autowired
     private AccessTokenService accessTokenService;
 
     private AccessToken accessToken;

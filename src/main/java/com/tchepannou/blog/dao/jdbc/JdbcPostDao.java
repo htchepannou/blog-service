@@ -3,7 +3,6 @@ package com.tchepannou.blog.dao.jdbc;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.domain.Post;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
@@ -12,8 +11,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.List;
+
+import static com.tchepannou.blog.dao.jdbc.JdbcUtils.toTimestamp;
 
 public class JdbcPostDao implements PostDao{
     //-- Private
@@ -54,37 +56,38 @@ public class JdbcPostDao implements PostDao{
     public void create(Post post) {
         final KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        final String sql = "INSERT INTO post(blogId, userId, type, status, title, content, slug, created, updated, published)"
-                + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+        final Timestamp now = new Timestamp(System.currentTimeMillis());
+        post.setCreated(now);
+        post.setUpdated(now);
 
-        new JdbcTemplate(dataSource).update(new PreparedStatementCreator() {
-            public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
-
-                Timestamp now = new Timestamp(System.currentTimeMillis());
-                Timestamp published = post.getPublished() != null ? new Timestamp(post.getPublished().getTime()) : null;
-
-                PreparedStatement ps = connection.prepareStatement(sql);
-
-                ps.setLong(1, post.getBlogId());
-                ps.setLong(2, post.getUserId());
-                ps.setInt(3, post.getType().value());
-                ps.setInt(4, post.getStatus().value());
-                ps.setString(5, post.getTitle());
-                ps.setString(6, post.getContent());
-                ps.setString(7, post.getSlug());
-                ps.setTimestamp(8, now);
-                ps.setTimestamp(9, now);
-                ps.setTimestamp(10, published);
-
-                return ps;
-            }
-        }, keyHolder);
+        new JdbcTemplate(dataSource).update(cnn -> insertPreparedStatement(post, cnn), keyHolder);
 
         post.setId(keyHolder.getKey().longValue());
     }
 
     //-- Private
-    public Post map(ResultSet rs) throws SQLException {
+    public PreparedStatement insertPreparedStatement(Post post, Connection connection) throws SQLException {
+        final String sql = "INSERT INTO post"
+                + "(blog_id, user_id, type, status, title, content, slug, created, updated, published)"
+                + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+
+        final PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+        ps.setLong(1, post.getBlogId());
+        ps.setLong(2, post.getUserId());
+        ps.setInt(3, post.getType().value());
+        ps.setInt(4, post.getStatus().value());
+        ps.setString(5, post.getTitle());
+        ps.setString(6, post.getContent());
+        ps.setString(7, post.getSlug());
+        ps.setTimestamp(8, toTimestamp(post.getCreated()));
+        ps.setTimestamp(9, toTimestamp(post.getUpdated()));
+        ps.setTimestamp(10, toTimestamp(post.getPublished()));
+
+        return ps;
+    }
+
+    private Post map(ResultSet rs) throws SQLException {
         Post post = new Post ();
 
         post.setBlogId(rs.getLong("blog_id"));

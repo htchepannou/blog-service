@@ -4,6 +4,7 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class PostRequest {
     private String title;
 
     @ApiModelProperty(allowableValues = "draft,published")
+    @Pattern(regexp = "draft|published", message="bad_value")
     @NotBlank(message = "missing_status")
     private String status;
 

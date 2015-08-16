@@ -6,12 +6,16 @@ import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
+import com.tchepannou.blog.service.AccessTokenService;
 import com.tchepannou.blog.service.CreateTextCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.GetPostCommand;
+import com.tchepannou.blog.service.HttpClientProvider;
+import com.tchepannou.blog.service.impl.AccessTokenServiceImpl;
 import com.tchepannou.blog.service.impl.CreateTextCommandImpl;
 import com.tchepannou.blog.service.impl.GetPostListCommandImpl;
 import com.tchepannou.blog.service.impl.GetPostCommandImpl;
+import com.tchepannou.blog.service.impl.HttpClientProviderImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -49,6 +53,16 @@ public class AppConfig {
         ds.setDriverClassName(driver);
         ds.setUrl(url);
         return ds;
+    }
+
+    @Bean
+    HttpClientProvider httpClientProvider(){
+        return new HttpClientProviderImpl();
+    }
+
+    @Bean
+    AccessTokenService accessTokenService(){
+        return new AccessTokenServiceImpl();
     }
 
     @Bean

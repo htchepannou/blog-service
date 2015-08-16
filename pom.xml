@@ -12,13 +12,23 @@
     <artifactId>blog-service</artifactId>
     <version>1.0</version>
 
+    <properties>
+        <httpclient.version>4.5</httpclient.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <!-- ===== Database ===== -->
