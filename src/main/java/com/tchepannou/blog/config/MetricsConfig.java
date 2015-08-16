@@ -50,7 +50,7 @@ public class MetricsConfig extends MetricsConfigurerAdapter {
             JmxReporter
                     .forRegistry(registry)
                     .build()
-                    .start();
+                    .start()
             ;
         } else {
             StatsDReporter

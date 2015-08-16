@@ -43,10 +43,10 @@ public class PostCollectionResponseMapper {
                         .stream()
                         .map(post -> {
                             final long postId = post.getId();
-                            final Collection<Tag> tags = tagMap.containsKey(postId)
+                            final Collection<Tag> tagz = tagMap.containsKey(postId)
                                     ? tagMap.get(postId)
                                     : Collections.emptyList();
-                            return postMapper.withPost(post).withTags(tags).map();
+                            return postMapper.withPost(post).withTags(tagz).map();
                         })
                         .collect(Collectors.toList())
         );

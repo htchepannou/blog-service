@@ -1,5 +1,5 @@
 package com.tchepannou.blog.service;
 
-public interface Command<RequestType, ResponseType> {
-    ResponseType execute (RequestType request);
+public interface Command<I, O> {
+    O execute (I request);
 }

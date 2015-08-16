@@ -3,6 +3,10 @@ package com.tchepannou.blog.dao.jdbc;
 import java.util.Collection;
 
 public class JdbcUtils {
+    private JdbcUtils (){
+
+    }
+
     public static String toParamVars(Collection items){
         StringBuilder params = new StringBuilder();
         items.stream().forEach(post -> {
