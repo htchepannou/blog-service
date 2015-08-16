@@ -8,4 +8,6 @@ public interface PostDao {
     Post findById (long id);
 
     List<Post> findByBlog(long blogId, int limit, int offset);
+
+    void create (Post post);
 }

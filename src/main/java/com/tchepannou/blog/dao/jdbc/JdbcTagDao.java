@@ -22,14 +22,14 @@ import static com.tchepannou.blog.dao.jdbc.JdbcUtils.toParamVars;
 
 public class JdbcTagDao implements TagDao{
     //-- Private
-    private JdbcTemplate template;
+    private DataSource dataSource;
 
     @Autowired
     private PostTagDao postTagDao;
 
     //-- Constructor
     public JdbcTagDao(DataSource ds){
-        this.template = new JdbcTemplate(ds);
+        this.dataSource = ds;
     }
 
     //-- PostDao overrides
@@ -40,7 +40,7 @@ public class JdbcTagDao implements TagDao{
                 + " WHERE P.post_fk=?"
                 + " ORDER BY P.rank;";
 
-        return template.query(
+        return new JdbcTemplate(dataSource).query(
                 sql,
                 new Object[]{id},
                 (rs, i) -> map(rs)
@@ -55,7 +55,7 @@ public class JdbcTagDao implements TagDao{
 
         final String sql = "SELECT * FROM tag WHERE id IN (" + toParamVars(ids) + ")";
 
-        return template.query(
+        return new JdbcTemplate(dataSource).query(
                 sql,
                 ids.toArray(),
                 (rs, i) -> map(rs)

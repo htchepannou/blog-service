@@ -1,5 +1,5 @@
 package com.tchepannou.blog.service;
 
 public interface Command<I, O> {
-    O execute (I request);
+    O execute (I request, CommandContext context);
 }

@@ -4,8 +4,8 @@ import com.tchepannou.blog.rr.CreateTextRequest;
 import com.tchepannou.blog.rr.PostCollectionResponse;
 import com.tchepannou.blog.rr.PostResponse;
 import com.tchepannou.blog.rr.UpdateTextRequest;
-import com.tchepannou.blog.service.GetPostListService;
-import com.tchepannou.blog.service.GetPostService;
+import com.tchepannou.blog.service.GetPostCommand;
+import com.tchepannou.blog.service.GetPostListCommand;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,10 +33,10 @@ import javax.ws.rs.HeaderParam;
 public class BlogController {
     //-- Atributes
     @Autowired
-    GetPostService getPostService;
+    GetPostCommand getPostService;
 
     @Autowired
-    GetPostListService getPostListService;
+    GetPostListCommand getPostListService;
 
     //-- REST methods
     @RequestMapping(method = RequestMethod.GET, value="/post/{id}")
@@ -45,7 +46,7 @@ public class BlogController {
             @ApiResponse(code=404, message = "Post not found")
     })
     public PostResponse get(@PathVariable long id) {
-        return getPostService.execute(id);
+        return getPostService.execute(id, new CommandContextImpl());
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/posts/{bid}")
@@ -59,8 +60,8 @@ public class BlogController {
             @RequestParam(value = "limit", defaultValue = "20") int limit,
             @RequestParam(value="offset", defaultValue = "0") int offset
     ) {
-        return getPostListService.execute(
-                new GetPostListService.Request(bid, limit, offset)
+        return getPostListService.execute(null,
+                new CommandContextImpl().withBlogId(bid).withLimit(limit).withOffset(offset)
         );
     }
 
@@ -69,10 +70,11 @@ public class BlogController {
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/posts/{bid}/text")
     @ApiOperation(value="Create a new Text")
     @ApiResponses({
-            @ApiResponse(code=200, message = "Success"),
+            @ApiResponse(code=201, message = "Success"),
             @ApiResponse(code=404, message = "Post not found"),
             @ApiResponse(code=401, message = "Access token expired or is invalid"),
-            @ApiResponse(code=403, message = "User not allowed to delete the post.")
+            @ApiResponse(code=403, message = "User not allowed to delete the post."),
+            @ApiResponse(code=404, message = "Bad request data.")
     })
     public PostResponse createText(
             @HeaderParam(value="access_token") String accessToken,
@@ -120,5 +122,10 @@ public class BlogController {
     @ResponseStatus(value= HttpStatus.NOT_FOUND)
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public void notFound() {    // NOSONAR
+    }
+
+    @ResponseStatus(value= HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(AuthenticationException.class)
+    public void authenticationFailed() {    // NOSONAR
     }
 }

@@ -6,10 +6,12 @@ import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
-import com.tchepannou.blog.service.GetPostListService;
-import com.tchepannou.blog.service.GetPostService;
-import com.tchepannou.blog.service.impl.GetPostListServiceImpl;
-import com.tchepannou.blog.service.impl.GetPostServiceImpl;
+import com.tchepannou.blog.service.CreateTextCommand;
+import com.tchepannou.blog.service.GetPostListCommand;
+import com.tchepannou.blog.service.GetPostCommand;
+import com.tchepannou.blog.service.impl.CreateTextCommandImpl;
+import com.tchepannou.blog.service.impl.GetPostListCommandImpl;
+import com.tchepannou.blog.service.impl.GetPostCommandImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -64,12 +66,17 @@ public class AppConfig {
     }
 
     @Bean
-    GetPostService getPostService(){
-        return new GetPostServiceImpl();
+    GetPostCommand getPostCommand(){
+        return new GetPostCommandImpl();
     }
 
     @Bean
-    GetPostListService getPostListService(){
-        return new GetPostListServiceImpl();
+    GetPostListCommand getPostListCommand(){
+        return new GetPostListCommandImpl();
+    }
+
+    @Bean
+    CreateTextCommand createTextCommand () {
+        return new CreateTextCommandImpl();
     }
 }

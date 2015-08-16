@@ -8,7 +8,8 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostCollectionResponseMapper;
 import com.tchepannou.blog.rr.PostCollectionResponse;
-import com.tchepannou.blog.service.GetPostListService;
+import com.tchepannou.blog.service.CommandContext;
+import com.tchepannou.blog.service.GetPostListCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class GetPostListServiceImpl extends CommandImpl<GetPostListService.Request, PostCollectionResponse> implements GetPostListService {
+public class GetPostListCommandImpl extends AbstractCommand<Void, PostCollectionResponse> implements GetPostListCommand {
     @Autowired
     private PostDao postDao;
 
@@ -26,8 +27,8 @@ public class GetPostListServiceImpl extends CommandImpl<GetPostListService.Reque
 
     //-- Public
     @Override
-    protected PostCollectionResponse doExecute(Request request) {
-        final List<Post> posts = postDao.findByBlog(request.getBlogId(), request.getLimit(), request.getOffset());
+    protected PostCollectionResponse doExecute(Void request, CommandContext context) {
+        final List<Post> posts = postDao.findByBlog(context.getBlogId(), context.getLimit(), context.getOffset());
 
         final List<Long> postIds = posts.stream()
                 .map(Post::getId)

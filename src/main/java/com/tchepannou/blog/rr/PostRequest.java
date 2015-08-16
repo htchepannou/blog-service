@@ -3,19 +3,27 @@ package com.tchepannou.blog.rr;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.Max;
 import java.util.Date;
 import java.util.List;
 
 public class PostRequest {
     //-- Attributes
     @NotBlank(message = "missing_title")
+    @Max(value = 255)
     private String title;
 
     @ApiModelProperty(allowableValues = "draft,published")
+    @NotBlank(message = "missing_status")
     private String status;
 
     private String content;
+
+    @Max(value = 255)
+    private String slug;
+
     private List<String> tags;
+
     private Date published;
 
     //-- Getter/Setter
@@ -57,5 +65,13 @@ public class PostRequest {
 
     public void setPublished(Date published) {
         this.published = published;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 }

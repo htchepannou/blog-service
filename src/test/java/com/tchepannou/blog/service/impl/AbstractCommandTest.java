@@ -2,6 +2,7 @@ package com.tchepannou.blog.service.impl;
 
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
+import com.tchepannou.blog.service.CommandContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -14,7 +15,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CommandImplTest {
+public class AbstractCommandTest {
     @Mock
     private MetricRegistry metrics;
 
@@ -32,7 +33,7 @@ public class CommandImplTest {
         when(metrics.meter(name + ".errors")).thenReturn(errorMeter);
 
         // When
-        long result = new DoubleCommand(name).execute(1L);
+        long result = new DoubleCommand(name).execute(1L, null);
 
         // Then
         assertThat(result).isEqualTo(2L);
@@ -49,7 +50,7 @@ public class CommandImplTest {
 
         try {
             // When
-            new ExceptionCommand(name).execute(1L);
+            new ExceptionCommand(name).execute(1L, null);
             fail("failed");
         } catch (RuntimeException e) {
             // Then
@@ -59,7 +60,7 @@ public class CommandImplTest {
     }
 
     //-- Inner classes
-    private class DoubleCommand extends CommandImpl<Long, Long>{
+    private class DoubleCommand extends AbstractCommand<Long, Long> {
         private String name;
 
         public DoubleCommand(String name){
@@ -68,7 +69,7 @@ public class CommandImplTest {
         }
 
         @Override
-        protected Long doExecute(Long input) {
+        protected Long doExecute(Long input, CommandContext ctx) {
             return 2*input;
         }
 
@@ -78,7 +79,7 @@ public class CommandImplTest {
         }
     }
 
-    private class ExceptionCommand extends CommandImpl<Long, Long>{
+    private class ExceptionCommand extends AbstractCommand<Long, Long> {
         private String name;
 
         public ExceptionCommand(String name){
@@ -87,7 +88,7 @@ public class CommandImplTest {
         }
 
         @Override
-        protected Long doExecute(Long input) {
+        protected Long doExecute(Long input, CommandContext ctx) {
             throw new RuntimeException("Failed");
         }
 

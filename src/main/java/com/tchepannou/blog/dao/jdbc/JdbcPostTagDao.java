@@ -15,12 +15,12 @@ import static com.tchepannou.blog.dao.jdbc.JdbcUtils.toParamVars;
 
 public class JdbcPostTagDao implements PostTagDao {
     //-- Private
-    private JdbcTemplate template;
+    private DataSource dataSource;
 
 
     //-- Constructor
     public JdbcPostTagDao(DataSource ds){
-        this.template = new JdbcTemplate(ds);
+        this.dataSource = ds;
     }
 
     //-- PostTagDao overrides
@@ -32,7 +32,7 @@ public class JdbcPostTagDao implements PostTagDao {
 
         final String sql = "SELECT * FROM post_tag WHERE post_fk IN (" + toParamVars(postIds) + ") ORDER BY rank";
 
-        return template.query(
+        return new JdbcTemplate(dataSource).query(
                 sql,
                 postIds.toArray(),
                 (rs, i) -> map(rs)
