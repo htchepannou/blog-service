@@ -8,10 +8,15 @@ import com.tchepannou.blog.domain.PostTag;
 import com.tchepannou.blog.domain.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -83,7 +88,33 @@ public class JdbcTagDao implements TagDao{
         return result;
     }
 
+    @Override
+    public void create(Tag tag) {
+        final KeyHolder keyHolder = new GeneratedKeyHolder();
 
+        new JdbcTemplate(dataSource).update(cnn -> insertPreparedStatement(tag, cnn), keyHolder);
+
+        tag.setId(keyHolder.getKey().longValue());
+    }
+
+    @Override
+    public List<Tag> findByNames(Collection<String> names) {
+        if (names.isEmpty()){
+            return Collections.emptyList();
+        }
+
+        final String sql = "SELECT * FROM tag WHERE LOWER(name) IN (" + toParamVars(names) + ")";
+
+        return new JdbcTemplate(dataSource).query(
+                sql,
+                names
+                        .stream()
+                        .map(String::toLowerCase)
+                        .collect(Collectors.toList())
+                        .toArray(),
+                (rs, i) -> map(rs)
+        );
+    }
 
     //-- Private
     private Tag map(ResultSet rs) throws SQLException {
@@ -94,5 +125,18 @@ public class JdbcTagDao implements TagDao{
 
         return tag;
     }
+
+    public PreparedStatement insertPreparedStatement(Tag tag, Connection connection) throws SQLException {
+        final String sql = "INSERT INTO tag"
+                + "(name)"
+                + " VALUES(?)";
+
+        final PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
+        ps.setString(1, tag.getName());
+
+        return ps;
+    }
+
 
 }

@@ -11,5 +11,9 @@ public interface TagDao {
 
     List<Tag> findByPost(long postId);
 
-    Multimap<Long, Tag> findByPosts(Collection<Long> posts);
+    Multimap<Long, Tag> findByPosts(Collection<Long> postIds);
+
+    void create (Tag tag);
+
+    List<Tag> findByNames (Collection<String> names);
 }

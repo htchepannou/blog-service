@@ -21,8 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.Arrays;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
 
@@ -30,8 +29,8 @@ import static org.hamcrest.number.OrderingComparison.greaterThan;
 @SpringApplicationConfiguration(classes = Starter.class)
 @WebIntegrationTest
 @Sql({
-        "/db/clean.sql"/*,
-        "/db/create_text.sql"*/
+        "/db/clean.sql",
+        "/db/create_text.sql"
 })
 public class CreateTextIT {
     @Value("${server.port}")
@@ -58,7 +57,7 @@ public class CreateTextIT {
             req.setContent("<div>hello world</div>");
             req.setStatus(Post.Status.draft.name());
             req.setSlug("sample slug");
-            req.setTags(Arrays.asList("tag1", "tag2"));
+            req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
             req.setTitle("sample title");
 
             System.out.println(new String(new ObjectMapper().writeValueAsBytes(req)));
@@ -84,8 +83,11 @@ public class CreateTextIT {
                     .body("created", notNullValue())
                     .body("updated", notNullValue())
                     .body("published", nullValue())
+                    .body("tags", hasItems("tag1", "tag2", "tag3"))
             ;
             // @formatter:on
+
+
         } finally {
             authServer.stop();
         }

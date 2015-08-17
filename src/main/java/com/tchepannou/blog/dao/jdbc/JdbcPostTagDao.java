@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -25,6 +26,17 @@ public class JdbcPostTagDao implements PostTagDao {
 
     //-- PostTagDao overrides
     @Override
+    public List<PostTag> findByPost(long postId) {
+        final String sql = "SELECT * FROM post_tag WHERE post_fk=? ORDER BY rank";
+
+        return new JdbcTemplate(dataSource).query(
+                sql,
+                new Object[] {postId},
+                (rs, i) -> map(rs)
+        );
+    }
+
+    @Override
     public List<PostTag> findByPosts(Collection<Long> postIds) {
         if (postIds.isEmpty()){
             return Collections.emptyList();
@@ -39,6 +51,29 @@ public class JdbcPostTagDao implements PostTagDao {
         );
     }
 
+    @Override
+    public void deleteByPost(long postId) {
+        final String sql = "DELETE FROM post_tag WHERE post_fk=?";
+        new JdbcTemplate(dataSource).update(
+                sql,
+                postId
+        );
+    }
+
+    @Override
+    public void add(long postId, List<Long> tagIds) {
+        if (tagIds.isEmpty()){
+            return;
+        }
+
+        List<Object[]> params = new ArrayList<>();
+        for (int i=0 ; i<tagIds.size() ; i++){
+            params.add(new Object[]{postId, tagIds.get(i), i});
+        }
+
+        final String sql = "INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(?,?,?)";
+        new JdbcTemplate(dataSource).batchUpdate(sql, params);
+    }
 
     //-- Private
     private PostTag map(ResultSet rs) throws SQLException {
