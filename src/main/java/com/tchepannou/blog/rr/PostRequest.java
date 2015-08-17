@@ -1,27 +1,27 @@
 package com.tchepannou.blog.rr;
 
 import com.wordnik.swagger.annotations.ApiModelProperty;
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 
 public class PostRequest {
     //-- Attributes
-    @NotBlank(message = "missing_title")
-    @Max(value = 255)
+    @NotBlank(message = "title_empty")
+    @Length(max = 255, message="title_size")
     private String title;
 
     @ApiModelProperty(allowableValues = "draft,published")
-    @Pattern(regexp = "draft|published", message="bad_value")
+    @Pattern(regexp = "draft|published", message="status_invalid")
     @NotBlank(message = "missing_status")
     private String status;
 
     private String content;
 
-    @Max(value = 255)
+    @Length(max = 255, message="slug_size")
     private String slug;
 
     private List<String> tags;

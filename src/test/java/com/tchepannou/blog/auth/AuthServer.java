@@ -38,15 +38,19 @@ public class AuthServer {
         public void handle(String s, Request request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
                 throws IOException, ServletException {
 
-            httpServletResponse.addHeader("Content-Type", "application/json");
-            httpServletResponse.setStatus(200);
+            if (request.getPathInfo().endsWith("/" + accessTokenId)) {
+                httpServletResponse.addHeader("Content-Type", "application/json");
+                httpServletResponse.setStatus(200);
 
-            httpServletResponse.getWriter().write(
-                    "{"
-                            + "\"id\":\"" + accessTokenId + "\","
-                            + "\"userId\":" + userId
-                    + "}"
-            );
+                httpServletResponse.getWriter().write(
+                        "{"
+                                + "\"id\":\"" + accessTokenId + "\","
+                                + "\"userId\":" + userId
+                                + "}"
+                );
+            } else {
+                httpServletResponse.setStatus(401);
+            }
             request.setHandled(true);
         }
     }

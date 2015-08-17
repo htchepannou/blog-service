@@ -1,6 +1,5 @@
 package com.tchepannou.blog.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
@@ -60,8 +59,6 @@ public class CreateTextIT {
             req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
             req.setTitle("sample title");
 
-            System.out.println(new String(new ObjectMapper().writeValueAsBytes(req)));
-
             // @formatter:off
             given()
                     .contentType(ContentType.JSON)
@@ -92,4 +89,127 @@ public class CreateTextIT {
             authServer.stop();
         }
     }
+
+
+    @Test
+    public void should_fail_when_not_authenticated() throws Exception {
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        try {
+            CreateTextRequest req = new CreateTextRequest();
+            req.setContent("<div>hello world</div>");
+            req.setStatus("draft");
+            req.setSlug("sample slug");
+            req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
+            req.setTitle("test");
+
+            // @formatter:off
+            given()
+                    .contentType(ContentType.JSON)
+                    .content(req, ObjectMapperType.JACKSON_2)
+                    .header(new Header("access_token", "????"))
+                .when()
+                    .post("/blog/v1/posts/100/text")
+                .then()
+                    .log().all()
+                    .statusCode(401)
+                    .body("code", is(401))
+                    .body("text", is("auth_failed"))
+            ;
+            // @formatter:on
+
+
+        } finally {
+            authServer.stop();
+        }
+    }
+
+    @Test
+    public void should_fail_when_not_auth_server_down() throws Exception {
+        CreateTextRequest req = new CreateTextRequest();
+        req.setContent("<div>hello world</div>");
+        req.setStatus("draft");
+        req.setSlug("sample slug");
+        req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
+        req.setTitle("test");
+
+        // @formatter:off
+        given()
+                .contentType(ContentType.JSON)
+                .content(req, ObjectMapperType.JACKSON_2)
+                .header(new Header("access_token", "????"))
+            .when()
+                .post("/blog/v1/posts/100/text")
+            .then()
+                .log().all()
+                .statusCode(401)
+                .body("code", is(401))
+                .body("text", is("auth_failed"))
+        ;
+        // @formatter:on
+    }
+
+    @Test
+    public void should_fail_with_empty_title() throws Exception {
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        try {
+            CreateTextRequest req = new CreateTextRequest();
+            req.setContent("<div>hello world</div>");
+            req.setStatus(Post.Status.draft.name());
+            req.setSlug("sample slug");
+            req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
+            req.setTitle("");
+
+            // @formatter:off
+            given()
+                    .contentType(ContentType.JSON)
+                    .content(req, ObjectMapperType.JACKSON_2)
+                    .header(new Header("access_token", "_token_"))
+                .when()
+                    .post("/blog/v1/posts/100/text")
+                .then()
+                    .log().all()
+                    .statusCode(400)
+                    .body("code", is(400))
+                    .body("text", is("title_empty"))
+            ;
+            // @formatter:on
+
+
+        } finally {
+            authServer.stop();
+        }
+    }
+
+    @Test
+    public void should_fail_with_bad_status() throws Exception {
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        try {
+            CreateTextRequest req = new CreateTextRequest();
+            req.setContent("<div>hello world</div>");
+            req.setStatus("????");
+            req.setSlug("sample slug");
+            req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
+            req.setTitle("test");
+
+            // @formatter:off
+            given()
+                    .contentType(ContentType.JSON)
+                    .content(req, ObjectMapperType.JACKSON_2)
+                    .header(new Header("access_token", "_token_"))
+                .when()
+                    .post("/blog/v1/posts/100/text")
+                .then()
+                    .log().all()
+                    .statusCode(400)
+                    .body("code", is(400))
+                    .body("text", is("status_invalid"))
+            ;
+            // @formatter:on
+
+
+        } finally {
+            authServer.stop();
+        }
+    }
+
 }

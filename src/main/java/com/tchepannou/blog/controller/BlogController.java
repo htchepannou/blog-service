@@ -1,5 +1,6 @@
 package com.tchepannou.blog.controller;
 
+import com.tchepannou.blog.exception.AccessTokenException;
 import com.tchepannou.blog.rr.CreateTextRequest;
 import com.tchepannou.blog.rr.ErrorResponse;
 import com.tchepannou.blog.rr.PostCollectionResponse;
@@ -11,15 +12,19 @@ import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
 import com.wordnik.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,14 +32,16 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import javax.ws.rs.HeaderParam;
-import javax.xml.bind.ValidationException;
+import java.util.List;
 
 @RestController
 @Api(basePath = "/blog/v1", value = "Blog API", produces = MediaType.APPLICATION_JSON_VALUE)
 @RequestMapping(value="/blog/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BlogController {
+
     //-- Atributes
+    private static final Logger LOG = LoggerFactory.getLogger(BlogController.class);
+
     @Autowired
     GetPostCommand getPostService;
 
@@ -81,9 +88,9 @@ public class BlogController {
             @ApiResponse(code=404, message = "Bad request data.")
     })
     public ResponseEntity<PostResponse> createText(
-            @HeaderParam(value="access_token") String accessToken,
+            @RequestHeader(value="access_token") String accessToken,
             @PathVariable long bid,
-            @RequestBody CreateTextRequest request
+            @Valid @RequestBody CreateTextRequest request
     ) {
         PostResponse response = createTextCommand.execute(
                 request,
@@ -134,14 +141,23 @@ public class BlogController {
     }
 
     @ResponseStatus(value= HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(AuthenticationException.class)
-    public ErrorResponse authenticationFailed(AuthenticationException exception) {
-        return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), "not_found", exception.getMessage());
+    @ExceptionHandler(AccessTokenException.class)
+    public ErrorResponse authenticationFailed(AccessTokenException exception) {
+        LOG.error("Authentication error", exception);
+        return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), "auth_failed", exception.getMessage());
     }
 
     @ResponseStatus(value= HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(ValidationException.class)
-    public ErrorResponse validationFailed(ValidationException exception) {
-        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), exception.getMessage());
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ErrorResponse validationFailed(MethodArgumentNotValidException ex) {
+        List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
+        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), fieldErrors.get(0).getDefaultMessage());
+    }
+
+    @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(Exception.class)
+    public ErrorResponse failure(Exception exception) {
+        LOG.error("Unexpected error", exception);
+        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
     }
 }
