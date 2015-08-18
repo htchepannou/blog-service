@@ -7,9 +7,11 @@ import com.jayway.restassured.response.Header;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
 import com.tchepannou.blog.dao.PostDao;
+import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
+import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.PostTag;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.rr.CreateTextRequest;
@@ -57,6 +59,10 @@ public class CreateTextIT {
     @Autowired
     private PostTagDao postTagDao;
 
+    @Autowired
+    private PostEntryDao postEntryDao;
+
+    //-- Test
     @Before
     public void setUp (){
         RestAssured.port = port;
@@ -64,7 +70,6 @@ public class CreateTextIT {
     }
 
 
-    //-- Test
     @Test
     public void should_create_text() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
@@ -112,6 +117,9 @@ public class CreateTextIT {
 
             List<PostTag> postTags = postTagDao.findByPost(id);
             assertThat(postTags).hasSize(3);
+
+            List<PostEntry> entries = postEntryDao.findByPost(id);
+            assertThat(entries).hasSize(1);
 
         } finally {
             authServer.stop();

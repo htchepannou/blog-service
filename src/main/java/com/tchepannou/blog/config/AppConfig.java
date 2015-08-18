@@ -1,9 +1,11 @@
 package com.tchepannou.blog.config;
 
 import com.tchepannou.blog.dao.PostDao;
+import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
+import com.tchepannou.blog.dao.jdbc.JdbcPostEntryDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
 import com.tchepannou.blog.service.AccessTokenService;
@@ -70,8 +72,14 @@ public class AppConfig {
         return new JdbcPostDao(dataSource());
     }
 
-    @Bean PostTagDao postTagDao () {
+    @Bean
+    PostTagDao postTagDao () {
         return new JdbcPostTagDao (dataSource());
+    }
+
+    @Bean
+    PostEntryDao postEntryDao() {
+        return new JdbcPostEntryDao(dataSource());
     }
 
     @Bean

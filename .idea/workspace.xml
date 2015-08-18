@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92585ef6-f4ef-4a3e-a6bc-0c86e042baf4" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostEntryDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/PostEntry.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostEntryDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/CreateTextIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/CreateTextIT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blog-service.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,28 +54,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GetPostCommandImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/GetPostCommandImpl.java">
+      <file leaf-file-name="CreateTextCommandImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding>
-                <element signature="method#doExecute#0;class#GetPostCommandImpl#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1968#1969#0" expanded="true" />
+                <element signature="e#2019#2020#0" expanded="true" />
+                <element signature="method#link#0;class#CreateTextCommandImpl#0" expanded="false" />
+                <element signature="method#create#0;class#CreateTextCommandImpl#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateTextCommandImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java">
+      <file leaf-file-name="PostEntry.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/PostEntry.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+              <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1789#1790#0" expanded="true" />
-                <element signature="e#1840#1841#0" expanded="true" />
-                <element signature="method#create#0;class#CreateTextCommandImpl#0" expanded="false" />
+                <element signature="e#686#687#0" expanded="true" />
+                <element signature="e#723#724#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/CreateTextIT.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+              <caret line="110" column="26" selection-start-line="110" selection-start-column="26" selection-end-line="110" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -88,39 +95,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9ac38e74-ae14-452e-aec7-200d0e9cdc3b/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="18" selection-start-line="0" selection-start-column="18" selection-end-line="0" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AuthServer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/auth/AuthServer.java">
+      <file leaf-file-name="PostEntryDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostEntryDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JdbcPostDao.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java">
+      <file leaf-file-name="JdbcPostEntryDao.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostEntryDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8852041">
-              <caret line="85" column="31" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.20786516">
+              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#findByBlog#0;class#JdbcPostDao#0" expanded="false" />
-                <element signature="method#create#0;class#JdbcPostDao#0" expanded="false" />
-                <element signature="method#map#0;class#JdbcPostDao#0" expanded="false" />
-                <marker date="1439750917000" expanded="true" signature="878:921" placeholder="SELECT * FRO..post..." />
-                <marker date="1439750917000" expanded="true" signature="1212:1429" placeholder="SELECT P.* F..post..." />
-                <marker date="1439750917000" expanded="true" signature="2177:2357" placeholder="INSERT INTO ..." />
+                <marker date="1439897650000" expanded="true" signature="567:607" placeholder="SELECT * FRO..post_entry..." />
+                <marker date="1439897650000" expanded="true" signature="913:975" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
@@ -154,10 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/GetPostIT.java" />
-        <option value="$PROJECT_DIR$/src/test/resources/db/get_post.sql" />
-        <option value="$PROJECT_DIR$/src/test/resources/db/get_post_collection.sql" />
-        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/GetPostCollectionIT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/PostTag.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostCollectionResponseMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/MetricsConfig.java" />
@@ -193,7 +184,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/TagDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcTagDao.java" />
         <option value="$PROJECT_DIR$/src/test/resources/db/create_text.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostTagDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostTagDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/rr/PostRequest.java" />
@@ -201,10 +191,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/AccessToken.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/AbstractSecuredCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/CreateTextIT.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9ac38e74-ae14-452e-aec7-200d0e9cdc3b/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostEntry.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostEntryDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/CreateTextIT.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/PostEntry.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostEntryDao.java" />
       </list>
     </option>
   </component>
@@ -510,11 +505,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jdbc" />
+              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -540,8 +531,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.tchepannou.blog.service.impl" />
       <recent name="com.tchepannou.blog.dao.jdbc" />
+      <recent name="com.tchepannou.blog.service.impl" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/resources/db" />
@@ -1046,12 +1037,12 @@
       <workItem from="1439416366761" duration="2453000" />
       <workItem from="1439502090595" duration="10888000" />
       <workItem from="1439582594226" duration="30458000" />
-      <workItem from="1439848147700" duration="3836000" />
+      <workItem from="1439848147700" duration="4773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50646000" />
+    <option name="totallyTimeSpent" value="51583000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="127" y="23" width="1180" height="824" extended-state="0" />
@@ -1059,13 +1050,13 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32857144" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32786885" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47540984" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.47540984" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952547" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34153005" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1074,18 +1065,18 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3884007" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27240774" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4262295" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4262295" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1115,7 +1106,7 @@
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="21" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1124,27 +1115,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/exception/AccessTokenException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="66" selection-start-line="7" selection-start-column="66" selection-end-line="7" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/HttpClientProviderImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26431718">
-          <caret line="8" column="30" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/HttpClientProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13215859">
-          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.1/httpcore-4.4.1.jar!/org/apache/http/HttpMessage.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20979021">
@@ -1274,13 +1244,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/migration/V1_0__Initial.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/TagDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1293,6 +1256,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="116" column="4" selection-start-line="116" selection-start-column="4" selection-end-line="116" selection-end-column="4" />
+          <folding>
+            <element signature="e#1113#1114#0" expanded="true" />
+            <element signature="e#1149#1150#0" expanded="true" />
+            <element signature="method#findByPosts#0;class#JdbcTagDao#0" expanded="false" />
+            <element signature="method#map#0;class#JdbcTagDao#0" expanded="false" />
+            <element signature="method#insertPreparedStatement#0;class#JdbcTagDao#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1300,6 +1270,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.0344827">
           <caret line="2" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
@@ -1327,14 +1298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.8181818">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2246696">
-          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1492,32 +1455,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Post.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/auth/AuthServer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1789#1790#0" expanded="true" />
-            <element signature="e#1840#1841#0" expanded="true" />
-            <element signature="method#create#0;class#CreateTextCommandImpl#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1529,28 +1471,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/CreateTextIT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8852041">
+        <state vertical-scroll-proportion="1.1211454">
           <caret line="85" column="31" selection-start-line="85" selection-start-column="31" selection-end-line="85" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#findByBlog#0;class#JdbcPostDao#0" expanded="false" />
             <element signature="method#create#0;class#JdbcPostDao#0" expanded="false" />
             <element signature="method#map#0;class#JdbcPostDao#0" expanded="false" />
-            <marker date="1439750917000" expanded="true" signature="878:921" placeholder="SELECT * FRO..post..." />
-            <marker date="1439750917000" expanded="true" signature="1212:1429" placeholder="SELECT P.* F..post..." />
-            <marker date="1439750917000" expanded="true" signature="2177:2357" placeholder="INSERT INTO ..." />
+            <marker date="1439896349000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..post..." />
+            <marker date="1439896349000" expanded="true" signature="-1:-1" placeholder="SELECT P.* F..post..." />
+            <marker date="1439896349000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50440526">
+          <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
+          <folding>
+            <element signature="e#1753#1754#0" expanded="true" />
+            <element signature="e#1818#1819#0" expanded="true" />
+            <element signature="e#2139#2140#0" expanded="true" />
+            <element signature="e#2190#2191#0" expanded="true" />
+            <element signature="e#2527#2528#0" expanded="true" />
+            <element signature="e#2584#2585#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/migration/V1_0__Initial.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1968#1969#0" expanded="true" />
+            <element signature="e#2019#2020#0" expanded="true" />
+            <element signature="method#link#0;class#CreateTextCommandImpl#0" expanded="false" />
+            <element signature="method#create#0;class#CreateTextCommandImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/CreateTextIT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="110" column="26" selection-start-line="110" selection-start-column="26" selection-end-line="110" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostEntryDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/PostEntry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="20" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
+          <folding>
+            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#723#724#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostEntryDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20786516">
+          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1439897650000" expanded="true" signature="567:607" placeholder="SELECT * FRO..post_entry..." />
+            <marker date="1439897650000" expanded="true" signature="913:975" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>

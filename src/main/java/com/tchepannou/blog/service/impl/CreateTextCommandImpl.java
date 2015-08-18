@@ -2,9 +2,11 @@ package com.tchepannou.blog.service.impl;
 
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.dao.PostDao;
+import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
+import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
 import com.tchepannou.blog.rr.CreateTextRequest;
@@ -35,12 +37,16 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreateTextRequ
     @Autowired
     private PostTagDao postTagDao;
 
+    @Autowired
+    private PostEntryDao postEntryDao;
+
     //-- AbstractCommand overrides
     @Override
     protected PostResponse doExecute(CreateTextRequest request, CommandContext context) {
         final Post post = createPost(request, context, Post.Type.text, postDao);
         final List<Tag> tags = addTags(request, tagDao);
         link(post, tags, postTagDao);
+        addToBlog(post, context);
 
         return new PostResponseMapper()
                 .withPost(post)
@@ -102,6 +108,11 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreateTextRequ
                 .map(Tag::getId)
                 .collect(Collectors.toList());
         dao.add(post.getId(), tagIds);
+    }
+
+    private void addToBlog(Post post, CommandContext context){
+        final PostEntry entry = new PostEntry(post.getId(), context.getBlogId());
+        postEntryDao.create(entry);
     }
 
     private Tag create(String name, TagDao dao){
