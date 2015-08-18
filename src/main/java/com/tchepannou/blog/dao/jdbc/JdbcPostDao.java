@@ -68,8 +68,8 @@ public class JdbcPostDao implements PostDao{
     //-- Private
     public PreparedStatement insertPreparedStatement(Post post, Connection connection) throws SQLException {
         final String sql = "INSERT INTO post"
-                + "(blog_id, user_id, type, status, title, content, slug, created, updated, published)"
-                + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+                + "(blog_id, user_id, type, status, title, content, slug, created, updated, published, deleted)"
+                + " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 
         final PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -83,6 +83,7 @@ public class JdbcPostDao implements PostDao{
         ps.setTimestamp(8, toTimestamp(post.getCreated()));
         ps.setTimestamp(9, toTimestamp(post.getUpdated()));
         ps.setTimestamp(10, toTimestamp(post.getPublished()));
+        ps.setBoolean(11, false);
 
         return ps;
     }

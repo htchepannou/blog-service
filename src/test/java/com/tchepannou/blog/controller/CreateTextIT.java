@@ -6,11 +6,17 @@ import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.jayway.restassured.response.Header;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
+import com.tchepannou.blog.dao.PostDao;
+import com.tchepannou.blog.dao.PostTagDao;
+import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
+import com.tchepannou.blog.domain.PostTag;
+import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.rr.CreateTextRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
@@ -18,8 +24,10 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static com.jayway.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.number.OrderingComparison.greaterThan;
@@ -39,6 +47,15 @@ public class CreateTextIT {
     private int authServerPort;
 
     private AuthServer authServer;
+
+    @Autowired
+    private TagDao tagDao;
+
+    @Autowired
+    private PostDao postDao;
+
+    @Autowired
+    private PostTagDao postTagDao;
 
     @Before
     public void setUp (){
@@ -60,7 +77,7 @@ public class CreateTextIT {
             req.setTitle("sample title");
 
             // @formatter:off
-            given()
+            int id = given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header("access_token", "_token_"))
@@ -81,9 +98,20 @@ public class CreateTextIT {
                     .body("updated", notNullValue())
                     .body("published", nullValue())
                     .body("tags", hasItems("tag1", "tag2", "tag3"))
+                .extract()
+                    .path("id");
             ;
             // @formatter:on
 
+            /* check DB */
+            List<Tag> tags = tagDao.findByNames(Arrays.asList("tag1", "tag2", "tag3"));
+            assertThat(tags).hasSize(3);
+
+            Post post = postDao.findById(id);
+            assertThat(post).isNotNull();
+
+            List<PostTag> postTags = postTagDao.findByPost(id);
+            assertThat(postTags).hasSize(3);
 
         } finally {
             authServer.stop();
