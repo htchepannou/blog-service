@@ -53,4 +53,9 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreateTextRequ
     protected String getMetricName() {
         return Constants.METRIC_CREATE_TEXT;
     }
+
+    @Override
+    protected String getEventName() {
+        return Constants.EVENT_CREATE_TEXT;
+    }
 }

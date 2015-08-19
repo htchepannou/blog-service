@@ -106,7 +106,7 @@ public class AbstractCommandTest {
             return name;
         }
 
-        protected String getLogEventName () {
+        protected String getEventName() {
             return name;
         }
 
@@ -134,7 +134,7 @@ public class AbstractCommandTest {
             return name;
         }
 
-        protected String getLogEventName () {
+        protected String getEventName() {
             return name;
         }
     }

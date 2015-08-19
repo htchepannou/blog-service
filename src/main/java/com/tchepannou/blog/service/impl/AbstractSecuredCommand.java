@@ -19,7 +19,10 @@ public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O>
     //-- Protected
     @Override
     protected void authenticate (CommandContext context) throws AccessTokenException {
-        accessToken = accessTokenService.get(context.getAccessTokenId());
+        String id = context.getAccessTokenId();
+
+        getLogger().info(String.format("Authenticating {}", id));
+        accessToken = accessTokenService.get(id);
     }
 
     //-- Getter

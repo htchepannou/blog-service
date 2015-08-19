@@ -2,14 +2,14 @@ package com.tchepannou.blog.domain;
 
 import java.util.Date;
 
-public class LogEvent extends Model {
+public class EventLog extends Model {
     //-- Attributes
     private long id;
     private long userId;
     private long postId;
     private long blogId;
     private String name;
-    private Date date;
+    private Date created;
     private String request;
 
     //-- Getter/Setter
@@ -37,12 +37,12 @@ public class LogEvent extends Model {
         this.name = name;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public String getRequest() {

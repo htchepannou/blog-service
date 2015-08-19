@@ -34,4 +34,9 @@ public class DeletePostCommandImpl extends AbstractSecuredCommand<Void, Void> im
     protected String getMetricName() {
         return Constants.METRIC_DELETE_POST;
     }
+
+    @Override
+    protected String getEventName() {
+        return Constants.EVENT_DELETE_POST;
+    }
 }

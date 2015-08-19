@@ -4,9 +4,12 @@ import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Strings;
 import com.tchepannou.blog.Constants;
-import com.tchepannou.blog.domain.LogEvent;
+import com.tchepannou.blog.domain.EventLog;
+import com.tchepannou.blog.rr.PostResponse;
 import com.tchepannou.blog.service.Command;
 import com.tchepannou.blog.service.CommandContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jms.core.JmsTemplate;
@@ -18,6 +21,8 @@ import java.util.OptionalLong;
 
 public abstract class AbstractCommand<I, O> implements Command<I, O> {
     //-- Attributes
+    private Logger logger;
+
     @Autowired
     private MetricRegistry metrics;
 
@@ -29,9 +34,12 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
 
     //-- Constructor
     public AbstractCommand(){
+        this.logger = LoggerFactory.getLogger(getClass());
     }
 
     protected AbstractCommand(MetricRegistry metrics, JmsTemplate jmsTemplate, Jackson2ObjectMapperBuilder jackson){
+        this();
+
         this.metrics = metrics;
         this.jmsTemplate = jmsTemplate;
         this.jackson = jackson;
@@ -53,11 +61,11 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
             authenticate(context);
 
             /* execute */
-            O result = doExecute(request, context);
+            O response = doExecute(request, context);
 
             /* post */
-            logEvent(request, context);
-            return result;
+            logEvent(request, response, context);
+            return response;
         } catch (RuntimeException e) {
             metrics.meter(metricName + ".errors").mark();
 
@@ -69,24 +77,34 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
     protected void authenticate (final CommandContext context) throws AuthenticationException {
     }
 
-    protected String getLogEventName () {
+    protected Logger getLogger () {
+        return logger;
+    }
+
+
+    protected String getEventName() {
         return null;
     }
 
-    protected void logEvent (I request, CommandContext context) {
-        String name = getLogEventName();
+    protected void logEvent (I request, O response, CommandContext context) {
+        String name = getEventName();
         if (Strings.isNullOrEmpty(name)){
             return;
         }
 
-        LogEvent event = new LogEvent();
-        event.setDate(new Date());
+        EventLog event = new EventLog();
+        event.setCreated(new Date());
         event.setName(name);
-        event.setPostId(context.getId());
         event.setBlogId(context.getBlogId());
 
         if (!isAnonymousUser()) {
             event.setUserId(getUserId().getAsLong());
+        }
+
+        if (response instanceof PostResponse) {
+            event.setPostId(((PostResponse) response).getId());
+        } else {
+            event.setPostId(context.getId());
         }
 
         if (request != null && !(request instanceof Void)){
@@ -97,6 +115,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
             }
         }
 
+        getLogger().info(String.format("Sending %s to %s", event, Constants.QUEUE_EVENT_LOG));
         jmsTemplate.send(Constants.QUEUE_EVENT_LOG, session -> session.createObjectMessage(event));
     }
 

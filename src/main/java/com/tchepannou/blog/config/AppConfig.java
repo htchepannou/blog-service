@@ -1,15 +1,16 @@
 package com.tchepannou.blog.config;
 
-import com.tchepannou.blog.dao.LogEventDao;
+import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
-import com.tchepannou.blog.dao.jdbc.JdbcLogEventDao;
+import com.tchepannou.blog.dao.jdbc.JdbcEventLogDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostEntryDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
+import com.tchepannou.blog.jms.EventLogReceiver;
 import com.tchepannou.blog.service.AccessTokenService;
 import com.tchepannou.blog.service.CreateTextCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
@@ -89,9 +90,8 @@ public class AppConfig {
         return new AccessTokenServiceImpl();
     }
 
-    @Bean
-    LogEventDao logEventDao (){
-        return new JdbcLogEventDao(dataSource());
+    @Bean EventLogDao eventLogDao (){
+        return new JdbcEventLogDao(dataSource());
     }
 
     @Bean
@@ -112,6 +112,11 @@ public class AppConfig {
     @Bean
     TagDao tagDao (){
         return new JdbcTagDao(dataSource());
+    }
+
+    @Bean
+    EventLogReceiver eventLogReceiver(){
+        return new EventLogReceiver();
     }
 
     @Bean

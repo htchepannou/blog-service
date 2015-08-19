@@ -2,10 +2,13 @@ package com.tchepannou.blog.controller;
 
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.response.Header;
+import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
+import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
+import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import org.junit.Before;
@@ -48,6 +51,9 @@ public class DeletePostIT {
     @Autowired
     private PostEntryDao postEntryDao;
 
+    @Autowired
+    private EventLogDao eventLogDao;
+
     //-- Test
     @Before
     public void setUp (){
@@ -70,7 +76,7 @@ public class DeletePostIT {
             ;
             // @formatter:on
 
-            /* check DB */
+            /* post */
             try {
                 postDao.findById(1000);
                 fail("not deleted");
@@ -78,8 +84,23 @@ public class DeletePostIT {
 
             }
 
+            /* entries */
             List<PostEntry> entries = postEntryDao.findByPost(1000);
             assertThat(entries).isEmpty();
+
+            /* events */
+            List<EventLog> events = eventLogDao.findByPost(1000, 100, 0);
+            assertThat(events).hasSize(1);
+
+            EventLog event = events.get(0);
+            assertThat(event.getBlogId()).isEqualTo(100);
+            assertThat(event.getCreated()).isNotNull();
+            assertThat(event.getId()).isGreaterThan(0);
+            assertThat(event.getName()).isEqualTo(Constants.EVENT_DELETE_POST);
+            assertThat(event.getPostId()).isEqualTo(1000);
+            assertThat(event.getUserId()).isEqualTo(101);
+            assertThat(event.getRequest()).isNull();
+
         } finally {
             authServer.stop();
         }
@@ -100,12 +121,27 @@ public class DeletePostIT {
             ;
             // @formatter:on
 
-            /* check DB */
+            /* post */
             Post post = postDao.findById(2000);
             assertThat(post).isNotNull();
 
+            /* entries */
             List<PostEntry> entries = postEntryDao.findByPost(2000);
             assertThat(entries).hasSize(1);
+
+            /* events */
+            List<EventLog> events = eventLogDao.findByPost(2000, 100, 0);
+            assertThat(events).hasSize(1);
+
+            EventLog event = events.get(0);
+            assertThat(event.getBlogId()).isEqualTo(100);
+            assertThat(event.getCreated()).isNotNull();
+            assertThat(event.getId()).isGreaterThan(0);
+            assertThat(event.getName()).isEqualTo(Constants.EVENT_DELETE_POST);
+            assertThat(event.getPostId()).isEqualTo(2000);
+            assertThat(event.getUserId()).isEqualTo(101);
+            assertThat(event.getRequest()).isNull();
+
         } finally {
             authServer.stop();
         }

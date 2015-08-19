@@ -1,15 +1,19 @@
 package com.tchepannou.blog.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.jayway.restassured.response.Header;
+import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
+import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
+import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.PostTag;
@@ -62,6 +66,9 @@ public class CreateTextIT {
     @Autowired
     private PostEntryDao postEntryDao;
 
+    @Autowired
+    private EventLogDao eventLogDao;
+
     //-- Test
     @Before
     public void setUp (){
@@ -108,18 +115,35 @@ public class CreateTextIT {
             ;
             // @formatter:on
 
-            /* check DB */
-            List<Tag> tags = tagDao.findByNames(Arrays.asList("tag1", "tag2", "tag3"));
-            assertThat(tags).hasSize(3);
-
+            /* post */
             Post post = postDao.findById(id);
             assertThat(post).isNotNull();
+
+            /* tags */
+            List<Tag> tags = tagDao.findByNames(Arrays.asList("tag1", "tag2", "tag3"));
+            assertThat(tags).hasSize(3);
 
             List<PostTag> postTags = postTagDao.findByPost(id);
             assertThat(postTags).hasSize(3);
 
+            /* entries */
             List<PostEntry> entries = postEntryDao.findByPost(id);
             assertThat(entries).hasSize(1);
+
+            /* events */
+            List<EventLog> events = eventLogDao.findByPost(id, 1000, 0);
+            assertThat(events).hasSize(1);
+            
+            EventLog event = events.get(0);
+            assertThat(event.getBlogId()).isEqualTo(100);
+            assertThat(event.getCreated()).isNotNull();
+            assertThat(event.getId()).isGreaterThan(0);
+            assertThat(event.getName()).isEqualTo(Constants.EVENT_CREATE_TEXT);
+            assertThat(event.getPostId()).isEqualTo(id);
+            assertThat(event.getUserId()).isEqualTo(101);
+
+            CreateTextRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), CreateTextRequest.class);
+            assertThat(req2).isEqualToComparingFieldByField(req);
 
         } finally {
             authServer.stop();
