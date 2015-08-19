@@ -2,7 +2,7 @@ package com.tchepannou.blog.domain;
 
 import java.util.Date;
 
-public class PostEntry {
+public class PostEntry extends Model {
     private long postId;
     private long blogId;
     private Date posted;

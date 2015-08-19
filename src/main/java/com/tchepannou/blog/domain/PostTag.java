@@ -1,7 +1,7 @@
 package com.tchepannou.blog.domain;
 
 //-- Inner classes
-public class PostTag {
+public class PostTag extends Model {
     private long tagId;
     private long postId;
 

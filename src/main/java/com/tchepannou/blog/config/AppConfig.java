@@ -1,9 +1,11 @@
 package com.tchepannou.blog.config;
 
+import com.tchepannou.blog.dao.LogEventDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
+import com.tchepannou.blog.dao.jdbc.JdbcLogEventDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostEntryDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
@@ -11,15 +13,15 @@ import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
 import com.tchepannou.blog.service.AccessTokenService;
 import com.tchepannou.blog.service.CreateTextCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
-import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.GetPostCommand;
+import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.HttpClientProvider;
 import com.tchepannou.blog.service.UpdateTextCommand;
 import com.tchepannou.blog.service.impl.AccessTokenServiceImpl;
 import com.tchepannou.blog.service.impl.CreateTextCommandImpl;
 import com.tchepannou.blog.service.impl.DeletePostCommandImpl;
-import com.tchepannou.blog.service.impl.GetPostListCommandImpl;
 import com.tchepannou.blog.service.impl.GetPostCommandImpl;
+import com.tchepannou.blog.service.impl.GetPostListCommandImpl;
 import com.tchepannou.blog.service.impl.HttpClientProviderImpl;
 import com.tchepannou.blog.service.impl.UpdateTextCommandImpl;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,7 +29,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.config.SimpleJmsListenerContainerFactory;
+import org.springframework.jms.core.JmsTemplate;
 
+import javax.jms.ConnectionFactory;
 import javax.sql.DataSource;
 
 @Configuration
@@ -62,6 +68,18 @@ public class AppConfig {
     }
 
     @Bean
+    JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
+        SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
+        factory.setConnectionFactory(connectionFactory);
+        return factory;
+    }
+
+    @Bean
+    JmsTemplate eventLogQueue(ConnectionFactory factory){
+        return new JmsTemplate(factory);
+    }
+
+    @Bean
     HttpClientProvider httpClientProvider(){
         return new HttpClientProviderImpl();
     }
@@ -69,6 +87,11 @@ public class AppConfig {
     @Bean
     AccessTokenService accessTokenService(){
         return new AccessTokenServiceImpl();
+    }
+
+    @Bean
+    LogEventDao logEventDao (){
+        return new JdbcLogEventDao(dataSource());
     }
 
     @Bean

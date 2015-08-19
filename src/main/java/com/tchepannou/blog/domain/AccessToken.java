@@ -1,6 +1,6 @@
 package com.tchepannou.blog.domain;
 
-public class AccessToken {
+public class AccessToken extends Model {
     private String id;
     private long userId;
 

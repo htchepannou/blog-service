@@ -3,7 +3,7 @@ package com.tchepannou.blog.domain;
 import java.util.Arrays;
 import java.util.Date;
 
-public class Post {
+public class Post extends Model {
     //-- Enums
     public enum Type {
         text(1), url(2);

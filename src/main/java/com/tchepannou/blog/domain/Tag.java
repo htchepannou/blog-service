@@ -1,6 +1,6 @@
 package com.tchepannou.blog.domain;
 
-public class Tag {
+public class Tag extends Model {
     //-- Attributes
     private long id;
     private String name;
