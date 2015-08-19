@@ -6,7 +6,6 @@ import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
-import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import org.junit.Before;
@@ -42,10 +41,7 @@ public class DeletePostIT {
     private int authServerPort;
 
     private AuthServer authServer;
-
-    @Autowired
-    private TagDao tagDao;
-
+    
     @Autowired
     private PostDao postDao;
 
@@ -67,7 +63,7 @@ public class DeletePostIT {
             given()
                     .header(new Header("access_token", "_token_"))
                 .when()
-                    .delete("/blog/v1/100/post/1000")
+                    .delete("/v1/blog/100/post/1000")
                 .then()
                     .log().all()
                     .statusCode(200)
@@ -97,7 +93,7 @@ public class DeletePostIT {
             given()
                     .header(new Header("access_token", "_token_"))
                 .when()
-                    .delete("/blog/v1/100/post/2000")
+                    .delete("/v1/blog/100/post/2000")
                 .then()
                     .log().all()
                     .statusCode(200)
@@ -125,7 +121,7 @@ public class DeletePostIT {
             given()
                     .header(new Header("access_token", "????"))
                 .when()
-                    .delete("/blog/v1/100/post/2000")
+                    .delete("/v1/blog/100/post/2000")
                 .then()
                     .log().all()
                     .statusCode(401)
@@ -146,7 +142,7 @@ public class DeletePostIT {
         given()
                 .header(new Header("access_token", "????"))
             .when()
-                .delete("/blog/v1/100/post/2000")
+                .delete("/v1/blog/100/post/2000")
             .then()
                 .log().all()
                 .statusCode(401)
@@ -164,7 +160,7 @@ public class DeletePostIT {
             given()
                     .header(new Header("access_token", "_token_"))
                 .when()
-                    .delete("/blog/v1/9999/post/2000")
+                    .delete("/v1/blog/9999/post/2000")
                 .then()
                     .log().all()
                     .statusCode(404)
@@ -187,7 +183,7 @@ public class DeletePostIT {
             given()
                     .header(new Header("access_token", "_token_"))
                 .when()
-                    .delete("/blog/v1/100/post/3000")
+                    .delete("/v1/blog/100/post/3000")
                 .then()
                     .log().all()
                     .statusCode(404)

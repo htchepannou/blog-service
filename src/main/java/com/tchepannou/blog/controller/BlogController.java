@@ -39,8 +39,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@Api(basePath = "/blog/v1", value = "Blog API", produces = MediaType.APPLICATION_JSON_VALUE)
-@RequestMapping(value="/blog/v1", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(basePath = "/v1/blog", value = "Blog API", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value="/v1/blog", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BlogController {
 
     //-- Atributes
@@ -63,17 +63,20 @@ public class BlogController {
 
 
     //-- REST methods
-    @RequestMapping(method = RequestMethod.GET, value="/post/{id}")
+    @RequestMapping(method = RequestMethod.GET, value="/{bid}/post/{id}")
     @ApiOperation(value="Returns a post", notes = "Return a post by its ID")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
             @ApiResponse(code=404, message = "Post not found")
     })
-    public PostResponse get(@PathVariable long id) {
-        return getPostService.execute(id, new CommandContextImpl());
+    public PostResponse get(
+            @PathVariable long bid,
+            @PathVariable long id
+    ) {
+        return getPostService.execute(id, new CommandContextImpl().withBlogId(bid));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/posts/{bid}")
+    @RequestMapping(method = RequestMethod.GET, value="/{bid}/posts")
     @ApiOperation(value="List posts", notes = "Return a post by its ID")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
@@ -89,7 +92,7 @@ public class BlogController {
         );
     }
 
-    @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/posts/{bid}/text")
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/{bid}/text")
     @ApiOperation(value="Create a new Text")
     @ApiResponses({
             @ApiResponse(code=201, message = "Success"),
@@ -110,7 +113,7 @@ public class BlogController {
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/posts/{bid}/text/{id}")
+    @RequestMapping(method = RequestMethod.POST, value="/{bid}/text/{id}")
     @ApiOperation(value="Update a Text")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),

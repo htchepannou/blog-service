@@ -33,7 +33,7 @@ public class GetPostCommandImpl extends AbstractCommand<Long, PostResponse> impl
 
     @Override
     public PostResponse doExecute(Long id, CommandContext context) {
-        Post post = postDao.findById(id);
+        Post post = postDao.findByIdByBlog(id, context.getBlogId());
         List<Tag> tags = tagDao.findByPost(id);
 
         return new PostResponseMapper()

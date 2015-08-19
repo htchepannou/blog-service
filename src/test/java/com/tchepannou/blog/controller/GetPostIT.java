@@ -38,7 +38,7 @@ public class GetPostIT {
     public void should_returns_404_for_invalid_id (){
         // @formatter:off
         when()
-            .get("/blog/v1/post/9999")
+            .get("/v1/blog/100/post/9999")
         .then()
             .log()
                 .all()
@@ -51,7 +51,7 @@ public class GetPostIT {
     public void should_returns_404_for_deleted_post (){
         // @formatter:off
         when()
-            .get("/blog/v1/post/9998")
+            .get("/v1/blog/9998/post/9998")
         .then()
             .log()
                 .all()
@@ -64,7 +64,7 @@ public class GetPostIT {
     public void should_returns_text (){
         // @formatter:off
         when()
-            .get("/blog/v1/post/1000")
+            .get("/v1/blog/100/post/1000")
         .then()
             .log()
                 .all()

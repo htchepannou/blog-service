@@ -41,7 +41,7 @@ public class GetPostCollectionIT {
     public void should_returns_empty_for_invalid_blog (){
         // @formatter:off
         when()
-            .get("/blog/v1/posts/99999" )
+            .get("/v1/blog/99999/posts" )
         .then()
             .log()
                 .all()
@@ -55,7 +55,7 @@ public class GetPostCollectionIT {
     public void should_returns_collection (){
         // @formatter:off
         when()
-            .get("/blog/v1/posts/100" )
+            .get("/v1/blog/100/posts" )
         .then()
             .log()
                 .all()
@@ -111,7 +111,7 @@ public class GetPostCollectionIT {
             .param("limit", "3")
             .param("offset", "0")
         .when()
-            .get("/blog/v1/posts/200" )
+            .get("/v1/blog/200/posts" )
         .then()
             .log()
                 .all()
@@ -130,7 +130,7 @@ public class GetPostCollectionIT {
             .param("limit", "3")
             .param("offset", "3")
         .when()
-            .get("/blog/v1/posts/200" )
+            .get("/v1/blog/200/posts" )
         .then()
             .log()
                 .all()
