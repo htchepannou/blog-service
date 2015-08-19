@@ -2,7 +2,6 @@ package com.tchepannou.blog.service.impl;
 
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.dao.PostDao;
-import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
@@ -29,9 +28,6 @@ public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdateTextRequ
     @Autowired
     private PostTagDao postTagDao;
 
-    @Autowired
-    private PostEntryDao postEntryDao;
-
     //-- AbstractSecuredCommand overrides
     @Override
     protected PostResponse doExecute(UpdateTextRequest request, CommandContext context) {
@@ -50,5 +46,10 @@ public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdateTextRequ
     @Override
     protected String getMetricName() {
         return Constants.METRIC_UPDATE_TEXT;
+    }
+
+    @Override
+    protected String getEventName() {
+        return Constants.EVENT_UPDATE_TEXT;
     }
 }

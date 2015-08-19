@@ -1,17 +1,21 @@
 package com.tchepannou.blog.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.jayway.restassured.response.Header;
+import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
+import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
+import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostTag;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.rr.CreateTextRequest;
+import com.tchepannou.blog.rr.UpdateTextRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,13 +27,13 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -54,6 +58,9 @@ public class UpdateTextIT {
     @Autowired
     private PostTagDao postTagDao;
 
+    @Autowired
+    private EventLogDao eventLogDao;
+
     //-- Test
     @Before
     public void setUp (){
@@ -65,13 +72,12 @@ public class UpdateTextIT {
     public void should_update_text() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus(Post.Status.published.name());
             req.setSlug("sample slug");
             req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
             req.setTitle("sample title");
-            req.setPublished(new Date());
 
             // @formatter:off
             int id = given()
@@ -93,20 +99,35 @@ public class UpdateTextIT {
                     .body("status", is("published"))
                     .body("created", notNullValue())
                     .body("updated", notNullValue())
-                    .body("published", notNullValue())
+                    .body("published", nullValue())
                     .body("tags", hasItems("tag1", "tag2", "tag3"))
                 .extract()
                     .path("id");
             ;
             // @formatter:on
 
-            /* check DB */
+            /* tags */
             List<Tag> tags = tagDao.findByNames(Arrays.asList("tag1", "tag2", "tag3"));
             assertThat(tags).hasSize(3);
 
             List<PostTag> postTags = postTagDao.findByPost(id);
             assertThat(postTags).hasSize(3);
 
+            /* events */
+            List<EventLog> events = eventLogDao.findByPost(1000, 100, 0);
+            assertThat(events).hasSize(1);
+
+            EventLog event = events.get(0);
+            assertThat(event.getBlogId()).isEqualTo(100);
+            assertThat(event.getCreated()).isNotNull();
+            assertThat(event.getId()).isGreaterThan(0);
+            assertThat(event.getName()).isEqualTo(Constants.EVENT_UPDATE_TEXT);
+            assertThat(event.getPostId()).isEqualTo(id);
+            assertThat(event.getUserId()).isEqualTo(101);
+
+            UpdateTextRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), UpdateTextRequest.class);
+            assertThat(req2).isEqualToComparingFieldByField(req);
+            
         } finally {
             authServer.stop();
         }
@@ -115,7 +136,7 @@ public class UpdateTextIT {
     public void should_return_400_with_empty_title() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus(Post.Status.draft.name());
             req.setSlug("sample slug");
@@ -147,7 +168,7 @@ public class UpdateTextIT {
     public void should_return_400_with_bad_status() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("????");
             req.setSlug("sample slug");
@@ -179,7 +200,7 @@ public class UpdateTextIT {
     public void should_return_401_when_not_authenticated() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -209,7 +230,7 @@ public class UpdateTextIT {
 
     @Test
     public void should_return_401_when_not_auth_server_down() throws Exception {
-        CreateTextRequest req = new CreateTextRequest();
+        UpdateTextRequest req = new UpdateTextRequest();
         req.setContent("<div>hello world</div>");
         req.setStatus("draft");
         req.setSlug("sample slug");
@@ -236,7 +257,7 @@ public class UpdateTextIT {
     public void should_return_403_when_now_owner_of_blog() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -268,7 +289,7 @@ public class UpdateTextIT {
     public void should_return_404_when_invalid_id() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -300,7 +321,7 @@ public class UpdateTextIT {
     public void should_return_404_when_invalid_blog_id() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -332,7 +353,7 @@ public class UpdateTextIT {
     public void should_return_404_when_deleted() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
