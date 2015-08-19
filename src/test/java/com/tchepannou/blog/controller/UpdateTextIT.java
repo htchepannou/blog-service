@@ -6,8 +6,6 @@ import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.jayway.restassured.response.Header;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
-import com.tchepannou.blog.dao.PostDao;
-import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
@@ -54,13 +52,7 @@ public class UpdateTextIT {
     private TagDao tagDao;
 
     @Autowired
-    private PostDao postDao;
-
-    @Autowired
     private PostTagDao postTagDao;
-
-    @Autowired
-    private PostEntryDao postEntryDao;
 
     //-- Test
     @Before

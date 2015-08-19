@@ -37,7 +37,10 @@ public class PostUtils {
     public static Post updatePost(UpdateTextRequest request, CommandContext context, PostDao dao) {
         Post post = dao.findByIdByBlog(context.getId (), context.getBlogId());
         if (post == null){
-            throw new NotFoundException(context.getId (), Post.class);
+            ArrayList<Long> ids = new ArrayList<>();
+            ids.add(context.getId());
+            ids.add(context.getBlogId());
+            throw new NotFoundException(ids, Post.class);
         }
         if (post.getBlogId() != context.getBlogId()){
             throw new PermissionDeniedException("invalid_blog");

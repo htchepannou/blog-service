@@ -49,7 +49,7 @@ public class SwaggerConfig {
     public SwaggerSpringMvcPlugin customImplementation() {
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
                 .apiInfo(apiInfo())
-                .includePatterns("/blog.*");
+                .includePatterns("/v1.*");
     }
 
     private ApiInfo apiInfo() {

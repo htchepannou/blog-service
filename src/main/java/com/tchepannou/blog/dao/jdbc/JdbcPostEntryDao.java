@@ -1,6 +1,7 @@
 package com.tchepannou.blog.dao.jdbc;
 
 import com.tchepannou.blog.dao.PostEntryDao;
+import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -38,6 +39,16 @@ public class JdbcPostEntryDao implements PostEntryDao {
         );
     }
 
+    @Override
+    public void delete(Post post, long blogId) {
+        new JdbcTemplate(ds).update(
+                "DELETE FROM post_entry WHERE post_fk=? AND blog_id=?",
+                post.getId(),
+                blogId
+        );
+    }
+
+    //-- Private
     private PostEntry map(ResultSet rs) throws SQLException{
         PostEntry entry = new PostEntry();
         entry.setBlogId(rs.getLong("blog_id"));

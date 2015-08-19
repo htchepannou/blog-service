@@ -92,6 +92,15 @@ public class JdbcPostDao implements PostDao{
         );
     }
 
+    @Override
+    public void delete(Post post) {
+        new JdbcTemplate(dataSource).update(
+                "UPDATE post SET deleted=? WHERE id=?",
+                true,
+                post.getId()
+        );
+    }
+
     //-- Private
     public PreparedStatement insertPreparedStatement(Post post, Connection connection) throws SQLException {
         final String sql = "INSERT INTO post"

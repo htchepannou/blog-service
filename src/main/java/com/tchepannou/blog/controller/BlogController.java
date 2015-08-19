@@ -8,6 +8,7 @@ import com.tchepannou.blog.rr.PostCollectionResponse;
 import com.tchepannou.blog.rr.PostResponse;
 import com.tchepannou.blog.rr.UpdateTextRequest;
 import com.tchepannou.blog.service.CreateTextCommand;
+import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.UpdateTextCommand;
@@ -56,6 +57,9 @@ public class BlogController {
 
     @Autowired
     UpdateTextCommand updateTextCommand;
+
+    @Autowired
+    DeletePostCommand deletePostCommand;
 
 
     //-- REST methods
@@ -127,22 +131,24 @@ public class BlogController {
         );
     }
 
-
-//    @RequestMapping(method = RequestMethod.DELETE, value="/{bid}/post/{id}")
-//    @ApiOperation(value="Delete a post", notes = "Delete a post")
-//    @ApiResponses({
-//            @ApiResponse(code=200, message = "Success"),
-//            @ApiResponse(code=404, message = "Post not found"),
-//            @ApiResponse(code=401, message = "Access token expired or is invalid"),
-//            @ApiResponse(code=403, message = "User not allowed to delete the post.")
-//    })
-//    public PostResponse delete(
-//            @HeaderParam(value="access_token") String accessToken,
-//            @PathVariable long bid,
-//            @PathVariable long id
-//    ) {
-//        return new PostResponse();
-//    }
+    @RequestMapping(method = RequestMethod.DELETE, value="/{bid}/post/{id}")
+    @ApiOperation(value="Delete a post", notes = "Delete a post")
+    @ApiResponses({
+            @ApiResponse(code=200, message = "Success"),
+            @ApiResponse(code=404, message = "Post not found"),
+            @ApiResponse(code=401, message = "Access token expired or is invalid"),
+            @ApiResponse(code=403, message = "User not allowed to delete the post.")
+    })
+    public void delete(
+            @RequestHeader(value="access_token") String accessToken,
+            @PathVariable long bid,
+            @PathVariable long id
+    ) {
+        deletePostCommand.execute(
+                null,
+                new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id)
+        );
+    }
 
 
     //-- Exception Handler

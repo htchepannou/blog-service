@@ -10,12 +10,14 @@ import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
 import com.tchepannou.blog.service.AccessTokenService;
 import com.tchepannou.blog.service.CreateTextCommand;
+import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.HttpClientProvider;
 import com.tchepannou.blog.service.UpdateTextCommand;
 import com.tchepannou.blog.service.impl.AccessTokenServiceImpl;
 import com.tchepannou.blog.service.impl.CreateTextCommandImpl;
+import com.tchepannou.blog.service.impl.DeletePostCommandImpl;
 import com.tchepannou.blog.service.impl.GetPostListCommandImpl;
 import com.tchepannou.blog.service.impl.GetPostCommandImpl;
 import com.tchepannou.blog.service.impl.HttpClientProviderImpl;
@@ -107,5 +109,10 @@ public class AppConfig {
     @Bean
     UpdateTextCommand updateTextCommand(){
         return new UpdateTextCommandImpl();
+    }
+
+    @Bean
+    DeletePostCommand deletePostCommand () {
+        return new DeletePostCommandImpl();
     }
 }

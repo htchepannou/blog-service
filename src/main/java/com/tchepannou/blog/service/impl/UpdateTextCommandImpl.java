@@ -13,9 +13,11 @@ import com.tchepannou.blog.rr.UpdateTextRequest;
 import com.tchepannou.blog.service.CommandContext;
 import com.tchepannou.blog.service.UpdateTextCommand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdateTextRequest, PostResponse> implements UpdateTextCommand {
     //-- Attributes
     @Autowired
