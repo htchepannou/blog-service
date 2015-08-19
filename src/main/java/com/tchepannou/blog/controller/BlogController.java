@@ -177,7 +177,7 @@ public class BlogController {
 
     @ResponseStatus(value= HttpStatus.FORBIDDEN)
     @ExceptionHandler(PermissionDeniedException.class)
-    public ErrorResponse blogOwnershipException(Exception exception) {
+    public ErrorResponse permissionDenied(Exception exception) {
         LOG.error("Invalid blog", exception);
         return new ErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage());
     }
