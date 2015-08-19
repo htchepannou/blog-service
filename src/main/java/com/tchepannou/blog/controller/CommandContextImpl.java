@@ -4,6 +4,7 @@ import com.tchepannou.blog.service.CommandContext;
 
 public class CommandContextImpl implements CommandContext {
     //-- Attributes
+    private long id;
     private long blogId;
     private String accessTokenId;
     private int limit;
@@ -30,7 +31,17 @@ public class CommandContextImpl implements CommandContext {
         return this;
     }
 
+    public CommandContextImpl withId (long id){
+        this.id = id;
+        return this;
+    }
+
     //-- CommandContext overrides
+    @Override
+    public long getId() {
+        return id;
+    }
+
     @Override
     public long getBlogId() {
         return blogId;

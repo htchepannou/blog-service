@@ -13,11 +13,13 @@ import com.tchepannou.blog.service.CreateTextCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.HttpClientProvider;
+import com.tchepannou.blog.service.UpdateTextCommand;
 import com.tchepannou.blog.service.impl.AccessTokenServiceImpl;
 import com.tchepannou.blog.service.impl.CreateTextCommandImpl;
 import com.tchepannou.blog.service.impl.GetPostListCommandImpl;
 import com.tchepannou.blog.service.impl.GetPostCommandImpl;
 import com.tchepannou.blog.service.impl.HttpClientProviderImpl;
+import com.tchepannou.blog.service.impl.UpdateTextCommandImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -100,5 +102,10 @@ public class AppConfig {
     @Bean
     CreateTextCommand createTextCommand () {
         return new CreateTextCommandImpl();
+    }
+
+    @Bean
+    UpdateTextCommand updateTextCommand(){
+        return new UpdateTextCommandImpl();
     }
 }

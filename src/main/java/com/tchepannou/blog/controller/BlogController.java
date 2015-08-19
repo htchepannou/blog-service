@@ -1,13 +1,16 @@
 package com.tchepannou.blog.controller;
 
 import com.tchepannou.blog.exception.AccessTokenException;
+import com.tchepannou.blog.exception.PermissionDeniedException;
 import com.tchepannou.blog.rr.CreateTextRequest;
 import com.tchepannou.blog.rr.ErrorResponse;
 import com.tchepannou.blog.rr.PostCollectionResponse;
 import com.tchepannou.blog.rr.PostResponse;
+import com.tchepannou.blog.rr.UpdateTextRequest;
 import com.tchepannou.blog.service.CreateTextCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
+import com.tchepannou.blog.service.UpdateTextCommand;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
@@ -50,6 +53,10 @@ public class BlogController {
 
     @Autowired
     CreateTextCommand createTextCommand;
+
+    @Autowired
+    UpdateTextCommand updateTextCommand;
+
 
     //-- REST methods
     @RequestMapping(method = RequestMethod.GET, value="/post/{id}")
@@ -99,23 +106,28 @@ public class BlogController {
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
-//    @RequestMapping(method = RequestMethod.POST, value="/posts/{bid}/text/{id}")
-//    @ApiOperation(value="Update a Text")
-//    @ApiResponses({
-//            @ApiResponse(code=200, message = "Success"),
-//            @ApiResponse(code=404, message = "Post not found"),
-//            @ApiResponse(code=401, message = "Access token expired or is invalid"),
-//            @ApiResponse(code=403, message = "User not allowed to delete the post.")
-//    })
-//    public PostResponse updateText(
-//            @HeaderParam(value="access_token") String accessToken,
-//            @PathVariable long bid,
-//            @RequestBody @Valid UpdateTextRequest request
-//    ) {
-//        return new PostResponse();
-//    }
-//
-//
+    @RequestMapping(method = RequestMethod.POST, value="/posts/{bid}/text/{id}")
+    @ApiOperation(value="Update a Text")
+    @ApiResponses({
+            @ApiResponse(code=200, message = "Success"),
+            @ApiResponse(code=404, message = "Post not found"),
+            @ApiResponse(code=401, message = "Access token expired or is invalid"),
+            @ApiResponse(code=403, message = "User not allowed to update the post."),
+            @ApiResponse(code=404, message = "Invalid request data.")
+    })
+    public PostResponse updateText(
+            @RequestHeader(value="access_token") String accessToken,
+            @PathVariable long bid,
+            @PathVariable long id,
+            @RequestBody @Valid UpdateTextRequest request
+    ) {
+        return updateTextCommand.execute(
+                request,
+                new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id)
+        );
+    }
+
+
 //    @RequestMapping(method = RequestMethod.DELETE, value="/{bid}/post/{id}")
 //    @ApiOperation(value="Delete a post", notes = "Delete a post")
 //    @ApiResponses({
@@ -152,6 +164,13 @@ public class BlogController {
     public ErrorResponse validationFailed(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), fieldErrors.get(0).getDefaultMessage());
+    }
+
+    @ResponseStatus(value= HttpStatus.FORBIDDEN)
+    @ExceptionHandler(PermissionDeniedException.class)
+    public ErrorResponse blogOwnershipException(Exception exception) {
+        LOG.error("Invalid blog", exception);
+        return new ErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage());
     }
 
     @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)

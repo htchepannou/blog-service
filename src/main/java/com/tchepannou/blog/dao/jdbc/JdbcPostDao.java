@@ -39,6 +39,18 @@ public class JdbcPostDao implements PostDao{
     }
 
     @Override
+    public Post findByIdByBlog(long id, long blogId) {
+        final String sql = "SELECT P.*"
+                + " FROM post P JOIN post_entry E ON P.id=E.post_fk"
+                + " WHERE P.id=? AND E.blog_id=? AND P.deleted=?";
+        return new JdbcTemplate(dataSource).queryForObject(
+                sql,
+                new Object[]{id, blogId, false},
+                (rs, i) -> map(rs)
+        );
+    }
+
+    @Override
     public List<Post> findByBlog(long blogId, int limit, int offset) {
         final String sql = "SELECT P.*"
                 + " FROM post P JOIN post_entry E ON P.id=E.post_fk"
@@ -63,6 +75,21 @@ public class JdbcPostDao implements PostDao{
         new JdbcTemplate(dataSource).update(cnn -> insertPreparedStatement(post, cnn), keyHolder);
 
         post.setId(keyHolder.getKey().longValue());
+    }
+
+    @Override
+    public void update(Post post) {
+        final String sql  = "UPDATE post SET title=?, content=?, slug=?, status=?, updated=?, published=? WHERE id=?";
+        new JdbcTemplate(dataSource).update(
+                sql,
+                post.getTitle(),
+                post.getContent(),
+                post.getSlug(),
+                post.getStatus().value(),
+                post.getUpdated(),
+                post.getPublished(),
+                post.getId()
+        );
     }
 
     //-- Private
