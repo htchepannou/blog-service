@@ -11,7 +11,7 @@ public class EventLogReceiver {
     @Autowired
     private EventLogDao dao;
 
-    @JmsListener(destination = Constants.QUEUE_EVENT_LOG, containerFactory = "myJmsContainerFactory")
+    @JmsListener(destination = Constants.QUEUE_EVENT_LOG, containerFactory = "jmsContainerFactory")
     @Transactional
     public void receiveMessage(EventLog event) {
         dao.create(event);

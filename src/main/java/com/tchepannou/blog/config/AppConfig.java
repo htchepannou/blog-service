@@ -68,8 +68,9 @@ public class AppConfig {
         return ds;
     }
 
+    //-- JMS Config
     @Bean
-    JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
+    JmsListenerContainerFactory<?> jmsContainerFactory(ConnectionFactory connectionFactory) {
         SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         return factory;
@@ -80,6 +81,8 @@ public class AppConfig {
         return new JmsTemplate(factory);
     }
 
+
+    //-- Services
     @Bean
     HttpClientProvider httpClientProvider(){
         return new HttpClientProviderImpl();
