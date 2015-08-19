@@ -135,7 +135,7 @@ public class BlogController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value="/{bid}/post/{id}")
-    @ApiOperation(value="Delete a post", notes = "Delete a post")
+    @ApiOperation(value="Delete a post")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
             @ApiResponse(code=404, message = "Post not found"),
