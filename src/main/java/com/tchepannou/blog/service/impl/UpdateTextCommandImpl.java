@@ -14,6 +14,7 @@ import com.tchepannou.blog.service.UpdateTextCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -51,5 +52,10 @@ public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdateTextRequ
     @Override
     protected String getEventName() {
         return Constants.EVENT_UPDATE_TEXT;
+    }
+
+    @Override
+    protected List<String> getPermissions() {
+        return Collections.singletonList(Constants.PERMISSION_EDIT);
     }
 }

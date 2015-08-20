@@ -32,7 +32,7 @@ public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O>
 
     @Override
     protected void authorize(CommandContext context) {
-        List<String> permissions = getPermissions(context);
+        List<String> permissions = getPermissions();
         if (permissions.isEmpty()){
             return;
         }

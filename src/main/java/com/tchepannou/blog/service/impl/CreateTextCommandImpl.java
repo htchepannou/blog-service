@@ -61,7 +61,7 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreateTextRequ
     }
 
     @Override
-    protected List<String> getPermissions(CommandContext context) {
+    protected List<String> getPermissions() {
         return Collections.singletonList(Constants.PERMISSION_CREATE);
     }
 }

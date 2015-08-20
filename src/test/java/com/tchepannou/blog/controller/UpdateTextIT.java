@@ -70,7 +70,7 @@ public class UpdateTextIT {
 
     @Test
     public void should_update_text() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -134,7 +134,7 @@ public class UpdateTextIT {
     }
     @Test
     public void should_return_400_with_empty_title() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -166,7 +166,7 @@ public class UpdateTextIT {
 
     @Test
     public void should_return_400_with_bad_status() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -198,7 +198,7 @@ public class UpdateTextIT {
 
     @Test
     public void should_return_401_when_not_authenticated() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -255,7 +255,7 @@ public class UpdateTextIT {
 
     @Test
     public void should_return_403_when_now_owner_of_blog() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -285,9 +285,42 @@ public class UpdateTextIT {
         }
     }
 
+
+    @Test
+    public void should_return_403_when_bad_permission() throws Exception {
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
+        try {
+            UpdateTextRequest req = new UpdateTextRequest();
+            req.setContent("<div>hello world</div>");
+            req.setStatus("draft");
+            req.setSlug("sample slug");
+            req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
+            req.setTitle("test");
+
+            // @formatter:off
+            given()
+                    .contentType(ContentType.JSON)
+                    .content(req, ObjectMapperType.JACKSON_2)
+                    .header(new Header("access_token", "_token_"))
+                .when()
+                    .post("/v1/blog/100/text/3000")
+                .then()
+                    .log().all()
+                    .statusCode(403)
+                    .body("code", is(403))
+                    .body("text", is("bad_permission"))
+            ;
+            // @formatter:on
+
+
+        } finally {
+            authServer.stop();
+        }
+    }
+
     @Test
     public void should_return_404_when_invalid_id() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -319,7 +352,7 @@ public class UpdateTextIT {
 
     @Test
     public void should_return_404_when_invalid_blog_id() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -351,7 +384,7 @@ public class UpdateTextIT {
 
     @Test
     public void should_return_404_when_deleted() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");

@@ -22,6 +22,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.jayway.restassured.RestAssured.given;
@@ -63,7 +64,7 @@ public class DeletePostIT {
 
     @Test
     public void should_delete_post() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_DELETE)));
         try {
             // @formatter:off
             given()
@@ -108,7 +109,7 @@ public class DeletePostIT {
 
     @Test
     public void should_delete_repost() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_DELETE)));
         try {
             // @formatter:off
             given()
@@ -150,7 +151,7 @@ public class DeletePostIT {
 
     @Test
     public void should_return_401_when_not_authenticated() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_DELETE)));
         try {
 
             // @formatter:off
@@ -190,7 +191,7 @@ public class DeletePostIT {
 
     @Test
     public void should_return_404_when_invalid_blog_id() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_DELETE)));
         try {
             // @formatter:off
             given()
@@ -213,7 +214,7 @@ public class DeletePostIT {
 
     @Test
     public void should_return_404_when_deleted() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_DELETE)));
         try {
             // @formatter:off
             given()
@@ -225,6 +226,29 @@ public class DeletePostIT {
                     .statusCode(404)
                     .body("code", is(404))
                     .body("text", is("not_found"))
+            ;
+            // @formatter:on
+
+
+        } finally {
+            authServer.stop();
+        }
+    }
+
+    @Test
+    public void should_return_403_when_bad_permission() throws Exception {
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
+        try {
+            // @formatter:off
+            given()
+                    .header(new Header("access_token", "_token_"))
+                .when()
+                    .delete("/v1/blog/100/post/3000")
+                .then()
+                    .log().all()
+                    .statusCode(403)
+                    .body("code", is(403))
+                    .body("text", is("bad_permission"))
             ;
             // @formatter:on
 

@@ -9,6 +9,9 @@ import com.tchepannou.blog.service.DeletePostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
+import java.util.List;
+
 @Transactional
 public class DeletePostCommandImpl extends AbstractSecuredCommand<Void, Void> implements DeletePostCommand {
     //-- Attributes
@@ -38,5 +41,10 @@ public class DeletePostCommandImpl extends AbstractSecuredCommand<Void, Void> im
     @Override
     protected String getEventName() {
         return Constants.EVENT_DELETE_POST;
+    }
+
+    @Override
+    protected List<String> getPermissions() {
+        return Collections.singletonList(Constants.PERMISSION_DELETE);
     }
 }

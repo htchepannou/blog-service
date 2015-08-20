@@ -96,7 +96,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
         return null;
     }
 
-    protected List<String> getPermissions (final CommandContext context) {
+    protected List<String> getPermissions () {
         return Collections.emptyList();
     }
 
