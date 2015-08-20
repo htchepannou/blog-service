@@ -168,18 +168,18 @@ public class BlogController {
         return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), "auth_failed", exception.getMessage());
     }
 
+    @ResponseStatus(value= HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AuthorizationException.class)
+    public ErrorResponse authorizationFailed(Exception exception) {
+        LOG.error("Authorization failed", exception);
+        return new ErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage());
+    }
+
     @ResponseStatus(value= HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ErrorResponse validationFailed(MethodArgumentNotValidException ex) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), fieldErrors.get(0).getDefaultMessage());
-    }
-
-    @ResponseStatus(value= HttpStatus.FORBIDDEN)
-    @ExceptionHandler({AuthorizationException.class})
-    public ErrorResponse permissionDenied(Exception exception) {
-        LOG.error("Invalid blog", exception);
-        return new ErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage());
     }
 
     @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)

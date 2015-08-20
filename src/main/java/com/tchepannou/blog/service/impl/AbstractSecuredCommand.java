@@ -39,7 +39,7 @@ public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O>
 
         PermissionCollection pc = permissionService.get(context.getBlogId(), getUserId().getAsLong());
         if (!pc.getPermissions().containsAll(permissions)){
-            throw new AuthorizationException(permissions.toString());
+            throw new AuthorizationException("bad_permission");
         }
     }
 

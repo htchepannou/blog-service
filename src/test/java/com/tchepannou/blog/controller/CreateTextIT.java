@@ -79,7 +79,7 @@ public class CreateTextIT {
 
     @Test
     public void should_create_text() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
             CreateTextRequest req = new CreateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -153,7 +153,7 @@ public class CreateTextIT {
 
     @Test
     public void should_return_400_with_empty_title() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
             CreateTextRequest req = new CreateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -185,7 +185,7 @@ public class CreateTextIT {
 
     @Test
     public void should_return_400_with_bad_status() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
             CreateTextRequest req = new CreateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -215,10 +215,9 @@ public class CreateTextIT {
         }
     }
 
-
     @Test
     public void should_return_401_when_not_authenticated() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
             CreateTextRequest req = new CreateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -271,5 +270,36 @@ public class CreateTextIT {
                 .body("text", is("auth_failed"))
         ;
         // @formatter:on
+    }
+
+    @Test
+    public void should_return_403_when_bad_permission() throws Exception {
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_DELETE, Constants.PERMISSION_EDIT)));
+        try {
+            CreateTextRequest req = new CreateTextRequest();
+            req.setContent("<div>hello world</div>");
+            req.setStatus("draft");
+            req.setSlug("sample slug");
+            req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
+            req.setTitle("test");
+
+            // @formatter:off
+            given()
+                    .contentType(ContentType.JSON)
+                    .content(req, ObjectMapperType.JACKSON_2)
+                    .header(new Header("access_token", "_token_"))
+                .when()
+                    .post("/v1/blog/100/text")
+                .then()
+                    .log().all()
+                    .statusCode(403)
+                    .body("code", is(403))
+                    .body("text", is("bad_permission"))
+            ;
+            // @formatter:on
+
+        } finally {
+            authServer.stop();
+        }
     }
 }

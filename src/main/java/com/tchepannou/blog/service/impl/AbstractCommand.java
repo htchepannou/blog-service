@@ -62,7 +62,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
 
             /* pre */
             authenticate(context);
-            authenticate(context);
+            authorize(context);
 
             /* execute */
             O response = doExecute(request, context);

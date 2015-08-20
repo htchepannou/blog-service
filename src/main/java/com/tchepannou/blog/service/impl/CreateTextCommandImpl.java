@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Collections;
 import java.util.List;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
@@ -57,5 +58,10 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreateTextRequ
     @Override
     protected String getEventName() {
         return Constants.EVENT_CREATE_TEXT;
+    }
+
+    @Override
+    protected List<String> getPermissions(CommandContext context) {
+        return Collections.singletonList(Constants.PERMISSION_CREATE);
     }
 }
