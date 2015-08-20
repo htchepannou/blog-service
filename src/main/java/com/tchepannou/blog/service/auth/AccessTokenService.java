@@ -1,6 +1,6 @@
-package com.tchepannou.blog.service;
+package com.tchepannou.blog.service.auth;
 
-import com.tchepannou.blog.domain.AccessToken;
+import com.tchepannou.blog.service.auth.AccessToken;
 import com.tchepannou.blog.exception.AccessTokenException;
 
 public interface AccessTokenService {

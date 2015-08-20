@@ -67,7 +67,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
             logEvent(request, response, context);
             return response;
         } catch (RuntimeException e) {
-            metrics.meter(metricName + ".errors").mark();
+            metrics.meter(metricName + "-errors").mark();
 
             throw e;
         }

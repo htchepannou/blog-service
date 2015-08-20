@@ -1,8 +1,8 @@
 package com.tchepannou.blog.service.impl;
 
-import com.tchepannou.blog.domain.AccessToken;
+import com.tchepannou.blog.service.auth.AccessToken;
 import com.tchepannou.blog.exception.AccessTokenException;
-import com.tchepannou.blog.service.AccessTokenService;
+import com.tchepannou.blog.service.auth.AccessTokenService;
 import com.tchepannou.blog.service.CommandContext;
 import org.springframework.beans.factory.annotation.Autowired;
 

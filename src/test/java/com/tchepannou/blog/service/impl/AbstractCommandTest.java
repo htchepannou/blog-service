@@ -40,7 +40,7 @@ public class AbstractCommandTest {
         // Given
         String name = "double";
         when(metrics.meter(name)).thenReturn(successMeter);
-        when(metrics.meter(name + ".errors")).thenReturn(errorMeter);
+        when(metrics.meter(name + "-errors")).thenReturn(errorMeter);
 
         // When
         long result = new DoubleCommand(name, 1).execute(
@@ -66,7 +66,7 @@ public class AbstractCommandTest {
         // Given
         String name = "exception";
         when(metrics.meter(name)).thenReturn(successMeter);
-        when(metrics.meter(name + ".errors")).thenReturn(errorMeter);
+        when(metrics.meter(name + "-errors")).thenReturn(errorMeter);
 
         try {
             // When

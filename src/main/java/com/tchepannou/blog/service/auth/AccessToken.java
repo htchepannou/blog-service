@@ -1,4 +1,6 @@
-package com.tchepannou.blog.domain;
+package com.tchepannou.blog.service.auth;
+
+import com.tchepannou.blog.domain.Model;
 
 public class AccessToken extends Model {
     private String id;
