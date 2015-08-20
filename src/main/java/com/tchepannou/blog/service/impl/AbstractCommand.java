@@ -14,10 +14,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.security.core.AuthenticationException;
 
 import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.OptionalLong;
 
 public abstract class AbstractCommand<I, O> implements Command<I, O> {
@@ -61,6 +62,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
 
             /* pre */
             authenticate(context);
+            authenticate(context);
 
             /* execute */
             O response = doExecute(request, context);
@@ -78,7 +80,11 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
     }
 
     //-- Protected
-    protected void authenticate (final CommandContext context) throws AuthenticationException {
+    protected void authenticate (final CommandContext context) {
+    }
+
+    protected void authorize (final CommandContext context) {
+
     }
 
     protected Logger getLogger () {
@@ -88,6 +94,10 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
 
     protected String getEventName() {
         return null;
+    }
+
+    protected List<String> getPermissions (final CommandContext context) {
+        return Collections.emptyList();
     }
 
     protected void logEvent (I request, O response, CommandContext context) {

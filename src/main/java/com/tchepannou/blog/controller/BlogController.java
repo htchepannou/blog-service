@@ -1,7 +1,7 @@
 package com.tchepannou.blog.controller;
 
 import com.tchepannou.blog.exception.AccessTokenException;
-import com.tchepannou.blog.exception.PermissionDeniedException;
+import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.rr.CreateTextRequest;
 import com.tchepannou.blog.rr.ErrorResponse;
 import com.tchepannou.blog.rr.PostCollectionResponse;
@@ -176,7 +176,7 @@ public class BlogController {
     }
 
     @ResponseStatus(value= HttpStatus.FORBIDDEN)
-    @ExceptionHandler(PermissionDeniedException.class)
+    @ExceptionHandler({AuthorizationException.class})
     public ErrorResponse permissionDenied(Exception exception) {
         LOG.error("Invalid blog", exception);
         return new ErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage());

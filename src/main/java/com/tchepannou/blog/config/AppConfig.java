@@ -18,6 +18,8 @@ import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.UpdateTextCommand;
 import com.tchepannou.blog.service.auth.AccessTokenService;
 import com.tchepannou.blog.service.auth.AccessTokenServiceImpl;
+import com.tchepannou.blog.service.auth.PermissionService;
+import com.tchepannou.blog.service.auth.PermissionServiceImpl;
 import com.tchepannou.blog.service.http.Http;
 import com.tchepannou.blog.service.http.HttpImpl;
 import com.tchepannou.blog.service.impl.CreateTextCommandImpl;
@@ -91,6 +93,11 @@ public class AppConfig {
     @Bean
     AccessTokenService accessTokenService(){
         return new AccessTokenServiceImpl();
+    }
+
+    @Bean
+    PermissionService permissionService() {
+        return new PermissionServiceImpl();
     }
 
     //-- DAO

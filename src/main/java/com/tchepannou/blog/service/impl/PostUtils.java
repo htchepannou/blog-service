@@ -7,7 +7,7 @@ import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.exception.PermissionDeniedException;
+import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.rr.PostRequest;
 import com.tchepannou.blog.rr.UpdateTextRequest;
 import com.tchepannou.blog.service.CommandContext;
@@ -43,7 +43,7 @@ public class PostUtils {
             throw new NotFoundException(ids, Post.class);
         }
         if (post.getBlogId() != context.getBlogId()){
-            throw new PermissionDeniedException("invalid_blog");
+            throw new AuthorizationException("invalid_blog");
         }
 
         post.setBlogId(context.getBlogId());

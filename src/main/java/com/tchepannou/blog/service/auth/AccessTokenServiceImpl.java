@@ -28,8 +28,7 @@ public class AccessTokenServiceImpl implements AccessTokenService{
         try {
             metrics.meter(Constants.METRIC_AUTH_COUNT).mark();
 
-            AccessToken token =  http.get(new URL(String.format("%s/%s", url, accessTokenId)), AccessToken.class);
-            return token;
+            return http.get(new URL(String.format("%s/%s", url, accessTokenId)), AccessToken.class);
 
         } catch (IOException | URISyntaxException e){
             metrics.meter(Constants.METRIC_AUTH_ERRORS).mark();
