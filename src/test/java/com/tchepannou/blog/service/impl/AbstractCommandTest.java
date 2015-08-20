@@ -2,6 +2,7 @@ package com.tchepannou.blog.service.impl;
 
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.controller.CommandContextImpl;
 import com.tchepannou.blog.service.CommandContext;
@@ -31,6 +32,13 @@ public class AbstractCommandTest {
     @Mock
     private Meter errorMeter;
 
+    @Mock
+    private Timer.Context timerContext;
+
+    @Mock
+    Timer timer;
+
+
     @Mock JmsTemplate jmsTemplate;
 
     Jackson2ObjectMapperBuilder jackson = new Jackson2ObjectMapperBuilder();
@@ -41,6 +49,8 @@ public class AbstractCommandTest {
         String name = "double";
         when(metrics.meter(name)).thenReturn(successMeter);
         when(metrics.meter(name + "-errors")).thenReturn(errorMeter);
+        when(metrics.timer(name + "-duration")).thenReturn(timer);
+        when(timer.time()).thenReturn(timerContext);
 
         // When
         long result = new DoubleCommand(name, 1).execute(
@@ -52,6 +62,7 @@ public class AbstractCommandTest {
         assertThat(result).isEqualTo(2L);
         verify(successMeter).mark();
         verify(errorMeter, never()).mark();
+        verify(timerContext).stop();
 
         ArgumentCaptor<String> queue = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<MessageCreator> creator = ArgumentCaptor.forClass(MessageCreator.class);
@@ -67,6 +78,8 @@ public class AbstractCommandTest {
         String name = "exception";
         when(metrics.meter(name)).thenReturn(successMeter);
         when(metrics.meter(name + "-errors")).thenReturn(errorMeter);
+        when(metrics.timer(name + "-duration")).thenReturn(timer);
+        when(timer.time()).thenReturn(timerContext);
 
         try {
             // When
@@ -78,6 +91,7 @@ public class AbstractCommandTest {
             // Then
             verify(successMeter).mark();
             verify(errorMeter).mark();
+            verify(timerContext).stop();
 
             ArgumentCaptor<String> queue = ArgumentCaptor.forClass(String.class);
             ArgumentCaptor<MessageCreator> creator = ArgumentCaptor.forClass(MessageCreator.class);

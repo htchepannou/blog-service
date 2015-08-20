@@ -1,6 +1,7 @@
 package com.tchepannou.blog.service.impl;
 
 import com.codahale.metrics.MetricRegistry;
+import com.codahale.metrics.Timer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Strings;
 import com.tchepannou.blog.Constants;
@@ -54,6 +55,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
     @Override
     public O execute(I request, CommandContext context) {
         final String metricName = getMetricName();
+        final Timer.Context timer = metrics.timer(metricName + "-duration").time();
         try {
             metrics.meter(metricName).mark();
 
@@ -70,6 +72,8 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
             metrics.meter(metricName + "-errors").mark();
 
             throw e;
+        } finally {
+            timer.stop();
         }
     }
 
