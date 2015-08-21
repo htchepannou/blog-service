@@ -11,6 +11,7 @@ import com.tchepannou.blog.service.CreateTextCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
+import com.tchepannou.blog.service.ReblogPostCommand;
 import com.tchepannou.blog.service.UpdateTextCommand;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -61,6 +62,9 @@ public class BlogController {
     @Autowired
     DeletePostCommand deletePostCommand;
 
+    @Autowired
+    ReblogPostCommand reblogPostCommand;
+
 
     //-- REST methods
     @RequestMapping(method = RequestMethod.GET, value="/{bid}/post/{id}")
@@ -90,6 +94,46 @@ public class BlogController {
         return getPostListService.execute(null,
                 new CommandContextImpl().withBlogId(bid).withLimit(limit).withOffset(offset)
         );
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value="/{bid}/post/{id}")
+    @ApiOperation(value="Delete a post")
+    @ApiResponses({
+            @ApiResponse(code=200, message = "Success"),
+            @ApiResponse(code=404, message = "Post not found"),
+            @ApiResponse(code=401, message = "Access token expired or is invalid"),
+            @ApiResponse(code=403, message = "User not allowed to delete the post.")
+    })
+    public void delete(
+            @RequestHeader(value="access_token") String accessToken,
+            @PathVariable long bid,
+            @PathVariable long id
+    ) {
+        deletePostCommand.execute(
+                null,
+                new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id)
+        );
+    }
+
+
+    @RequestMapping(method = RequestMethod.DELETE, value="/{bid}/post/{id}/reblog")
+    @ApiOperation(value="Delete a post")
+    @ApiResponses({
+            @ApiResponse(code=201, message = "Success - Post successfully added"),
+            @ApiResponse(code=200, message = "Success - Post was already in blog"),
+            @ApiResponse(code=404, message = "Post not found"),
+            @ApiResponse(code=401, message = "Access token expired or is invalid"),
+            @ApiResponse(code=403, message = "User not allowed to re-blog the post.")
+    })
+    public ResponseEntity reblog(
+            @RequestHeader(value="access_token") String accessToken,
+            @PathVariable long bid,
+            @PathVariable long id
+    ) {
+        return reblogPostCommand.execute(null, new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id))
+                ? new ResponseEntity(HttpStatus.CREATED)
+                : new ResponseEntity(HttpStatus.OK)
+        ;
     }
 
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/{bid}/text")
@@ -130,25 +174,6 @@ public class BlogController {
     ) {
         return updateTextCommand.execute(
                 request,
-                new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id)
-        );
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE, value="/{bid}/post/{id}")
-    @ApiOperation(value="Delete a post")
-    @ApiResponses({
-            @ApiResponse(code=200, message = "Success"),
-            @ApiResponse(code=404, message = "Post not found"),
-            @ApiResponse(code=401, message = "Access token expired or is invalid"),
-            @ApiResponse(code=403, message = "User not allowed to delete the post.")
-    })
-    public void delete(
-            @RequestHeader(value="access_token") String accessToken,
-            @PathVariable long bid,
-            @PathVariable long id
-    ) {
-        deletePostCommand.execute(
-                null,
                 new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id)
         );
     }

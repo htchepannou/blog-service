@@ -17,7 +17,6 @@ import org.springframework.jms.core.JmsTemplate;
 
 import javax.annotation.Resource;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.OptionalLong;
 
@@ -51,6 +50,11 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
     protected abstract O doExecute (I request, CommandContext context);
 
     protected abstract String getMetricName ();
+
+    protected abstract String getEventName();
+
+    protected abstract Collection<String> getRequiredPermissions();
+
 
     //-- Command Override
     @Override
@@ -91,14 +95,6 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
         return logger;
     }
 
-
-    protected String getEventName() {
-        return null;
-    }
-
-    protected Collection<String> getRequiredPermissions() {
-        return Collections.emptyList();
-    }
 
     protected void logEvent (I request, O response, CommandContext context) {
         String name = getEventName();

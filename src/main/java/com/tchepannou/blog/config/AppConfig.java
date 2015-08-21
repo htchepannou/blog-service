@@ -15,11 +15,13 @@ import com.tchepannou.blog.service.CreateTextCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
+import com.tchepannou.blog.service.ReblogPostCommand;
 import com.tchepannou.blog.service.UpdateTextCommand;
 import com.tchepannou.blog.service.auth.AccessTokenService;
 import com.tchepannou.blog.service.auth.AccessTokenServiceImpl;
 import com.tchepannou.blog.service.auth.PermissionService;
 import com.tchepannou.blog.service.auth.PermissionServiceImpl;
+import com.tchepannou.blog.service.command.ReblogPostCommandImpl;
 import com.tchepannou.blog.service.http.Http;
 import com.tchepannou.blog.service.http.HttpImpl;
 import com.tchepannou.blog.service.command.CreateTextCommandImpl;
@@ -154,5 +156,10 @@ public class AppConfig {
     @Bean
     DeletePostCommand deletePostCommand () {
         return new DeletePostCommandImpl();
+    }
+
+    @Bean
+    ReblogPostCommand reblogPostCommand () {
+        return new ReblogPostCommandImpl();
     }
 }

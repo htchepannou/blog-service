@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,4 +48,13 @@ public class GetPostListCommandImpl extends AbstractCommand<Void, PostCollection
     protected String getMetricName() {
         return Constants.METRIC_GET_POST_LIST;
     }
-}
+
+    @Override
+    protected String getEventName() {
+        return null;
+    }
+
+    @Override
+    protected Collection<String> getRequiredPermissions() {
+        return Collections.emptyList();
+    }}
