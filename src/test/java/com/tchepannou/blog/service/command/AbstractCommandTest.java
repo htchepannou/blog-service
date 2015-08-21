@@ -1,4 +1,4 @@
-package com.tchepannou.blog.service.impl;
+package com.tchepannou.blog.service.command;
 
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;

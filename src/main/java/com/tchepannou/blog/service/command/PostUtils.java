@@ -1,4 +1,4 @@
-package com.tchepannou.blog.service.impl;
+package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;

@@ -1,4 +1,4 @@
-package com.tchepannou.blog.service.impl;
+package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.dao.PostDao;
@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreateTextRequ
     }
 
     @Override
-    protected List<String> getPermissions() {
+    protected Collection<String> getRequiredPermissions() {
         return Collections.singletonList(Constants.PERMISSION_CREATE);
     }
 }

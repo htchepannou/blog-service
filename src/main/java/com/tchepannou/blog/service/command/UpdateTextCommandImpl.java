@@ -1,4 +1,4 @@
-package com.tchepannou.blog.service.impl;
+package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.dao.PostDao;
@@ -14,6 +14,7 @@ import com.tchepannou.blog.service.UpdateTextCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,7 +42,6 @@ public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdateTextRequ
                 .withPost(post)
                 .withTags(tags)
                 .map();
-
     }
 
     @Override
@@ -55,7 +55,25 @@ public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdateTextRequ
     }
 
     @Override
-    protected List<String> getPermissions() {
+    protected Collection<String> getRequiredPermissions() {
         return Collections.singletonList(Constants.PERMISSION_EDIT);
     }
+
+    @Override
+    protected Collection<String> getPermissions(CommandContext context) {
+        Collection<String> permissions = super.getPermissions(context);
+        if (!isAnonymousUser() && !permissions.contains(Constants.PERMISSION_EDIT)){
+            Post post = getPost(context);
+            if (post.getUserId() == getUserId().getAsLong()){
+                permissions.add(Constants.PERMISSION_EDIT);
+            }
+        }
+        return permissions;
+    }
+
+
+    private Post getPost (CommandContext context){
+        return postDao.findByIdByBlog(context.getId(), context.getBlogId());
+    }
+
 }

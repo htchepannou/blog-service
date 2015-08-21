@@ -34,10 +34,6 @@ public class AuthServer {
         private long userId;
         private List<String> permissions = Collections.emptyList();
 
-        public OKHandler(String accessTokenId, long userId) {
-            this.accessTokenId = accessTokenId;
-            this.userId = userId;
-        }
         public OKHandler(String accessTokenId, long userId, List<String> permissions) {
             this.accessTokenId = accessTokenId;
             this.userId = userId;

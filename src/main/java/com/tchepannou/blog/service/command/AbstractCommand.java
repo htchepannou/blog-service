@@ -1,4 +1,4 @@
-package com.tchepannou.blog.service.impl;
+package com.tchepannou.blog.service.command;
 
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
@@ -16,9 +16,9 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jms.core.JmsTemplate;
 
 import javax.annotation.Resource;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.OptionalLong;
 
 public abstract class AbstractCommand<I, O> implements Command<I, O> {
@@ -96,7 +96,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
         return null;
     }
 
-    protected List<String> getPermissions () {
+    protected Collection<String> getRequiredPermissions() {
         return Collections.emptyList();
     }
 

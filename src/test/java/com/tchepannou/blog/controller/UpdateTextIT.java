@@ -27,6 +27,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static com.jayway.restassured.RestAssured.given;
@@ -70,7 +71,72 @@ public class UpdateTextIT {
 
     @Test
     public void should_update_text() throws Exception {
-        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 110, Arrays.asList(Constants.PERMISSION_EDIT)));
+        try {
+            UpdateTextRequest req = new UpdateTextRequest();
+            req.setContent("<div>hello world</div>");
+            req.setStatus(Post.Status.published.name());
+            req.setSlug("sample slug");
+            req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
+            req.setTitle("sample title");
+
+            // @formatter:off
+            int id = given()
+                    .contentType(ContentType.JSON)
+                    .content(req, ObjectMapperType.JACKSON_2)
+                    .header(new Header("access_token", "_token_"))
+                .when()
+                    .post("/v1/blog/100/text/1000")
+                .then()
+                    .log().all()
+                    .statusCode(200)
+                    .body("id", is(1000))
+                    .body("blogId", is(100))
+                    .body("userId", is(101))
+                    .body("title", is("sample title"))
+                    .body("slug", is("sample slug"))
+                    .body("content", is("<div>hello world</div>"))
+                    .body("type", is("text"))
+                    .body("status", is("published"))
+                    .body("created", notNullValue())
+                    .body("updated", notNullValue())
+                    .body("published", nullValue())
+                    .body("tags", hasItems("tag1", "tag2", "tag3"))
+                .extract()
+                    .path("id");
+            ;
+            // @formatter:on
+
+            /* tags */
+            List<Tag> tags = tagDao.findByNames(Arrays.asList("tag1", "tag2", "tag3"));
+            assertThat(tags).hasSize(3);
+
+            List<PostTag> postTags = postTagDao.findByPost(id);
+            assertThat(postTags).hasSize(3);
+
+            /* events */
+            List<EventLog> events = eventLogDao.findByPost(1000, 100, 0);
+            assertThat(events).hasSize(1);
+
+            EventLog event = events.get(0);
+            assertThat(event.getBlogId()).isEqualTo(100);
+            assertThat(event.getCreated()).isNotNull();
+            assertThat(event.getId()).isGreaterThan(0);
+            assertThat(event.getName()).isEqualTo(Constants.EVENT_UPDATE_TEXT);
+            assertThat(event.getPostId()).isEqualTo(id);
+            assertThat(event.getUserId()).isEqualTo(110);
+
+            UpdateTextRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), UpdateTextRequest.class);
+            assertThat(req2).isEqualToComparingFieldByField(req);
+
+        } finally {
+            authServer.stop();
+        }
+    }
+
+    @Test
+    public void should_update_text_as_owner() throws Exception {
+        authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Collections.emptyList()));
         try {
             UpdateTextRequest req = new UpdateTextRequest();
             req.setContent("<div>hello world</div>");
@@ -132,6 +198,7 @@ public class UpdateTextIT {
             authServer.stop();
         }
     }
+
     @Test
     public void should_return_400_with_empty_title() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
@@ -285,7 +352,6 @@ public class UpdateTextIT {
         }
     }
 
-
     @Test
     public void should_return_403_when_bad_permission() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
@@ -303,7 +369,7 @@ public class UpdateTextIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header("access_token", "_token_"))
                 .when()
-                    .post("/v1/blog/100/text/3000")
+                    .post("/v1/blog/300/text/3000")
                 .then()
                     .log().all()
                     .statusCode(403)
@@ -399,7 +465,7 @@ public class UpdateTextIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header("access_token", "_token_"))
                 .when()
-                    .post("/v1/blog/100/text/3000")
+                    .post("/v1/blog/400/text/4000")
                 .then()
                     .log().all()
                     .statusCode(404)

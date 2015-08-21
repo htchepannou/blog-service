@@ -1,14 +1,13 @@
-package com.tchepannou.blog.service.impl;
+package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.service.CommandContext;
 import com.tchepannou.blog.service.auth.AccessToken;
 import com.tchepannou.blog.service.auth.AccessTokenService;
-import com.tchepannou.blog.service.auth.PermissionCollection;
 import com.tchepannou.blog.service.auth.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.OptionalLong;
 
 public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O> {
@@ -22,7 +21,7 @@ public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O>
     private AccessToken accessToken;
 
 
-    //-- Protected
+    //-- AbstractCommand overrides
     @Override
     protected void authenticate (CommandContext context){
         String id = context.getAccessTokenId();
@@ -32,20 +31,23 @@ public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O>
 
     @Override
     protected void authorize(CommandContext context) {
-        List<String> permissions = getPermissions();
+        Collection<String> permissions = getRequiredPermissions();
         if (permissions.isEmpty()){
             return;
         }
 
-        PermissionCollection pc = permissionService.get(context.getBlogId(), getUserId().getAsLong());
-        if (!pc.getPermissions().containsAll(permissions)){
+        if (!getPermissions(context).containsAll(permissions)){
             throw new AuthorizationException("bad_permission");
         }
     }
 
-    //-- Getter
     @Override
     public OptionalLong getUserId (){
         return OptionalLong.of(accessToken.getUserId());
+    }
+
+    //-- Protected
+    protected Collection<String> getPermissions (CommandContext context){
+        return permissionService.get(context.getBlogId(), getUserId().getAsLong()).getPermissions();
     }
 }

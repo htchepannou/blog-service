@@ -1,4 +1,4 @@
-package com.tchepannou.blog.service.impl;
+package com.tchepannou.blog.service.command;
 
 import com.google.common.collect.Multimap;
 import com.tchepannou.blog.Constants;

@@ -1,4 +1,4 @@
-package com.tchepannou.blog.service.impl;
+package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.dao.PostDao;
@@ -9,8 +9,8 @@ import com.tchepannou.blog.service.DeletePostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 @Transactional
 public class DeletePostCommandImpl extends AbstractSecuredCommand<Void, Void> implements DeletePostCommand {
@@ -24,7 +24,7 @@ public class DeletePostCommandImpl extends AbstractSecuredCommand<Void, Void> im
     //-- AbstractSecuredCommand overrides
     @Override
     protected Void doExecute(Void request, CommandContext context) {
-        final Post post = postDao.findByIdByBlog(context.getId(), context.getBlogId());
+        final Post post = getPost(context);
 
         postEntryDao.delete(post, context.getBlogId());
         if (post.getBlogId() == context.getBlogId()){
@@ -44,7 +44,23 @@ public class DeletePostCommandImpl extends AbstractSecuredCommand<Void, Void> im
     }
 
     @Override
-    protected List<String> getPermissions() {
+    protected Collection<String> getRequiredPermissions() {
         return Collections.singletonList(Constants.PERMISSION_DELETE);
+    }
+
+    @Override
+    protected Collection<String> getPermissions(CommandContext context) {
+        Collection<String> permissions = super.getPermissions(context);
+        if (!permissions.contains(Constants.PERMISSION_DELETE) && !isAnonymousUser()){
+            Post post = getPost(context);
+            if (post.getUserId() == getUserId().getAsLong()){
+                permissions.add(Constants.PERMISSION_DELETE);
+            }
+        }
+        return permissions;
+    }
+
+    private Post getPost (CommandContext context){
+        return postDao.findByIdByBlog(context.getId(), context.getBlogId());
     }
 }
