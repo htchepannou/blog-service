@@ -24,7 +24,7 @@ import static org.hamcrest.core.Is.is;
         "/db/clean.sql",
         "/db/get_post.sql"
 })
-public class GetPostIT {
+public class PostGetIT {
     @Value("${server.port}")
     private int port;
 

@@ -45,7 +45,7 @@ import static org.hamcrest.number.OrderingComparison.greaterThan;
         "/db/clean.sql",
         "/db/create_text.sql"
 })
-public class CreateTextIT {
+public class TextCreateIT {
     @Value("${server.port}")
     private int port;
 

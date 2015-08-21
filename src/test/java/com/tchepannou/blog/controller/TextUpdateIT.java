@@ -44,7 +44,7 @@ import static org.hamcrest.core.Is.is;
         "/db/clean.sql",
         "/db/update_text.sql"
 })
-public class UpdateTextIT {
+public class TextUpdateIT {
     @Value("${server.port}")
     private int port;
 

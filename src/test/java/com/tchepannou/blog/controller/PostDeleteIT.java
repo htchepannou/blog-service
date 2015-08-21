@@ -38,7 +38,7 @@ import static org.hamcrest.core.Is.is;
         "/db/clean.sql",
         "/db/update_text.sql"
 })
-public class DeletePostIT {
+public class PostDeleteIT {
     @Value("${server.port}")
     private int port;
 
