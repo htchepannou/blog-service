@@ -1,7 +1,7 @@
 CREATE TABLE tag(
   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   name varchar(100) NOT NULL UNIQUE
-);
+) ENGINE=INNODB;
 
 CREATE TABLE post(
   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -16,7 +16,7 @@ CREATE TABLE post(
   updated DATETIME,
   published DATETIME,
   deleted BIT
-);
+) ENGINE=INNODB;
 CREATE INDEX idx_post__updated ON post (updated);
 CREATE INDEX idx_post__user_id ON post (user_id);
 
@@ -27,7 +27,7 @@ CREATE TABLE post_tag(
 
   CONSTRAINT fk_post_tag__post_fk FOREIGN KEY (post_fk) REFERENCES post(id),
   CONSTRAINT fk_post_tag__tag_fk FOREIGN KEY (tag_fk) REFERENCES tag(id)
-);
+) ENGINE=INNODB;
 
 CREATE TABLE post_entry(
   post_fk BIGINT NOT NULL,
