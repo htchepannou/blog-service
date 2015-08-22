@@ -2,6 +2,7 @@ package com.tchepannou.blog.controller;
 
 import com.tchepannou.blog.exception.AccessTokenException;
 import com.tchepannou.blog.exception.AuthorizationException;
+import com.tchepannou.blog.exception.DuplicatePostException;
 import com.tchepannou.blog.rr.CreateTextRequest;
 import com.tchepannou.blog.rr.ErrorResponse;
 import com.tchepannou.blog.rr.PostCollectionResponse;
@@ -105,7 +106,7 @@ public class BlogController {
             @ApiResponse(code=403, message = "User not allowed to delete the post.")
     })
     public void delete(
-            @RequestHeader(value="access_token") String accessToken,
+            @RequestHeader(value="access_token", required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id
     ) {
@@ -116,7 +117,7 @@ public class BlogController {
     }
 
 
-    @RequestMapping(method = RequestMethod.DELETE, value="/{bid}/post/{id}/reblog")
+    @RequestMapping(method = RequestMethod.POST, value="/{bid}/post/{id}/reblog")
     @ApiOperation(value="Delete a post")
     @ApiResponses({
             @ApiResponse(code=201, message = "Success - Post successfully added"),
@@ -126,14 +127,16 @@ public class BlogController {
             @ApiResponse(code=403, message = "User not allowed to re-blog the post.")
     })
     public ResponseEntity reblog(
-            @RequestHeader(value="access_token") String accessToken,
+            @RequestHeader(value="access_token", required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id
     ) {
-        return reblogPostCommand.execute(null, new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id))
-                ? new ResponseEntity(HttpStatus.CREATED)
-                : new ResponseEntity(HttpStatus.OK)
-        ;
+        try {
+            reblogPostCommand.execute(null, new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id));
+            return new ResponseEntity(HttpStatus.CREATED);
+        } catch (DuplicatePostException e){ // NOSONAR
+            return new ResponseEntity(HttpStatus.OK);
+        }
     }
 
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/{bid}/text")
@@ -146,7 +149,7 @@ public class BlogController {
             @ApiResponse(code=404, message = "Bad request data.")
     })
     public ResponseEntity<PostResponse> createText(
-            @RequestHeader(value="access_token") String accessToken,
+            @RequestHeader(value="access_token", required = false) String accessToken,
             @PathVariable long bid,
             @Valid @RequestBody CreateTextRequest request
     ) {
@@ -167,7 +170,7 @@ public class BlogController {
             @ApiResponse(code=404, message = "Invalid request data.")
     })
     public PostResponse updateText(
-            @RequestHeader(value="access_token") String accessToken,
+            @RequestHeader(value="access_token", required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id,
             @RequestBody @Valid UpdateTextRequest request

@@ -28,12 +28,17 @@ public class AccessTokenServiceImpl implements AccessTokenService{
         try {
             metrics.meter(Constants.METRIC_AUTH_COUNT).mark();
 
-            return http.get(new URL(String.format("%s/%s", url, accessTokenId)), AccessToken.class);
+            if (accessTokenId != null) {
+                return http.get(new URL(String.format("%s/%s", url, accessTokenId)), AccessToken.class);
+            } else {
+                metrics.meter(Constants.METRIC_AUTH_ERRORS).mark();
+                throw new AccessTokenException("auth_failed");
+            }
 
         } catch (IOException | URISyntaxException e){
             metrics.meter(Constants.METRIC_AUTH_ERRORS).mark();
 
-            throw new AccessTokenException("Unable to process JSON response", e);
+            throw new AccessTokenException("auth_failed", e);
         } finally {
             timer.stop();
         }
