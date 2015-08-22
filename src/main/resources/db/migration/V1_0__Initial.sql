@@ -36,7 +36,7 @@ CREATE TABLE post_entry(
 
   PRIMARY KEY(post_fk, blog_id),
   CONSTRAINT fk_post_entry__post_fk FOREIGN KEY (post_fk) REFERENCES post(id)
-);
+) ENGINE=INNODB;
 CREATE INDEX idx_post_entry__posted ON post_entry (posted);
 
 CREATE TABLE event_log(
@@ -49,8 +49,7 @@ CREATE TABLE event_log(
   request TEXT,
 
   CONSTRAINT fk_event_log__post_fk FOREIGN KEY (post_fk) REFERENCES post(id)
-
-);
+) ENGINE=INNODB;
 
 CREATE INDEX idx_event_log__blog_id ON event_log (blog_id);
 CREATE INDEX idx_event_log__user_id ON event_log (user_id);
