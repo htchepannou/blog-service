@@ -123,7 +123,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
                 event.setRequest(jackson.build().writeValueAsString(request));
             } catch (JsonProcessingException e){
                 event.setRequest(String.format(
-                        "%s\n%s",
+                        "%s%n%s",
                         e.getMessage(),
                         ExceptionUtils.getFullStackTrace(e)
                 ));
