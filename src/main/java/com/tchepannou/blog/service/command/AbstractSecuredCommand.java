@@ -1,8 +1,8 @@
 package com.tchepannou.blog.service.command;
 
+import com.tchepannou.auth.client.v1.AccessTokenResponse;
 import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.blog.service.auth.AccessToken;
 import com.tchepannou.blog.service.auth.AccessTokenService;
 import com.tchepannou.blog.service.auth.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O>
     @Autowired
     private PermissionService permissionService;
 
-    private AccessToken accessToken;
+    private AccessTokenResponse accessToken;
 
 
     //-- AbstractCommand overrides

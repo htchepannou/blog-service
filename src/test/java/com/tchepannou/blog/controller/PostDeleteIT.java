@@ -42,7 +42,7 @@ public class PostDeleteIT {
     @Value("${server.port}")
     private int port;
 
-    @Value("${auth.access_token.port}")
+    @Value("${auth.port}")
     private int authServerPort;
 
     private AuthServer authServer;

@@ -21,13 +21,11 @@ import com.tchepannou.blog.service.auth.AccessTokenService;
 import com.tchepannou.blog.service.auth.AccessTokenServiceImpl;
 import com.tchepannou.blog.service.auth.PermissionService;
 import com.tchepannou.blog.service.auth.PermissionServiceImpl;
-import com.tchepannou.blog.service.command.ReblogPostCommandImpl;
-import com.tchepannou.blog.service.http.Http;
-import com.tchepannou.blog.service.http.HttpImpl;
 import com.tchepannou.blog.service.command.CreateTextCommandImpl;
 import com.tchepannou.blog.service.command.DeletePostCommandImpl;
 import com.tchepannou.blog.service.command.GetPostCommandImpl;
 import com.tchepannou.blog.service.command.GetPostListCommandImpl;
+import com.tchepannou.blog.service.command.ReblogPostCommandImpl;
 import com.tchepannou.blog.service.command.UpdateTextCommandImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -87,11 +85,6 @@ public class AppConfig {
 
 
     //-- Services
-    @Bean
-    Http http(){
-        return new HttpImpl();
-    }
-
     @Bean
     AccessTokenService accessTokenService(){
         return new AccessTokenServiceImpl();

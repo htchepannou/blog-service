@@ -1,7 +1,8 @@
 package com.tchepannou.blog.service.auth;
 
+import com.tchepannou.auth.client.v1.AccessTokenResponse;
 import com.tchepannou.blog.exception.AccessTokenException;
 
 public interface AccessTokenService {
-    AccessToken get(String accessTokenId) throws AccessTokenException;
+    AccessTokenResponse get(String accessTokenId) throws AccessTokenException;
 }
