@@ -25,7 +25,7 @@ public abstract class AbstractSecuredCommand<I, O> extends AbstractCommand<I, O>
     @Override
     protected void authenticate (CommandContext context){
         String id = context.getAccessTokenId();
-        getLogger().info(String.format("Authenticating {}", id));
+        getLogger().info("Authenticating {}", id);
         accessToken = accessTokenService.get(id);
     }
 

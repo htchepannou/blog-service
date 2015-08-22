@@ -9,6 +9,7 @@ import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.rr.PostResponse;
 import com.tchepannou.blog.service.Command;
 import com.tchepannou.blog.service.CommandContext;
+import org.apache.commons.lang.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,7 +122,11 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
             try {
                 event.setRequest(jackson.build().writeValueAsString(request));
             } catch (JsonProcessingException e){
-                throw new RuntimeException("Unable to add an entry into the log", e);
+                event.setRequest(String.format(
+                        "%s\n%s",
+                        e.getMessage(),
+                        ExceptionUtils.getFullStackTrace(e)
+                ));
             }
         }
 

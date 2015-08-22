@@ -19,20 +19,24 @@ public class HttpImpl implements Http{
 
     //-- Http overrides
     @Override
-    public <T> T get(URL url, Class<T> type) throws IOException, URISyntaxException{
-        HttpGet request = new HttpGet(url.toURI());
+    public <T> T get(URL url, Class<T> type) throws IOException{
+        try {
+            HttpGet request = new HttpGet(url.toURI());
 
-        try(CloseableHttpClient client = HttpClients.createDefault()){
+            try (CloseableHttpClient client = HttpClients.createDefault()) {
 
-            HttpResponse response = client.execute(request);
-            if (response.getStatusLine().getStatusCode() != 200){
-                throw new AccessTokenException("Failure - " + response.getStatusLine());
+                HttpResponse response = client.execute(request);
+                if (response.getStatusLine().getStatusCode() != 200) {
+                    throw new AccessTokenException("Failure - " + response.getStatusLine());
+                }
+
+                return jsonBuilder
+                        .build()
+                        .readValue(response.getEntity().getContent(), type);
+
             }
-
-            return jsonBuilder
-                    .build()
-                    .readValue(response.getEntity().getContent(), type);
-
+        } catch (URISyntaxException e){
+            throw new IllegalStateException("Invalid URL " + url, e);
         }
     }
 }

@@ -74,7 +74,7 @@ public class AppConfig {
 
     //-- JMS Config
     @Bean
-    JmsListenerContainerFactory<?> jmsContainerFactory(ConnectionFactory connectionFactory) {
+    JmsListenerContainerFactory jmsContainerFactory(ConnectionFactory connectionFactory) {
         SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
         factory.setConnectionFactory(connectionFactory);
         return factory;

@@ -19,6 +19,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PostUtils {
+    private PostUtils (){
+    }
+
     public static Post createPost(PostRequest request, CommandContext context, long userId, Post.Type type, PostDao dao){
         Post post = new Post();
         post.setBlogId(context.getBlogId());
