@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 public class PermissionServiceImpl implements PermissionService {
@@ -30,7 +29,7 @@ public class PermissionServiceImpl implements PermissionService {
 
             return http.get(new URL(String.format("%s/user/%s/space/%s/app/blog", url, userId, blogId)), PermissionCollection.class);
 
-        } catch (IOException | URISyntaxException e){
+        } catch (IOException e){
             metrics.meter(Constants.METRIC_PERMISSION_ERRORS).mark();
 
             throw new AccessTokenException("Unable to process JSON response", e);

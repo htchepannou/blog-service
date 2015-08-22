@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 public class AccessTokenServiceImpl implements AccessTokenService{
@@ -35,7 +34,7 @@ public class AccessTokenServiceImpl implements AccessTokenService{
                 throw new AccessTokenException("auth_failed");
             }
 
-        } catch (IOException | URISyntaxException e){
+        } catch (IOException e){
             metrics.meter(Constants.METRIC_AUTH_ERRORS).mark();
 
             throw new AccessTokenException("auth_failed", e);
