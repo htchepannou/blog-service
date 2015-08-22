@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="92585ef6-f4ef-4a3e-a6bc-0c86e042baf4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractSecuredCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractSecuredCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/Http.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/Http.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/HttpImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/HttpImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/PostUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/PostUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenService.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenService.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionCollection.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionCollection.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blog-service.iws" />
@@ -58,22 +56,28 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="128" column="16" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
+              <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlogController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java">
+      <file leaf-file-name="GetPostListCommand.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/GetPostListCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.1785715">
-              <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#7918#7919#0" expanded="true" />
-                <element signature="e#8001#8002#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetPostListCommandImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,28 +90,6 @@
               <folding>
                 <element signature="e#4809#4810#0" expanded="true" />
                 <element signature="e#4859#4860#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReblogPostCommandImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/ReblogPostCommandImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostReblogIT.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostReblogIT.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="96" column="30" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="30" />
-              <folding>
-                <element signature="method#should_return_404_when_not_found#0;class#PostReblogIT#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -147,11 +129,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HttpImpl.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HttpImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/HttpImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77922076">
+            <state vertical-scroll-proportion="0.0">
               <caret line="38" column="69" selection-start-line="38" selection-start-column="69" selection-end-line="38" selection-end-column="69" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PermissionCollection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionCollection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccessTokenService.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.16094421">
+              <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -185,7 +187,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/EventLogDao.java" />
         <option value="$PROJECT_DIR$/src/test/resources/db/clean.sql" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/config/TestConfig.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9ac38e74-ae14-452e-aec7-200d0e9cdc3b/console.sql" />
@@ -195,7 +196,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/JmsConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/auth/AccessToken.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessToken.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionCollection.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/HttpClientProviderImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/HttpClientProviderImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/HttpClientProvider.java" />
@@ -221,7 +221,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/DeletePostIT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/service/command/AbstractCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/resources/db/reblog_text.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/exception/DuplicatePostException.java" />
@@ -232,10 +231,13 @@
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostReblogIT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractSecuredCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/PostUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/Http.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/HttpImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionCollection.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenService.java" />
       </list>
     </option>
   </component>
@@ -262,9 +264,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="873" />
+    <option name="x" value="152" />
+    <option name="y" value="96" />
+    <option name="width" value="1288" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -935,7 +938,7 @@
       <workItem from="1440028859451" duration="2595000" />
       <workItem from="1440101595326" duration="1895000" />
       <workItem from="1440104940802" duration="6334000" />
-      <workItem from="1440188709202" duration="4455000" />
+      <workItem from="1440188709202" duration="4623000" />
     </task>
     <task id="LOCAL-00001" summary="rename">
       <created>1439953755419</created>
@@ -947,10 +950,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85380000" />
+    <option name="totallyTimeSpent" value="85548000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
+    <frame x="152" y="96" width="1288" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -963,9 +966,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44174135" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27400768" sideWeight="0.49381697" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3022599" sideWeight="0.49381697" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30543634" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34269664" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27181688" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1024,13 +1027,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/rr/CreateTextRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.06355932">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessToken.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1129,21 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionCollection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2890995">
-          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13914657">
-          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1303,14 +1284,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.05421687">
-          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/service/command/AbstractCommandTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5612745">
@@ -1450,14 +1423,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="128" column="16" selection-start-line="128" selection-start-column="16" selection-end-line="128" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/PostUtils.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1480,8 +1445,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/HttpImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77922076">
+        <state vertical-scroll-proportion="0.0">
           <caret line="38" column="69" selection-start-line="38" selection-start-column="69" selection-end-line="38" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionCollection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="20" selection-start-line="36" selection-start-column="20" selection-end-line="36" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/GetPostListCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16094421">
+          <caret line="5" column="70" selection-start-line="5" selection-start-column="70" selection-end-line="5" selection-end-column="70" />
           <folding />
         </state>
       </provider>

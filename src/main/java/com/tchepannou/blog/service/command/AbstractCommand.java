@@ -23,7 +23,7 @@ import java.util.OptionalLong;
 
 public abstract class AbstractCommand<I, O> implements Command<I, O> {
     //-- Attributes
-    private Logger logger;
+    private Logger logger;  // NOSONAR
 
     @Autowired
     private MetricRegistry metrics;

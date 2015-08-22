@@ -57,4 +57,5 @@ public class GetPostListCommandImpl extends AbstractCommand<Void, PostCollection
     @Override
     protected Collection<String> getRequiredPermissions() {
         return Collections.emptyList();
-    }}
+    }
+}

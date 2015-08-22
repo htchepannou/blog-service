@@ -37,4 +37,5 @@ public class PermissionCollection {
 
     public void setSpaceId(long spaceId) {
         this.spaceId = spaceId;
-    }}
+    }
+}
