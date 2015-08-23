@@ -19,6 +19,7 @@ import com.tchepannou.blog.service.ReblogPostCommand;
 import com.tchepannou.blog.service.UpdateTextCommand;
 import com.tchepannou.blog.service.auth.AccessTokenService;
 import com.tchepannou.blog.service.auth.AccessTokenServiceImpl;
+import com.tchepannou.blog.service.auth.AuthHealthIndicator;
 import com.tchepannou.blog.service.auth.PermissionService;
 import com.tchepannou.blog.service.auth.PermissionServiceImpl;
 import com.tchepannou.blog.service.command.CreateTextCommandImpl;
@@ -28,6 +29,7 @@ import com.tchepannou.blog.service.command.GetPostListCommandImpl;
 import com.tchepannou.blog.service.command.ReblogPostCommandImpl;
 import com.tchepannou.blog.service.command.UpdateTextCommandImpl;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -83,6 +85,12 @@ public class AppConfig {
         return new JmsTemplate(factory);
     }
 
+
+    //-- Healthcheck
+    @Bean
+    HealthIndicator authHealthIndicator (){
+        return new AuthHealthIndicator();
+    }
 
     //-- Services
     @Bean
