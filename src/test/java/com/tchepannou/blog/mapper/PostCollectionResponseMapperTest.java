@@ -4,7 +4,7 @@ import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.rr.PostCollectionResponse;
+import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import org.junit.Test;
 
 import java.util.Arrays;

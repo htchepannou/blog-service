@@ -15,7 +15,7 @@ import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostTag;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.rr.UpdateTextRequest;
+import com.tchepannou.blog.client.v1.UpdateTextRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

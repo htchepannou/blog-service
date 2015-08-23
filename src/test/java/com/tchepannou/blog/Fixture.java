@@ -2,7 +2,6 @@ package com.tchepannou.blog;
 
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
-import org.apache.commons.lang.time.DateUtils;
 
 import java.util.Date;
 
@@ -26,8 +25,8 @@ public class Fixture {
         post.setBlogId(blogId);
         post.setUserId(userId);
         post.setContent("<p>This is content" + id + "</b>");
-        post.setCreated(DateUtils.addDays(new Date(), -10));
-        post.setPublished(DateUtils.addDays(new Date(), -10));
+        post.setCreated(new Date ());
+        post.setPublished(new Date ());
         post.setSlug("This is the slug" + id);
         post.setStatus(Post.Status.published);
         post.setTitle("Sample Post " + id);

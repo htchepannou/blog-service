@@ -7,7 +7,7 @@ import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostCollectionResponseMapper;
-import com.tchepannou.blog.rr.PostCollectionResponse;
+import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.service.CommandContext;
 import com.tchepannou.blog.service.GetPostListCommand;
 import org.springframework.beans.factory.annotation.Autowired;

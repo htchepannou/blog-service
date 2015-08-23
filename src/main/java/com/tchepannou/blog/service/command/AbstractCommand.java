@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Strings;
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.domain.EventLog;
-import com.tchepannou.blog.rr.PostResponse;
+import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.service.Command;
 import com.tchepannou.blog.service.CommandContext;
 import org.apache.commons.lang.exception.ExceptionUtils;

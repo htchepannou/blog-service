@@ -2,7 +2,7 @@ package com.tchepannou.blog.mapper;
 
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.rr.PostResponse;
+import com.tchepannou.blog.client.v1.PostResponse;
 import org.junit.Test;
 
 import java.util.Arrays;

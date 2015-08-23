@@ -3,7 +3,7 @@ package com.tchepannou.blog.mapper;
 import com.google.common.base.Preconditions;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.rr.PostResponse;
+import com.tchepannou.blog.client.v1.PostResponse;
 
 import java.util.ArrayList;
 import java.util.Collection;

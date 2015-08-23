@@ -2,9 +2,9 @@ package com.tchepannou.blog.mapper;
 
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
+import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.rr.PostCollectionResponse;
 
 import java.util.ArrayList;
 import java.util.Collection;

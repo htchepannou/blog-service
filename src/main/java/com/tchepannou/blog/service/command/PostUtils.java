@@ -8,8 +8,8 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.exception.AuthorizationException;
-import com.tchepannou.blog.rr.PostRequest;
-import com.tchepannou.blog.rr.UpdateTextRequest;
+import com.tchepannou.blog.client.v1.PostRequest;
+import com.tchepannou.blog.client.v1.UpdateTextRequest;
 import com.tchepannou.blog.service.CommandContext;
 import com.tchepannou.core.exception.NotFoundException;
 
