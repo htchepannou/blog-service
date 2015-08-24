@@ -11,6 +11,7 @@ import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.PostEntry;
+import com.tchepannou.core.http.Http;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,7 +67,7 @@ public class PostReblogIT {
             // @formatter:off
             given()
                     .contentType(ContentType.JSON)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/1/post/1000/reblog")
                 .then()
@@ -106,7 +107,7 @@ public class PostReblogIT {
             // @formatter:off
             given()
                     .contentType(ContentType.JSON)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/200/post/2000/reblog")
                 .then()
@@ -135,7 +136,7 @@ public class PostReblogIT {
             // @formatter:off
             given()
                     .contentType(ContentType.JSON)
-                    .header(new Header("access_token", "???"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "???"))
                 .when()
                     .post("/v1/blog/1/post/1000/reblog")
                 .then()
@@ -156,7 +157,7 @@ public class PostReblogIT {
             // @formatter:off
             given()
                     .contentType(ContentType.JSON)
-                    .header(new Header("access_token", null))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, null))
                 .when()
                     .post("/v1/blog/1/post/1000/reblog")
                 .then()
@@ -177,7 +178,7 @@ public class PostReblogIT {
             // @formatter:off
             given()
                     .contentType(ContentType.JSON)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/1/post/1000/reblog")
                 .then()
@@ -198,7 +199,7 @@ public class PostReblogIT {
             // @formatter:off
             given()
                     .contentType(ContentType.JSON)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/1/post/999999/reblog")
                 .then()

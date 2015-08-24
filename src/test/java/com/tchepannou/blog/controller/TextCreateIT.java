@@ -8,6 +8,7 @@ import com.jayway.restassured.response.Header;
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
+import com.tchepannou.blog.client.v1.CreateTextRequest;
 import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
@@ -18,7 +19,7 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.PostTag;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.client.v1.CreateTextRequest;
+import com.tchepannou.core.http.Http;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -92,7 +93,7 @@ public class TextCreateIT {
             int id = given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text")
                 .then()
@@ -166,7 +167,7 @@ public class TextCreateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text")
                 .then()
@@ -198,7 +199,7 @@ public class TextCreateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text")
                 .then()
@@ -230,7 +231,7 @@ public class TextCreateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "????"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
                 .when()
                     .post("/v1/blog/100/text")
                 .then()
@@ -260,7 +261,7 @@ public class TextCreateIT {
         given()
                 .contentType(ContentType.JSON)
                 .content(req, ObjectMapperType.JACKSON_2)
-                .header(new Header("access_token", "????"))
+                .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
             .when()
                 .post("/v1/blog/100/text")
             .then()
@@ -287,7 +288,7 @@ public class TextCreateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text")
                 .then()

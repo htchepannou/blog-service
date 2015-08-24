@@ -11,6 +11,7 @@ import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
+import com.tchepannou.core.http.Http;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,7 +70,7 @@ public class PostDeleteIT {
         try {
             // @formatter:off
             given()
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .delete("/v1/blog/100/post/1000")
                 .then()
@@ -114,7 +115,7 @@ public class PostDeleteIT {
         try {
             // @formatter:off
             given()
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .delete("/v1/blog/100/post/1000")
                 .then()
@@ -159,7 +160,7 @@ public class PostDeleteIT {
         try {
             // @formatter:off
             given()
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .delete("/v1/blog/100/post/2000")
                 .then()
@@ -202,7 +203,7 @@ public class PostDeleteIT {
 
             // @formatter:off
             given()
-                    .header(new Header("access_token", "????"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
                 .when()
                     .delete("/v1/blog/100/post/2000")
                 .then()
@@ -223,7 +224,7 @@ public class PostDeleteIT {
     public void should_return_401_when_not_auth_server_down() throws Exception {
         // @formatter:off
         given()
-                .header(new Header("access_token", "????"))
+                .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
             .when()
                 .delete("/v1/blog/100/post/2000")
             .then()
@@ -241,7 +242,7 @@ public class PostDeleteIT {
         try {
             // @formatter:off
             given()
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .delete("/v1/blog/300/post/3000")
                 .then()
@@ -264,7 +265,7 @@ public class PostDeleteIT {
         try {
             // @formatter:off
             given()
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .delete("/v1/blog/9999/post/2000")
                 .then()
@@ -287,7 +288,7 @@ public class PostDeleteIT {
         try {
             // @formatter:off
             given()
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .delete("/v1/blog/400/post/4000")
                 .then()

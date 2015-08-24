@@ -8,6 +8,7 @@ import com.jayway.restassured.response.Header;
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
+import com.tchepannou.blog.client.v1.UpdateTextRequest;
 import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
@@ -15,7 +16,7 @@ import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostTag;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.client.v1.UpdateTextRequest;
+import com.tchepannou.core.http.Http;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,9 +33,7 @@ import java.util.List;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -84,7 +83,7 @@ public class TextUpdateIT {
             int id = given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text/1000")
                 .then()
@@ -149,7 +148,7 @@ public class TextUpdateIT {
             int id = given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text/1000")
                 .then()
@@ -214,7 +213,7 @@ public class TextUpdateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text/1000")
                 .then()
@@ -246,7 +245,7 @@ public class TextUpdateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text/1000")
                 .then()
@@ -278,7 +277,7 @@ public class TextUpdateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "????"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
                 .when()
                     .post("/v1/blog/100/text/1000")
                 .then()
@@ -308,7 +307,7 @@ public class TextUpdateIT {
         given()
                 .contentType(ContentType.JSON)
                 .content(req, ObjectMapperType.JACKSON_2)
-                .header(new Header("access_token", "????"))
+                .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
             .when()
                 .post("/v1/blog/100/text/1000")
             .then()
@@ -335,7 +334,7 @@ public class TextUpdateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text/2000")
                 .then()
@@ -367,7 +366,7 @@ public class TextUpdateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/300/text/3000")
                 .then()
@@ -399,7 +398,7 @@ public class TextUpdateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/100/text/999")
                 .then()
@@ -431,7 +430,7 @@ public class TextUpdateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/99999/text/1000")
                 .then()
@@ -463,7 +462,7 @@ public class TextUpdateIT {
             given()
                     .contentType(ContentType.JSON)
                     .content(req, ObjectMapperType.JACKSON_2)
-                    .header(new Header("access_token", "_token_"))
+                    .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
                     .post("/v1/blog/400/text/4000")
                 .then()

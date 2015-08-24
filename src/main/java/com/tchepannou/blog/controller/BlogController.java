@@ -1,19 +1,20 @@
 package com.tchepannou.blog.controller;
 
-import com.tchepannou.blog.exception.AccessTokenException;
-import com.tchepannou.blog.exception.AuthorizationException;
-import com.tchepannou.blog.exception.DuplicatePostException;
 import com.tchepannou.blog.client.v1.CreateTextRequest;
 import com.tchepannou.blog.client.v1.ErrorResponse;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.client.v1.UpdateTextRequest;
+import com.tchepannou.blog.exception.AccessTokenException;
+import com.tchepannou.blog.exception.AuthorizationException;
+import com.tchepannou.blog.exception.DuplicatePostException;
 import com.tchepannou.blog.service.CreateTextCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.ReblogPostCommand;
 import com.tchepannou.blog.service.UpdateTextCommand;
+import com.tchepannou.core.http.Http;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
@@ -106,7 +107,7 @@ public class BlogController {
             @ApiResponse(code=403, message = "User not allowed to delete the post.")
     })
     public void delete(
-            @RequestHeader(value="access_token", required = false) String accessToken,
+            @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id
     ) {
@@ -127,7 +128,7 @@ public class BlogController {
             @ApiResponse(code=403, message = "User not allowed to re-blog the post.")
     })
     public ResponseEntity reblog(
-            @RequestHeader(value="access_token", required = false) String accessToken,
+            @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id
     ) {
@@ -149,7 +150,7 @@ public class BlogController {
             @ApiResponse(code=404, message = "Bad request data.")
     })
     public ResponseEntity<PostResponse> createText(
-            @RequestHeader(value="access_token", required = false) String accessToken,
+            @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @Valid @RequestBody CreateTextRequest request
     ) {
@@ -170,7 +171,7 @@ public class BlogController {
             @ApiResponse(code=404, message = "Invalid request data.")
     })
     public PostResponse updateText(
-            @RequestHeader(value="access_token", required = false) String accessToken,
+            @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id,
             @RequestBody @Valid UpdateTextRequest request
