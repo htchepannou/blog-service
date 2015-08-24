@@ -1,5 +1,7 @@
 package com.tchepannou.blog.service.command;
 
+import com.tchepannou.blog.client.v1.PostRequest;
+import com.tchepannou.blog.client.v1.UpdateTextRequest;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
@@ -8,10 +10,7 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.exception.AuthorizationException;
-import com.tchepannou.blog.client.v1.PostRequest;
-import com.tchepannou.blog.client.v1.UpdateTextRequest;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.core.exception.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,12 +38,6 @@ public class PostUtils {
 
     public static Post updatePost(UpdateTextRequest request, CommandContext context, PostDao dao) {
         Post post = dao.findByIdByBlog(context.getId (), context.getBlogId());
-        if (post == null){
-            ArrayList<Long> ids = new ArrayList<>();
-            ids.add(context.getId());
-            ids.add(context.getBlogId());
-            throw new NotFoundException(ids, Post.class);
-        }
         if (post.getBlogId() != context.getBlogId()){
             throw new AuthorizationException("invalid_blog");
         }

@@ -1,6 +1,6 @@
 package com.tchepannou.blog.service.auth;
 
-import com.tchepannou.http.Http;
+import com.tchepannou.core.http.Http;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

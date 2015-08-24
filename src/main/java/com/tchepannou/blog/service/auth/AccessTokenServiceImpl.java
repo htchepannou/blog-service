@@ -5,7 +5,7 @@ import com.codahale.metrics.Timer;
 import com.tchepannou.auth.client.v1.AccessTokenResponse;
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.exception.AccessTokenException;
-import com.tchepannou.http.Http;
+import com.tchepannou.core.http.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;

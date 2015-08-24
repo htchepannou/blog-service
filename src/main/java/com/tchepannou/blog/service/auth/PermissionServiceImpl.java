@@ -5,11 +5,13 @@ import com.codahale.metrics.Timer;
 import com.tchepannou.auth.client.v1.PermissionCollectionResponse;
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.exception.AccessTokenException;
+import com.tchepannou.core.http.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import java.io.IOException;
+
 
 public class PermissionServiceImpl implements PermissionService {
     @Value("${auth.hostname}")
@@ -47,8 +49,8 @@ public class PermissionServiceImpl implements PermissionService {
     }
 
 
-    private com.tchepannou.http.Http http (){
-        return new com.tchepannou.http.Http()
+    private Http http (){
+        return new Http()
                 .withHost(hostname)
                 .withPort(port)
                 .withObjectMapper(jackson.build())

@@ -28,7 +28,7 @@
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>com.tchepannou.http</groupId>
+            <groupId>com.tchepannou.core</groupId>
             <artifactId>core-http</artifactId>
             <version>1.0</version>
         </dependency>
