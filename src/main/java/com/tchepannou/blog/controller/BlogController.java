@@ -1,7 +1,6 @@
 package com.tchepannou.blog.controller;
 
 import com.tchepannou.blog.client.v1.CreateTextRequest;
-import com.tchepannou.blog.client.v1.ErrorResponse;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.client.v1.UpdateTextRequest;
@@ -15,6 +14,7 @@ import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.ReblogPostCommand;
 import com.tchepannou.blog.service.UpdateTextCommand;
 import com.tchepannou.core.http.Http;
+import com.tchepannou.core.client.v1.ErrorResponse;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -186,35 +187,43 @@ public class BlogController {
     //-- Exception Handler
     @ResponseStatus(value= HttpStatus.NOT_FOUND)
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    public ErrorResponse notFound() {
-        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), "not_found");
+    public ErrorResponse notFound(final HttpServletRequest request) {
+        return createErrorResponse(HttpStatus.NOT_FOUND.value(), "not_found", request);
     }
 
     @ResponseStatus(value= HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AccessTokenException.class)
-    public ErrorResponse authenticationFailed(AccessTokenException exception) {
+    public ErrorResponse authenticationFailed(final AccessTokenException exception, final HttpServletRequest request) {
         LOG.error("Authentication error", exception);
-        return new ErrorResponse(HttpStatus.UNAUTHORIZED.value(), "auth_failed", exception.getMessage());
+        return createErrorResponse(HttpStatus.UNAUTHORIZED.value(),  exception.getMessage(), request);
     }
 
     @ResponseStatus(value= HttpStatus.FORBIDDEN)
     @ExceptionHandler(AuthorizationException.class)
-    public ErrorResponse authorizationFailed(Exception exception) {
+    public ErrorResponse authorizationFailed(Exception exception, final HttpServletRequest request) {
         LOG.error("Authorization failed", exception);
-        return new ErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage());
+        return createErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage(), request);
     }
 
     @ResponseStatus(value= HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErrorResponse validationFailed(MethodArgumentNotValidException ex) {
+    public ErrorResponse validationFailed(MethodArgumentNotValidException ex, final HttpServletRequest request) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
-        return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), fieldErrors.get(0).getDefaultMessage());
+        return createErrorResponse(HttpStatus.BAD_REQUEST.value(), fieldErrors.get(0).getDefaultMessage(), request);
     }
 
     @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ErrorResponse failure(Exception exception) {
+    public ErrorResponse failure(final Exception exception, final HttpServletRequest request) {
         LOG.error("Unexpected error", exception);
-        return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
+        return createErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage(), request);
+    }
+
+    private ErrorResponse createErrorResponse(int code, String text, HttpServletRequest request){
+        return new ErrorResponse()
+                .withCode(code)
+                .withText(text)
+                .withAccessTokenId(request.getHeader(Http.HEADER_ACCESS_TOKEN))
+                .withTransactionId(request.getHeader(Http.HEADER_TRANSACTION_ID));
     }
 }
