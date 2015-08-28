@@ -2,32 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92585ef6-f4ef-4a3e-a6bc-0c86e042baf4" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AuthHealthIndicator.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractSecuredCommand.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/auth/AuthServer.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/CreateTextCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/CreatePostCommandImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/service/command/AbstractCommandTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/service/command/AbstractCommandTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/CommandContext.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/CommandContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/CommandContextImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/CommandContextImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/DeletePostCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/DeletePostCommandImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/HealthCheckIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/HealthCheckIT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostCreateIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostCreateIT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostDeleteIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostDeleteIT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostReblogIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostReblogIT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostUpdateIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostUpdateIT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/ReblogPostCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/ReblogPostCommandImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/UpdateTextCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/UpdateTextCommandImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/config/application.properties" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/application.pid" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blog-service.iws" />
@@ -123,12 +99,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HealthCheckIT.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HealthCheckIT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/HealthCheckIT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22077923">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.29220778">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <folding>
+                <marker date="1440797880000" expanded="true" signature="2783:2814" placeholder="DROP DATABAS..." />
+                <marker date="1440797880000" expanded="true" signature="2848:2871" placeholder="CREATE DATAB..blog_db..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -222,7 +211,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/DeletePostCommandImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/ReblogPostCommandImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/UpdateTextCommandImpl.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/CreatePostCommandImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostCreateIT.java" />
@@ -232,6 +220,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/config/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/HealthCheckIT.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -1037,7 +1026,7 @@
       <workItem from="1440694151645" duration="591000" />
       <workItem from="1440708864086" duration="485000" />
       <workItem from="1440759653007" duration="2055000" />
-      <workItem from="1440789007567" duration="7441000" />
+      <workItem from="1440789007567" duration="7485000" />
     </task>
     <task id="LOCAL-00001" summary="rename">
       <created>1439953755419</created>
@@ -1049,7 +1038,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129059000" />
+    <option name="totallyTimeSpent" value="129103000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1961" y="212" width="1819" height="956" extended-state="0" />
@@ -1444,17 +1433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <marker date="1440795142000" expanded="true" signature="-1:-1" placeholder="DROP DATABAS..." />
-            <marker date="1440795142000" expanded="true" signature="-1:-1" placeholder="CREATE DATAB..blog_db..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/CreatePostCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12765957">
@@ -1591,9 +1569,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/HealthCheckIT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22077923">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29220778">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <marker date="1440797880000" expanded="true" signature="2783:2814" placeholder="DROP DATABAS..." />
+            <marker date="1440797880000" expanded="true" signature="2848:2871" placeholder="CREATE DATAB..blog_db..." />
+          </folding>
         </state>
       </provider>
     </entry>
