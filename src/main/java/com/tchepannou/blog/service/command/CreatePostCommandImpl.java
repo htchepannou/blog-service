@@ -1,6 +1,6 @@
 package com.tchepannou.blog.service.command;
 
-import com.tchepannou.blog.Constants;
+import com.tchepannou.blog.client.v1.Constants;
 import com.tchepannou.blog.client.v1.CreatePostRequest;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.dao.PostDao;
@@ -51,11 +51,11 @@ public class CreatePostCommandImpl extends AbstractCommand<CreatePostRequest, Po
 
     @Override
     protected String getMetricName() {
-        return Constants.METRIC_CREATE_TEXT;
+        return Constants.METRIC_CREATE_POST;
     }
 
     @Override
     protected String getEventName() {
-        return Constants.EVENT_CREATE_TEXT;
+        return Constants.EVENT_CREATE_POST;
     }
 }

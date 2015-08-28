@@ -6,7 +6,6 @@ import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.exception.AccessTokenException;
 import com.tchepannou.blog.exception.AuthorizationException;
-import com.tchepannou.blog.exception.DuplicatePostException;
 import com.tchepannou.blog.service.CreatePostCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
@@ -31,6 +30,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,10 +76,16 @@ public class BlogController {
             @ApiResponse(code=404, message = "Post not found")
     })
     public PostResponse get(
+            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
             @PathVariable long bid,
             @PathVariable long id
     ) {
-        return getPostService.execute(id, new CommandContextImpl().withBlogId(bid));
+        return getPostService.execute(
+                id,
+                new CommandContextImpl()
+                        .withBlogId(bid)
+                        .withTransactionId(transactionId)
+        );
     }
 
     @RequestMapping(method = RequestMethod.GET, value="/{bid}/posts")
@@ -89,12 +95,17 @@ public class BlogController {
             @ApiResponse(code=404, message = "Post not found")
     })
     public PostCollectionResponse list(
+            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
             @PathVariable long bid,
             @RequestParam(value = "limit", defaultValue = "20") int limit,
             @RequestParam(value="offset", defaultValue = "0") int offset
     ) {
         return getPostListService.execute(null,
-                new CommandContextImpl().withBlogId(bid).withLimit(limit).withOffset(offset)
+                new CommandContextImpl()
+                        .withTransactionId(transactionId)
+                        .withBlogId(bid)
+                        .withLimit(limit)
+                        .withOffset(offset)
         );
     }
 
@@ -105,12 +116,16 @@ public class BlogController {
             @ApiResponse(code=404, message = "Post not found")
     })
     public void delete(
+            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
             @PathVariable long bid,
             @PathVariable long id
     ) {
         deletePostCommand.execute(
                 null,
-                new CommandContextImpl().withBlogId(bid).withId(id)
+                new CommandContextImpl()
+                        .withTransactionId(transactionId)
+                        .withBlogId(bid)
+                        .withId(id)
         );
     }
 
@@ -120,18 +135,22 @@ public class BlogController {
     @ApiResponses({
             @ApiResponse(code=201, message = "Success - Post successfully added"),
             @ApiResponse(code=200, message = "Success - Post was already in blog"),
-            @ApiResponse(code=404, message = "Post not found"),
+            @ApiResponse(code=404, message = "Post not found")
     })
     public ResponseEntity reblog(
+            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
             @PathVariable long bid,
             @PathVariable long id
     ) {
-        try {
-            reblogPostCommand.execute(null, new CommandContextImpl().withBlogId(bid).withId(id));
-            return new ResponseEntity(HttpStatus.CREATED);
-        } catch (DuplicatePostException e){ // NOSONAR
-            return new ResponseEntity(HttpStatus.OK);
-        }
+
+        boolean result = reblogPostCommand.execute(null,
+                    new CommandContextImpl()
+                            .withTransactionId(transactionId)
+                            .withBlogId(bid)
+                            .withId(id)
+            );
+
+        return result ? new ResponseEntity(HttpStatus.CREATED) : new ResponseEntity(HttpStatus.OK);
     }
 
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/{bid}/post")
@@ -141,12 +160,16 @@ public class BlogController {
             @ApiResponse(code=404, message = "Bad request data.")
     })
     public ResponseEntity<PostResponse> create(
+            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
             @PathVariable long bid,
             @Valid @RequestBody CreatePostRequest request
     ) {
         PostResponse response = createTextCommand.execute(
                 request,
-                new CommandContextImpl().withUserId(request.getUserId()).withBlogId(bid)
+                new CommandContextImpl()
+                        .withTransactionId(transactionId)
+                        .withUserId(request.getUserId())
+                        .withBlogId(bid)
         );
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
@@ -161,13 +184,17 @@ public class BlogController {
             @ApiResponse(code=404, message = "Invalid request data.")
     })
     public PostResponse update(
+            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
             @PathVariable long bid,
             @PathVariable long id,
             @RequestBody @Valid UpdatePostRequest request
     ) {
         return updateTextCommand.execute(
                 request,
-                new CommandContextImpl().withUserId(request.getUserId()).withBlogId(bid).withId(id)
+                new CommandContextImpl()
+                        .withTransactionId(transactionId)
+                        .withUserId(request.getUserId())
+                        .withBlogId(bid).withId(id)
         );
     }
 
@@ -211,7 +238,6 @@ public class BlogController {
         return new ErrorResponse()
                 .withCode(code)
                 .withText(text)
-                .withAccessTokenId(request.getHeader(Http.HEADER_ACCESS_TOKEN))
                 .withTransactionId(request.getHeader(Http.HEADER_TRANSACTION_ID));
     }
 }

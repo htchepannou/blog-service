@@ -7,6 +7,7 @@ public class CommandContextImpl implements CommandContext {
     private long id;
     private long blogId;
     private long userId;
+    private String transactionId;
     private int limit;
     private int offset;
 
@@ -36,6 +37,11 @@ public class CommandContextImpl implements CommandContext {
         return this;
     }
 
+    public CommandContextImpl withTransactionId (String transactionId){
+        this.transactionId = transactionId;
+        return this;
+    }
+
     //-- CommandContext overrides
     @Override
     public long getId() {
@@ -60,5 +66,10 @@ public class CommandContextImpl implements CommandContext {
     @Override
     public int getOffset() {
         return offset;
+    }
+
+    @Override
+    public String getTransactionId() {
+        return transactionId;
     }
 }

@@ -2,6 +2,7 @@ package com.tchepannou.blog.domain;
 
 import java.util.Date;
 
+@Deprecated
 public class EventLog extends Model {
     //-- Attributes
     private long id;

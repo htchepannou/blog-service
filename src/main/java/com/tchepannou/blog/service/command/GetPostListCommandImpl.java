@@ -1,7 +1,7 @@
 package com.tchepannou.blog.service.command;
 
 import com.google.common.collect.Multimap;
-import com.tchepannou.blog.Constants;
+import com.tchepannou.blog.client.v1.Constants;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.TagDao;

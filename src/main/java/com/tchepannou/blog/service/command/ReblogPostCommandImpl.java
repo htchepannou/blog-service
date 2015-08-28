@@ -1,16 +1,15 @@
 package com.tchepannou.blog.service.command;
 
-import com.tchepannou.blog.Constants;
+import com.tchepannou.blog.client.v1.Constants;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.Post;
-import com.tchepannou.blog.exception.DuplicatePostException;
 import com.tchepannou.blog.service.CommandContext;
 import com.tchepannou.blog.service.ReblogPostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 
-public class ReblogPostCommandImpl extends AbstractCommand<Void, Void> implements ReblogPostCommand {
+public class ReblogPostCommandImpl extends AbstractCommand<Void, Boolean> implements ReblogPostCommand {
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -21,14 +20,14 @@ public class ReblogPostCommandImpl extends AbstractCommand<Void, Void> implement
 
     //-- AbstractSecuredCommand overrides
     @Override
-    protected Void doExecute(Void request, CommandContext context) {
+    protected Boolean doExecute(Void request, CommandContext context) {
         try {
             Post post = postDao.findById(context.getId());
             PostUtils.addToBlog(post, context, postEntryDao);
 
-            return null;
-        } catch (DuplicateKeyException e){
-            throw new DuplicatePostException(e);
+            return true;
+        } catch (DuplicateKeyException e){  // NOSONAR
+            return false;
         }
     }
 

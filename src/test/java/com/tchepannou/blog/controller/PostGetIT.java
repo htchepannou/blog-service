@@ -2,6 +2,7 @@ package com.tchepannou.blog.controller;
 
 import com.jayway.restassured.RestAssured;
 import com.tchepannou.blog.Starter;
+import com.tchepannou.core.http.Http;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +13,9 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static com.jayway.restassured.RestAssured.when;
+import java.util.UUID;
+
+import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.hasSize;
@@ -29,6 +32,8 @@ public class PostGetIT {
     @Value("${server.port}")
     private int port;
 
+    private String transactionId = UUID.randomUUID().toString();
+
     @Before
     public void setUp (){
         RestAssured.port = port;
@@ -38,7 +43,9 @@ public class PostGetIT {
     @Test
     public void should_returns_404_for_invalid_id (){
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .get("/v1/blog/100/post/9999")
         .then()
             .log()
@@ -51,7 +58,9 @@ public class PostGetIT {
     @Test
     public void should_returns_404_for_deleted_post (){
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .get("/v1/blog/9998/post/9998")
         .then()
             .log()
@@ -64,7 +73,9 @@ public class PostGetIT {
     @Test
     public void should_returns_text (){
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .get("/v1/blog/100/post/1000")
         .then()
             .log()

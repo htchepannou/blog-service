@@ -57,20 +57,3 @@ CREATE TABLE attachment(
 
   CONSTRAINT fk_attachment__post_fk FOREIGN KEY (post_fk) REFERENCES post(id)
 );
-
-CREATE TABLE event_log(
-  id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  blog_id BIGINT NOT NULL,
-  user_id BIGINT NOT NULL,
-  post_fk BIGINT,
-  created DATETIME,
-  name VARCHAR(50),
-  request TEXT,
-
-  CONSTRAINT fk_event_log__post_fk FOREIGN KEY (post_fk) REFERENCES post(id)
-) ENGINE=INNODB;
-
-CREATE INDEX idx_event_log__blog_id ON event_log (blog_id);
-CREATE INDEX idx_event_log__user_id ON event_log (user_id);
-CREATE INDEX idx_event_log__created ON event_log (created);
-

@@ -1,22 +1,22 @@
 package com.tchepannou.blog.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
-import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
+import com.tchepannou.blog.client.v1.Constants;
 import com.tchepannou.blog.client.v1.CreatePostRequest;
-import com.tchepannou.blog.dao.EventLogDao;
+import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
-import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.PostTag;
 import com.tchepannou.blog.domain.Tag;
+import com.tchepannou.blog.jms.PostEventReceiver;
+import com.tchepannou.core.http.Http;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static com.jayway.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -59,8 +60,8 @@ public class PostCreateIT {
     @Autowired
     private PostEntryDao postEntryDao;
 
-    @Autowired
-    private EventLogDao eventLogDao;
+    private String transactionId = UUID.randomUUID().toString();
+
 
     //-- Test
     @Before
@@ -82,6 +83,7 @@ public class PostCreateIT {
         int id = given()
                 .contentType(ContentType.JSON)
                 .content(req, ObjectMapperType.JACKSON_2)
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
             .when()
                 .post("/v1/blog/100/post")
             .then()
@@ -119,20 +121,10 @@ public class PostCreateIT {
         List<PostEntry> entries = postEntryDao.findByPost(id);
         assertThat(entries).hasSize(1);
 
-        /* events */
-        List<EventLog> events = eventLogDao.findByPost(id, 1000, 0);
-        assertThat(events).hasSize(1);
-
-        EventLog event = events.get(0);
-        assertThat(event.getBlogId()).isEqualTo(100);
-        assertThat(event.getCreated()).isNotNull();
-        assertThat(event.getId()).isGreaterThan(0);
-        assertThat(event.getName()).isEqualTo(Constants.EVENT_CREATE_TEXT);
-        assertThat(event.getPostId()).isEqualTo(id);
-        assertThat(event.getUserId()).isEqualTo(101);
-
-        CreatePostRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), CreatePostRequest.class);
-        assertThat(req2).isEqualToComparingFieldByField(req);
+        /* event */
+        assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
+                new PostEvent(id, 100, Constants.EVENT_CREATE_POST, transactionId)
+        );
     }
 
     @Test
@@ -143,11 +135,13 @@ public class PostCreateIT {
         req.setSlug("sample slug");
         req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
         req.setTitle("test");
+        req.setUserId(101L);
 
         // @formatter:off
         given()
                 .contentType(ContentType.JSON)
                 .content(req, ObjectMapperType.JACKSON_2)
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
             .when()
                 .post("/v1/blog/100/post")
             .then()
@@ -167,11 +161,13 @@ public class PostCreateIT {
         req.setSlug("sample slug");
         req.setTags(Arrays.asList("tag1", "tag2", "tag3"));
         req.setTitle("");
+        req.setUserId(43L);
 
         // @formatter:off
         given()
                 .contentType(ContentType.JSON)
                 .content(req, ObjectMapperType.JACKSON_2)
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
             .when()
                 .post("/v1/blog/100/post")
             .then()

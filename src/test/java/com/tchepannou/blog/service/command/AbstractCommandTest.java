@@ -3,7 +3,7 @@ package com.tchepannou.blog.service.command;
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
-import com.tchepannou.blog.Constants;
+import com.tchepannou.blog.client.v1.Constants;
 import com.tchepannou.blog.controller.CommandContextImpl;
 import com.tchepannou.blog.service.CommandContext;
 import org.junit.Test;
@@ -11,11 +11,8 @@ import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
-
-import java.util.OptionalLong;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -40,8 +37,6 @@ public class AbstractCommandTest {
 
 
     @Mock JmsTemplate jmsTemplate;
-
-    Jackson2ObjectMapperBuilder jackson = new Jackson2ObjectMapperBuilder();
 
     @Test
     public void testExecute() throws Exception {
@@ -102,12 +97,10 @@ public class AbstractCommandTest {
     //-- Inner classes
     private class DoubleCommand extends AbstractCommand<Long, Long> {
         private String name;
-        private long userId;
 
         public DoubleCommand(String name, long userId){
-            super(metrics, jmsTemplate, jackson);
+            super(metrics, jmsTemplate);
             this.name = name;
-            this.userId = userId;
         }
 
         @Override
@@ -123,18 +116,13 @@ public class AbstractCommandTest {
         protected String getEventName() {
             return name;
         }
-
-        @Override
-        public OptionalLong getUserId() {
-            return OptionalLong.of(userId);
-        }
     }
 
     private class ExceptionCommand extends AbstractCommand<Long, Long> {
         private String name;
 
         public ExceptionCommand(String name){
-            super(metrics, jmsTemplate, jackson);
+            super(metrics, jmsTemplate);
             this.name = name;
         }
 

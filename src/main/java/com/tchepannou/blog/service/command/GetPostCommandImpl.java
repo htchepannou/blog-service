@@ -1,6 +1,6 @@
 package com.tchepannou.blog.service.command;
 
-import com.tchepannou.blog.Constants;
+import com.tchepannou.blog.client.v1.Constants;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.dao.AttachmentDao;
 import com.tchepannou.blog.dao.PostDao;

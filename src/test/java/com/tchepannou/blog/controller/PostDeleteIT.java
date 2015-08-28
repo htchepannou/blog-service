@@ -1,14 +1,15 @@
 package com.tchepannou.blog.controller;
 
 import com.jayway.restassured.RestAssured;
-import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
-import com.tchepannou.blog.dao.EventLogDao;
+import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
-import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
+import com.tchepannou.blog.jms.PostEventReceiver;
+import com.tchepannou.core.http.Http;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,8 +22,9 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+import java.util.UUID;
 
-import static com.jayway.restassured.RestAssured.when;
+import static com.jayway.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
 import static org.hamcrest.core.Is.is;
@@ -44,8 +46,7 @@ public class PostDeleteIT {
     @Autowired
     private PostEntryDao postEntryDao;
 
-    @Autowired
-    private EventLogDao eventLogDao;
+    private String transactionId = UUID.randomUUID().toString();
 
     @Before
     public void setUp (){
@@ -55,7 +56,9 @@ public class PostDeleteIT {
     @Test
     public void should_delete_post() throws Exception {
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .delete("/v1/blog/100/post/1000")
         .then()
             .log().all()
@@ -75,24 +78,18 @@ public class PostDeleteIT {
         List<PostEntry> entries = postEntryDao.findByPost(1000);
         assertThat(entries).isEmpty();
 
-        /* events */
-        List<EventLog> events = eventLogDao.findByPost(1000, 100, 0);
-        assertThat(events).hasSize(1);
-
-        EventLog event = events.get(0);
-        assertThat(event.getBlogId()).isEqualTo(100);
-        assertThat(event.getCreated()).isNotNull();
-        assertThat(event.getId()).isGreaterThan(0);
-        assertThat(event.getName()).isEqualTo(Constants.EVENT_DELETE_POST);
-        assertThat(event.getPostId()).isEqualTo(1000);
-        assertThat(event.getUserId()).isEqualTo(0);
-        assertThat(event.getRequest()).isNull();
+        /* event */
+        assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
+                new PostEvent(1000, 100, Constants.EVENT_DELETE_POST, transactionId)
+        );
     }
 
     @Test
     public void should_delete_post_as_owner() throws Exception {
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .delete("/v1/blog/100/post/1000")
         .then()
             .log().all()
@@ -112,24 +109,18 @@ public class PostDeleteIT {
         List<PostEntry> entries = postEntryDao.findByPost(1000);
         assertThat(entries).isEmpty();
 
-        /* events */
-        List<EventLog> events = eventLogDao.findByPost(1000, 100, 0);
-        assertThat(events).hasSize(1);
-
-        EventLog event = events.get(0);
-        assertThat(event.getBlogId()).isEqualTo(100);
-        assertThat(event.getCreated()).isNotNull();
-        assertThat(event.getId()).isGreaterThan(0);
-        assertThat(event.getName()).isEqualTo(Constants.EVENT_DELETE_POST);
-        assertThat(event.getPostId()).isEqualTo(1000);
-        assertThat(event.getUserId()).isEqualTo(0);
-        assertThat(event.getRequest()).isNull();
+        /* event */
+        assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
+                new PostEvent(1000, 100, Constants.EVENT_DELETE_POST, transactionId)
+        );
     }
 
     @Test
     public void should_delete_repost() throws Exception {
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .delete("/v1/blog/100/post/2000")
         .then()
             .log().all()
@@ -145,18 +136,10 @@ public class PostDeleteIT {
         List<PostEntry> entries = postEntryDao.findByPost(2000);
         assertThat(entries).hasSize(1);
 
-        /* events */
-        List<EventLog> events = eventLogDao.findByPost(2000, 100, 0);
-        assertThat(events).hasSize(1);
-
-        EventLog event = events.get(0);
-        assertThat(event.getBlogId()).isEqualTo(100);
-        assertThat(event.getCreated()).isNotNull();
-        assertThat(event.getId()).isGreaterThan(0);
-        assertThat(event.getName()).isEqualTo(Constants.EVENT_DELETE_POST);
-        assertThat(event.getPostId()).isEqualTo(2000);
-        assertThat(event.getUserId()).isEqualTo(0);
-        assertThat(event.getRequest()).isNull();
+        /* event */
+        assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
+                new PostEvent(2000, 100, Constants.EVENT_DELETE_POST, transactionId)
+        );
     }
 
 
@@ -164,7 +147,9 @@ public class PostDeleteIT {
     public void should_return_404_when_invalid_blog_id() throws Exception {
 
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .delete("/v1/blog/9999/post/2000")
         .then()
             .log().all()
@@ -178,7 +163,9 @@ public class PostDeleteIT {
     @Test
     public void should_return_404_when_deleted() throws Exception {
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .delete("/v1/blog/400/post/4000")
         .then()
             .log().all()

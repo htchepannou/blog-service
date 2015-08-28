@@ -2,6 +2,7 @@ package com.tchepannou.blog.controller;
 
 import com.jayway.restassured.RestAssured;
 import com.tchepannou.blog.Starter;
+import com.tchepannou.core.http.Http;
 import org.apache.http.HttpStatus;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +13,9 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.UUID;
+
 import static com.jayway.restassured.RestAssured.given;
-import static com.jayway.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.contains;
@@ -31,6 +33,8 @@ public class PostGetCollectionIT {
     @Value("${server.port}")
     private int port;
 
+    private String transactionId = UUID.randomUUID().toString();
+
     @Before
     public void setUp (){
         RestAssured.port = port;
@@ -40,7 +44,9 @@ public class PostGetCollectionIT {
     @Test
     public void should_returns_empty_for_invalid_blog (){
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .get("/v1/blog/99999/posts" )
         .then()
             .log()
@@ -54,7 +60,9 @@ public class PostGetCollectionIT {
     @Test
     public void should_returns_collection (){
         // @formatter:off
-        when()
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+        .when()
             .get("/v1/blog/100/posts" )
         .then()
             .log()
@@ -105,6 +113,7 @@ public class PostGetCollectionIT {
     public void should_returns_collection_limit3_offset0 (){
         // @formatter:off
         given()
+            .header(Http.HEADER_TRANSACTION_ID, transactionId)
             .param("limit", "3")
             .param("offset", "0")
         .when()
@@ -124,6 +133,7 @@ public class PostGetCollectionIT {
     public void should_returns_collection_limit3_offset3 (){
         // @formatter:off
         given()
+            .header(Http.HEADER_TRANSACTION_ID, transactionId)
             .param("limit", "3")
             .param("offset", "3")
         .when()
