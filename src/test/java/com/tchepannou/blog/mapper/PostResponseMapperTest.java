@@ -41,7 +41,6 @@ public class PostResponseMapperTest {
         assertThat(response.getStatus()).isEqualTo(post.getStatus().name());
         assertThat(response.getTitle()).isEqualTo(post.getTitle());
         assertThat(response.getTags()).containsExactly(tag1.getName(), tag2.getName(), tag3.getName());
-        assertThat(response.getType()).isEqualTo(post.getType().name());
         assertThat(response.getUpdated()).isEqualTo(post.getUpdated());
         assertThat(response.getUserId()).isEqualTo(post.getUserId());
 
@@ -56,7 +55,6 @@ public class PostResponseMapperTest {
         assertThat (xatt1.getId()).isEqualTo(att1.getId());
         assertThat (xatt1.getName()).isEqualTo(att1.getName());
         assertThat (xatt1.getOembed()).isEqualTo(att1.getOembed());
-        assertThat (xatt1.getPostId()).isEqualTo(att1.getPostId());
         assertThat (xatt1.getThumbnailUrl()).isEqualTo(att1.getThumbnailUrl());
         assertThat (xatt1.getUrl()).isEqualTo(att1.getUrl());
         assertThat (xatt1.getWidth()).isEqualTo(att1.getWidth());
@@ -70,7 +68,6 @@ public class PostResponseMapperTest {
         assertThat (xatt2.getId()).isEqualTo(att2.getId());
         assertThat (xatt2.getName()).isEqualTo(att2.getName());
         assertThat (xatt2.getOembed()).isEqualTo(att2.getOembed());
-        assertThat (xatt2.getPostId()).isEqualTo(att2.getPostId());
         assertThat (xatt2.getThumbnailUrl()).isEqualTo(att2.getThumbnailUrl());
         assertThat (xatt2.getUrl()).isEqualTo(att2.getUrl());
         assertThat (xatt2.getWidth()).isEqualTo(att2.getWidth());
