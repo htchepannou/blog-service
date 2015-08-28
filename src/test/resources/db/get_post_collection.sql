@@ -37,23 +37,23 @@ INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(1001, 1004, 1);
 
 
 -- should_returns_list_with_limit_offset
-INSERT INTO post (id, blog_id, user_id, type, status, deleted, created, updated)
-  VALUES(2000, 200, 201, 1, 1, false, '2015-01-20 03:14:07', '2038-01-12 03:14:07');
+INSERT INTO post (id, blog_id, user_id, status, deleted, created, updated)
+  VALUES(2000, 200, 201, 1, false, '2015-01-20 03:14:07', '2038-01-12 03:14:07');
 
-INSERT INTO post (id, blog_id, user_id, type, status, deleted, created, updated)
-  VALUES(2001, 200, 201, 1, 1, false, '2015-01-21 03:14:07', '2038-01-13 03:14:07');
+INSERT INTO post (id, blog_id, user_id, status, deleted, created, updated)
+  VALUES(2001, 200, 201, 1, false, '2015-01-21 03:14:07', '2038-01-13 03:14:07');
 
-INSERT INTO post (id, blog_id, user_id, type, status, deleted, created, updated)
-  VALUES(2002, 200, 201, 1, 1, false, '2015-01-22 03:14:07', '2038-01-14 03:14:07');
+INSERT INTO post (id, blog_id, user_id, status, deleted, created, updated)
+  VALUES(2002, 200, 201, 1, false, '2015-01-22 03:14:07', '2038-01-14 03:14:07');
 
-INSERT INTO post (id, blog_id, user_id, type, status, deleted, created, updated)
-  VALUES(2003, 200, 201, 1, 1, false, '2015-01-23 03:14:07', '2038-01-15 03:14:07');
+INSERT INTO post (id, blog_id, user_id, status, deleted, created, updated)
+  VALUES(2003, 200, 201, 1, false, '2015-01-23 03:14:07', '2038-01-15 03:14:07');
 
-INSERT INTO post (id, blog_id, user_id, type, status, deleted, created, updated)
-  VALUES(2004, 200, 201, 1, 1, false, '2015-01-24 03:14:07', '2038-01-16 03:14:07');
+INSERT INTO post (id, blog_id, user_id, status, deleted, created, updated)
+  VALUES(2004, 200, 201, 1, false, '2015-01-24 03:14:07', '2038-01-16 03:14:07');
 
-INSERT INTO post (id, blog_id, user_id, type, status, deleted, created, updated)
-  VALUES(2005, 200, 201, 1, 1, false, '2015-01-25 03:14:07', '2038-01-17 03:14:07');
+INSERT INTO post (id, blog_id, user_id, status, deleted, created, updated)
+  VALUES(2005, 200, 201, 1, false, '2015-01-25 03:14:07', '2038-01-17 03:14:07');
 
 INSERT INTO post_entry(post_fk, blog_id, posted) VALUES(2001, 200, '2015-01-10 03:14:07');
 INSERT INTO post_entry(post_fk, blog_id, posted) VALUES(2002, 200, '2015-01-10 03:14:07');
