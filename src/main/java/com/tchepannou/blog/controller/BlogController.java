@@ -1,20 +1,20 @@
 package com.tchepannou.blog.controller;
 
-import com.tchepannou.blog.client.v1.CreateTextRequest;
+import com.tchepannou.blog.client.v1.CreatePostRequest;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.client.v1.PostResponse;
-import com.tchepannou.blog.client.v1.UpdateTextRequest;
+import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.exception.AccessTokenException;
 import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.exception.DuplicatePostException;
-import com.tchepannou.blog.service.CreateTextCommand;
+import com.tchepannou.blog.service.CreatePostCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.ReblogPostCommand;
-import com.tchepannou.blog.service.UpdateTextCommand;
-import com.tchepannou.core.http.Http;
+import com.tchepannou.blog.service.UpdatePostCommand;
 import com.tchepannou.core.client.v1.ErrorResponse;
+import com.tchepannou.core.http.Http;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiResponse;
@@ -57,10 +57,10 @@ public class BlogController {
     GetPostListCommand getPostListService;
 
     @Autowired
-    CreateTextCommand createTextCommand;
+    CreatePostCommand createTextCommand;
 
     @Autowired
-    UpdateTextCommand updateTextCommand;
+    UpdatePostCommand updateTextCommand;
 
     @Autowired
     DeletePostCommand deletePostCommand;
@@ -141,8 +141,8 @@ public class BlogController {
         }
     }
 
-    @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/{bid}/text")
-    @ApiOperation(value="Create a new Text")
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/{bid}/post")
+    @ApiOperation(value="Create a new Post")
     @ApiResponses({
             @ApiResponse(code=201, message = "Success"),
             @ApiResponse(code=404, message = "Post not found"),
@@ -150,10 +150,10 @@ public class BlogController {
             @ApiResponse(code=403, message = "User not allowed to delete the post."),
             @ApiResponse(code=404, message = "Bad request data.")
     })
-    public ResponseEntity<PostResponse> createText(
+    public ResponseEntity<PostResponse> create(
             @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
-            @Valid @RequestBody CreateTextRequest request
+            @Valid @RequestBody CreatePostRequest request
     ) {
         PostResponse response = createTextCommand.execute(
                 request,
@@ -162,8 +162,8 @@ public class BlogController {
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value="/{bid}/text/{id}")
-    @ApiOperation(value="Update a Text")
+    @RequestMapping(method = RequestMethod.POST, value="/{bid}/post/{id}")
+    @ApiOperation(value="Update a Post")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
             @ApiResponse(code=404, message = "Post not found"),
@@ -171,11 +171,11 @@ public class BlogController {
             @ApiResponse(code=403, message = "User not allowed to update the post."),
             @ApiResponse(code=404, message = "Invalid request data.")
     })
-    public PostResponse updateText(
+    public PostResponse update(
             @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id,
-            @RequestBody @Valid UpdateTextRequest request
+            @RequestBody @Valid UpdatePostRequest request
     ) {
         return updateTextCommand.execute(
                 request,

@@ -8,9 +8,9 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
 import com.tchepannou.blog.client.v1.PostResponse;
-import com.tchepannou.blog.client.v1.UpdateTextRequest;
+import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.blog.service.UpdateTextCommand;
+import com.tchepannou.blog.service.UpdatePostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Transactional
-public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdateTextRequest, PostResponse> implements UpdateTextCommand {
+public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdatePostRequest, PostResponse> implements UpdatePostCommand {
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -32,7 +32,7 @@ public class UpdateTextCommandImpl extends AbstractSecuredCommand<UpdateTextRequ
 
     //-- AbstractSecuredCommand overrides
     @Override
-    protected PostResponse doExecute(UpdateTextRequest request, CommandContext context) {
+    protected PostResponse doExecute(UpdatePostRequest request, CommandContext context) {
         final Post post = PostUtils.updatePost(request, context, postDao);
 
         final List<Tag> tags = PostUtils.addTags(request, tagDao);

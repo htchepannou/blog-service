@@ -8,7 +8,7 @@ import com.jayway.restassured.response.Header;
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
-import com.tchepannou.blog.client.v1.UpdateTextRequest;
+import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
@@ -41,9 +41,9 @@ import static org.hamcrest.core.Is.is;
 @WebIntegrationTest
 @Sql({
         "/db/clean.sql",
-        "/db/update_text.sql"
+        "/db/update_post.sql"
 })
-public class TextUpdateIT {
+public class PostUpdateIT {
     @Value("${server.port}")
     private int port;
 
@@ -72,7 +72,7 @@ public class TextUpdateIT {
     public void should_update_text() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 110, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus(Post.Status.published.name());
             req.setSlug("sample slug");
@@ -85,7 +85,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text/1000")
+                    .post("/v1/blog/100/post/1000")
                 .then()
                     .log().all()
                     .statusCode(200)
@@ -95,7 +95,6 @@ public class TextUpdateIT {
                     .body("title", is("sample title"))
                     .body("slug", is("sample slug"))
                     .body("content", is("<div>hello world</div>"))
-                    .body("type", is("text"))
                     .body("status", is("published"))
                     .body("created", notNullValue())
                     .body("updated", notNullValue())
@@ -125,7 +124,7 @@ public class TextUpdateIT {
             assertThat(event.getPostId()).isEqualTo(id);
             assertThat(event.getUserId()).isEqualTo(110);
 
-            UpdateTextRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), UpdateTextRequest.class);
+            UpdatePostRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), UpdatePostRequest.class);
             assertThat(req2).isEqualToComparingFieldByField(req);
 
         } finally {
@@ -137,7 +136,7 @@ public class TextUpdateIT {
     public void should_update_text_as_owner() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Collections.emptyList()));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus(Post.Status.published.name());
             req.setSlug("sample slug");
@@ -150,7 +149,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text/1000")
+                    .post("/v1/blog/100/post/1000")
                 .then()
                     .log().all()
                     .statusCode(200)
@@ -160,7 +159,6 @@ public class TextUpdateIT {
                     .body("title", is("sample title"))
                     .body("slug", is("sample slug"))
                     .body("content", is("<div>hello world</div>"))
-                    .body("type", is("text"))
                     .body("status", is("published"))
                     .body("created", notNullValue())
                     .body("updated", notNullValue())
@@ -190,7 +188,7 @@ public class TextUpdateIT {
             assertThat(event.getPostId()).isEqualTo(id);
             assertThat(event.getUserId()).isEqualTo(101);
 
-            UpdateTextRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), UpdateTextRequest.class);
+            UpdatePostRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), UpdatePostRequest.class);
             assertThat(req2).isEqualToComparingFieldByField(req);
             
         } finally {
@@ -202,7 +200,7 @@ public class TextUpdateIT {
     public void should_return_400_with_empty_title() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus(Post.Status.draft.name());
             req.setSlug("sample slug");
@@ -215,7 +213,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text/1000")
+                    .post("/v1/blog/100/post/1000")
                 .then()
                     .log().all()
                     .statusCode(400)
@@ -234,7 +232,7 @@ public class TextUpdateIT {
     public void should_return_400_with_bad_status() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("????");
             req.setSlug("sample slug");
@@ -247,7 +245,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text/1000")
+                    .post("/v1/blog/100/post/1000")
                 .then()
                     .log().all()
                     .statusCode(400)
@@ -266,7 +264,7 @@ public class TextUpdateIT {
     public void should_return_401_when_not_authenticated() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -279,7 +277,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
                 .when()
-                    .post("/v1/blog/100/text/1000")
+                    .post("/v1/blog/100/post/1000")
                 .then()
                     .log().all()
                     .statusCode(401)
@@ -296,7 +294,7 @@ public class TextUpdateIT {
 
     @Test
     public void should_return_401_when_not_auth_server_down() throws Exception {
-        UpdateTextRequest req = new UpdateTextRequest();
+        UpdatePostRequest req = new UpdatePostRequest();
         req.setContent("<div>hello world</div>");
         req.setStatus("draft");
         req.setSlug("sample slug");
@@ -309,7 +307,7 @@ public class TextUpdateIT {
                 .content(req, ObjectMapperType.JACKSON_2)
                 .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
             .when()
-                .post("/v1/blog/100/text/1000")
+                .post("/v1/blog/100/post/1000")
             .then()
                 .log().all()
                 .statusCode(401)
@@ -323,7 +321,7 @@ public class TextUpdateIT {
     public void should_return_403_when_now_owner_of_blog() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -336,7 +334,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text/2000")
+                    .post("/v1/blog/100/post/2000")
                 .then()
                     .log().all()
                     .statusCode(403)
@@ -355,7 +353,7 @@ public class TextUpdateIT {
     public void should_return_403_when_bad_permission() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -368,7 +366,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/300/text/3000")
+                    .post("/v1/blog/300/post/3000")
                 .then()
                     .log().all()
                     .statusCode(403)
@@ -387,7 +385,7 @@ public class TextUpdateIT {
     public void should_return_404_when_invalid_id() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -400,7 +398,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text/999")
+                    .post("/v1/blog/100/post/999")
                 .then()
                     .log().all()
                     .statusCode(404)
@@ -419,7 +417,7 @@ public class TextUpdateIT {
     public void should_return_404_when_invalid_blog_id() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -432,7 +430,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/99999/text/1000")
+                    .post("/v1/blog/99999/post/1000")
                 .then()
                     .log().all()
                     .statusCode(404)
@@ -451,7 +449,7 @@ public class TextUpdateIT {
     public void should_return_404_when_deleted() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_EDIT)));
         try {
-            UpdateTextRequest req = new UpdateTextRequest();
+            UpdatePostRequest req = new UpdatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -464,7 +462,7 @@ public class TextUpdateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/400/text/4000")
+                    .post("/v1/blog/400/post/4000")
                 .then()
                     .log().all()
                     .statusCode(404)

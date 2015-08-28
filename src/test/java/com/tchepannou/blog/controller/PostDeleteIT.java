@@ -37,7 +37,7 @@ import static org.hamcrest.core.Is.is;
 @WebIntegrationTest
 @Sql({
         "/db/clean.sql",
-        "/db/update_text.sql"
+        "/db/delete_post.sql"
 })
 public class PostDeleteIT {
     @Value("${server.port}")

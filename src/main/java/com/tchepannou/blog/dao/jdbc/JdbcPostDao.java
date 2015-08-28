@@ -104,22 +104,21 @@ public class JdbcPostDao implements PostDao{
     //-- Private
     public PreparedStatement insertPreparedStatement(Post post, Connection connection) throws SQLException {
         final String sql = "INSERT INTO post"
-                + "(blog_id, user_id, type, status, title, content, slug, created, updated, published, deleted)"
-                + " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+                + "(blog_id, user_id, status, title, content, slug, created, updated, published, deleted)"
+                + " VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         final PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
         ps.setLong(1, post.getBlogId());
         ps.setLong(2, post.getUserId());
-        ps.setInt(3, post.getType().value());
-        ps.setInt(4, post.getStatus().value());
-        ps.setString(5, post.getTitle());
-        ps.setString(6, post.getContent());
-        ps.setString(7, post.getSlug());
-        ps.setTimestamp(8, toTimestamp(post.getCreated()));
-        ps.setTimestamp(9, toTimestamp(post.getUpdated()));
-        ps.setTimestamp(10, toTimestamp(post.getPublished()));
-        ps.setBoolean(11, false);
+        ps.setInt(3, post.getStatus().value());
+        ps.setString(4, post.getTitle());
+        ps.setString(5, post.getContent());
+        ps.setString(6, post.getSlug());
+        ps.setTimestamp(7, toTimestamp(post.getCreated()));
+        ps.setTimestamp(8, toTimestamp(post.getUpdated()));
+        ps.setTimestamp(9, toTimestamp(post.getPublished()));
+        ps.setBoolean(10, false);
 
         return ps;
     }
@@ -137,7 +136,6 @@ public class JdbcPostDao implements PostDao{
         post.setSlug(rs.getString("slug"));
         post.setStatus(Post.Status.fromValue(rs.getInt("status")));
         post.setTitle(rs.getString("title"));
-        post.setType(Post.Type.fromValue(rs.getInt("type")));
         post.setUpdated(rs.getTimestamp("updated"));
 
         return post;

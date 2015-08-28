@@ -1,7 +1,7 @@
 package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.client.v1.PostRequest;
-import com.tchepannou.blog.client.v1.UpdateTextRequest;
+import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
@@ -21,7 +21,7 @@ public class PostUtils {
     private PostUtils (){
     }
 
-    public static Post createPost(PostRequest request, CommandContext context, long userId, Post.Type type, PostDao dao){
+    public static Post createPost(PostRequest request, CommandContext context, long userId, PostDao dao){
         Post post = new Post();
         post.setBlogId(context.getBlogId());
         post.setContent(request.getContent());
@@ -29,14 +29,13 @@ public class PostUtils {
         post.setSlug(request.getSlug());
         post.setStatus(Enum.valueOf(Post.Status.class, request.getStatus()));
         post.setTitle(request.getTitle());
-        post.setType(type);
         post.setUserId(userId);
         dao.create(post);
 
         return post;
     }
 
-    public static Post updatePost(UpdateTextRequest request, CommandContext context, PostDao dao) {
+    public static Post updatePost(UpdatePostRequest request, CommandContext context, PostDao dao) {
         Post post = dao.findByIdByBlog(context.getId (), context.getBlogId());
         if (post.getBlogId() != context.getBlogId()){
             throw new AuthorizationException("invalid_blog");

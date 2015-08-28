@@ -8,7 +8,7 @@ import com.jayway.restassured.response.Header;
 import com.tchepannou.blog.Constants;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.auth.AuthServer;
-import com.tchepannou.blog.client.v1.CreateTextRequest;
+import com.tchepannou.blog.client.v1.CreatePostRequest;
 import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
@@ -44,9 +44,9 @@ import static org.hamcrest.number.OrderingComparison.greaterThan;
 @WebIntegrationTest
 @Sql({
         "/db/clean.sql",
-        "/db/create_text.sql"
+        "/db/create_post.sql"
 })
-public class TextCreateIT {
+public class PostCreateIT {
     @Value("${server.port}")
     private int port;
 
@@ -82,7 +82,7 @@ public class TextCreateIT {
     public void should_create_text() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            CreatePostRequest req = new CreatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus(Post.Status.draft.name());
             req.setSlug("sample slug");
@@ -95,7 +95,7 @@ public class TextCreateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text")
+                    .post("/v1/blog/100/post")
                 .then()
                     .log().all()
                     .statusCode(201)
@@ -105,7 +105,6 @@ public class TextCreateIT {
                     .body("title", is("sample title"))
                     .body("slug", is("sample slug"))
                     .body("content", is("<div>hello world</div>"))
-                    .body("type", is("text"))
                     .body("status", is("draft"))
                     .body("created", notNullValue())
                     .body("updated", notNullValue())
@@ -143,7 +142,7 @@ public class TextCreateIT {
             assertThat(event.getPostId()).isEqualTo(id);
             assertThat(event.getUserId()).isEqualTo(101);
 
-            CreateTextRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), CreateTextRequest.class);
+            CreatePostRequest req2 = new ObjectMapper().readValue(event.getRequest().getBytes(), CreatePostRequest.class);
             assertThat(req2).isEqualToComparingFieldByField(req);
 
         } finally {
@@ -156,7 +155,7 @@ public class TextCreateIT {
     public void should_return_400_with_empty_title() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            CreatePostRequest req = new CreatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus(Post.Status.draft.name());
             req.setSlug("sample slug");
@@ -169,7 +168,7 @@ public class TextCreateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text")
+                    .post("/v1/blog/100/post")
                 .then()
                     .log().all()
                     .statusCode(400)
@@ -188,7 +187,7 @@ public class TextCreateIT {
     public void should_return_400_with_bad_status() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            CreatePostRequest req = new CreatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("????");
             req.setSlug("sample slug");
@@ -201,7 +200,7 @@ public class TextCreateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text")
+                    .post("/v1/blog/100/post")
                 .then()
                     .log().all()
                     .statusCode(400)
@@ -220,7 +219,7 @@ public class TextCreateIT {
     public void should_return_401_when_not_authenticated() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_CREATE)));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            CreatePostRequest req = new CreatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -233,7 +232,7 @@ public class TextCreateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
                 .when()
-                    .post("/v1/blog/100/text")
+                    .post("/v1/blog/100/post")
                 .then()
                     .log().all()
                     .statusCode(401)
@@ -250,7 +249,7 @@ public class TextCreateIT {
 
     @Test
     public void should_return_401_when_not_auth_server_down() throws Exception {
-        CreateTextRequest req = new CreateTextRequest();
+        CreatePostRequest req = new CreatePostRequest();
         req.setContent("<div>hello world</div>");
         req.setStatus("draft");
         req.setSlug("sample slug");
@@ -263,7 +262,7 @@ public class TextCreateIT {
                 .content(req, ObjectMapperType.JACKSON_2)
                 .header(new Header(Http.HEADER_ACCESS_TOKEN, "????"))
             .when()
-                .post("/v1/blog/100/text")
+                .post("/v1/blog/100/post")
             .then()
                 .log().all()
                 .statusCode(401)
@@ -277,7 +276,7 @@ public class TextCreateIT {
     public void should_return_403_when_bad_permission() throws Exception {
         authServer.start(authServerPort, new AuthServer.OKHandler("_token_", 101, Arrays.asList(Constants.PERMISSION_DELETE, Constants.PERMISSION_EDIT)));
         try {
-            CreateTextRequest req = new CreateTextRequest();
+            CreatePostRequest req = new CreatePostRequest();
             req.setContent("<div>hello world</div>");
             req.setStatus("draft");
             req.setSlug("sample slug");
@@ -290,7 +289,7 @@ public class TextCreateIT {
                     .content(req, ObjectMapperType.JACKSON_2)
                     .header(new Header(Http.HEADER_ACCESS_TOKEN, "_token_"))
                 .when()
-                    .post("/v1/blog/100/text")
+                    .post("/v1/blog/100/post")
                 .then()
                     .log().all()
                     .statusCode(403)

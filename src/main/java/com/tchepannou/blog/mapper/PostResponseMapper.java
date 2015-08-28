@@ -50,7 +50,6 @@ public class PostResponseMapper {
         response.setPublished(post.getPublished());
         response.setStatus(post.getStatus().name());
         response.setTitle(post.getTitle());
-        response.setType(post.getType().name());
         response.setUpdated(post.getUpdated());
         response.setUserId (post.getUserId());
     }

@@ -31,7 +31,6 @@ public class Fixture {
         post.setSlug("This is the slug" + id);
         post.setStatus(Post.Status.published);
         post.setTitle("Sample Post " + id);
-        post.setType(Post.Type.text);
         post.setUpdated(new Date());
         return post;
     }

@@ -33,7 +33,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @WebIntegrationTest
 @Sql({
         "/db/clean.sql",
-        "/db/reblog_text.sql"
+        "/db/reblog_post.sql"
 })
 public class PostReblogIT {
     @Value("${server.port}")

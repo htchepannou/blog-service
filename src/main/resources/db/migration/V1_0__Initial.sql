@@ -8,7 +8,6 @@ CREATE TABLE post(
   blog_id BIGINT NOT NULL,
   user_id BIGINT NOT NULL,
   status INTEGER,
-  type INTEGER,
   title VARCHAR(255),
   slug VARCHAR(255),
   content TEXT,

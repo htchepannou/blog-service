@@ -8,10 +8,10 @@ import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
-import com.tchepannou.blog.client.v1.CreateTextRequest;
+import com.tchepannou.blog.client.v1.CreatePostRequest;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.blog.service.CreateTextCommand;
+import com.tchepannou.blog.service.CreatePostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ import java.util.List;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @Transactional
-public class CreateTextCommandImpl extends AbstractSecuredCommand<CreateTextRequest, PostResponse> implements CreateTextCommand {
+public class CreateTextCommandImpl extends AbstractSecuredCommand<CreatePostRequest, PostResponse> implements CreatePostCommand {
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -39,8 +39,8 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreateTextRequ
 
     //-- AbstractCommand overrides
     @Override
-    protected PostResponse doExecute(CreateTextRequest request, CommandContext context) {
-        final Post post = PostUtils.createPost(request, context, getUserId().getAsLong(), Post.Type.text, postDao);
+    protected PostResponse doExecute(CreatePostRequest request, CommandContext context) {
+        final Post post = PostUtils.createPost(request, context, getUserId().getAsLong(), postDao);
         final List<Tag> tags = PostUtils.addTags(request, tagDao);
         PostUtils.link(post, tags, postTagDao);
         PostUtils.addToBlog(post, context, postEntryDao);

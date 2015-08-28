@@ -13,12 +13,12 @@ import com.tchepannou.blog.dao.jdbc.JdbcPostEntryDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
 import com.tchepannou.blog.jms.EventLogReceiver;
-import com.tchepannou.blog.service.CreateTextCommand;
+import com.tchepannou.blog.service.CreatePostCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.ReblogPostCommand;
-import com.tchepannou.blog.service.UpdateTextCommand;
+import com.tchepannou.blog.service.UpdatePostCommand;
 import com.tchepannou.blog.service.auth.AccessTokenService;
 import com.tchepannou.blog.service.auth.AccessTokenServiceImpl;
 import com.tchepannou.blog.service.auth.AuthHealthIndicator;
@@ -152,13 +152,11 @@ public class AppConfig {
         return new GetPostListCommandImpl();
     }
 
-    @Bean
-    CreateTextCommand createTextCommand () {
+    @Bean CreatePostCommand createTextCommand () {
         return new CreateTextCommandImpl();
     }
 
-    @Bean
-    UpdateTextCommand updateTextCommand(){
+    @Bean UpdatePostCommand updateTextCommand(){
         return new UpdateTextCommandImpl();
     }
 

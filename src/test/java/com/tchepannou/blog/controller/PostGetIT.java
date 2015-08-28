@@ -76,7 +76,6 @@ public class PostGetIT {
             .body("title", is("sample title"))
             .body("slug", is("sample slug"))
             .body("content", is("<div>This is the content</div>"))
-            .body("type", is("text"))
             .body("status", is("published"))
             .body("created", notNullValue())
             .body("updated", notNullValue())

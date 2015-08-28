@@ -5,25 +5,6 @@ import java.util.Date;
 
 public class Post extends Model {
     //-- Enums
-    public enum Type {
-        text(1), url(2);
-
-        int val;
-        Type (int value){
-            this.val = value;
-        }
-        public int value(){
-            return val;
-        }
-
-        public static Type fromValue (final int value){
-            return Arrays.asList(Type.values()).stream()
-                    .filter(type -> type.value() == value)
-                    .findFirst()
-                    .orElse(null);
-        }
-    }
-
     public enum Status {
         draft(0), published(1);
 
@@ -50,7 +31,6 @@ public class Post extends Model {
     private String title;
     private String slug;
     private String content;
-    private Post.Type type;
     private Post.Status status;
     private Date published;
     private Date created;
@@ -89,14 +69,6 @@ public class Post extends Model {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 
     public Status getStatus() {
