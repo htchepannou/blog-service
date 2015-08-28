@@ -10,10 +10,7 @@ import com.tchepannou.blog.service.ReblogPostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 
-import java.util.Collection;
-import java.util.Collections;
-
-public class ReblogPostCommandImpl extends AbstractSecuredCommand<Void, Void> implements ReblogPostCommand {
+public class ReblogPostCommandImpl extends AbstractCommand<Void, Void> implements ReblogPostCommand {
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -38,11 +35,6 @@ public class ReblogPostCommandImpl extends AbstractSecuredCommand<Void, Void> im
     @Override
     protected String getMetricName() {
         return Constants.METRIC_REBLOG_POST;
-    }
-
-    @Override
-    protected Collection<String> getRequiredPermissions() {
-        return Collections.singletonList(Constants.PERMISSION_CREATE);
     }
 
     @Override protected String getEventName() {

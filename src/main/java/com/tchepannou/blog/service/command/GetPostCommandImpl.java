@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
@@ -54,10 +52,5 @@ public class GetPostCommandImpl extends AbstractCommand<Long, PostResponse> impl
     @Override
     protected String getEventName() {
         return null;
-    }
-
-    @Override
-    protected Collection<String> getRequiredPermissions() {
-        return Collections.emptyList();
     }
 }

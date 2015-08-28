@@ -1,6 +1,8 @@
 package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.Constants;
+import com.tchepannou.blog.client.v1.CreatePostRequest;
+import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
@@ -8,8 +10,6 @@ import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
-import com.tchepannou.blog.client.v1.CreatePostRequest;
-import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.service.CommandContext;
 import com.tchepannou.blog.service.CreatePostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +17,11 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @Transactional
-public class CreateTextCommandImpl extends AbstractSecuredCommand<CreatePostRequest, PostResponse> implements CreatePostCommand {
+public class CreatePostCommandImpl extends AbstractCommand<CreatePostRequest, PostResponse> implements CreatePostCommand {
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -40,7 +38,7 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreatePostRequ
     //-- AbstractCommand overrides
     @Override
     protected PostResponse doExecute(CreatePostRequest request, CommandContext context) {
-        final Post post = PostUtils.createPost(request, context, getUserId().getAsLong(), postDao);
+        final Post post = PostUtils.createPost(request, context, request.getUserId(), postDao);
         final List<Tag> tags = PostUtils.addTags(request, tagDao);
         PostUtils.link(post, tags, postTagDao);
         PostUtils.addToBlog(post, context, postEntryDao);
@@ -59,10 +57,5 @@ public class CreateTextCommandImpl extends AbstractSecuredCommand<CreatePostRequ
     @Override
     protected String getEventName() {
         return Constants.EVENT_CREATE_TEXT;
-    }
-
-    @Override
-    protected Collection<String> getRequiredPermissions() {
-        return Collections.singletonList(Constants.PERMISSION_CREATE);
     }
 }

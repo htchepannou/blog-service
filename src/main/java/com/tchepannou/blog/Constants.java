@@ -22,9 +22,6 @@ public class Constants {
     public static final String EVENT_DELETE_POST = "blog-deleted-post";
     public static final String EVENT_REBLOG_POST = "blog-reblog-post";
 
-    public static final String PERMISSION_CREATE = "blog-create";
-    public static final String PERMISSION_EDIT = "blog-edit";
-    public static final String PERMISSION_DELETE = "blog-delete";
 
     private Constants(){
 

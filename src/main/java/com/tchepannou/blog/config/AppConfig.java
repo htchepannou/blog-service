@@ -19,19 +19,13 @@ import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.ReblogPostCommand;
 import com.tchepannou.blog.service.UpdatePostCommand;
-import com.tchepannou.blog.service.auth.AccessTokenService;
-import com.tchepannou.blog.service.auth.AccessTokenServiceImpl;
-import com.tchepannou.blog.service.auth.AuthHealthIndicator;
-import com.tchepannou.blog.service.auth.PermissionService;
-import com.tchepannou.blog.service.auth.PermissionServiceImpl;
-import com.tchepannou.blog.service.command.CreateTextCommandImpl;
+import com.tchepannou.blog.service.command.CreatePostCommandImpl;
 import com.tchepannou.blog.service.command.DeletePostCommandImpl;
 import com.tchepannou.blog.service.command.GetPostCommandImpl;
 import com.tchepannou.blog.service.command.GetPostListCommandImpl;
 import com.tchepannou.blog.service.command.ReblogPostCommandImpl;
 import com.tchepannou.blog.service.command.UpdateTextCommandImpl;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -88,23 +82,6 @@ public class AppConfig {
     }
 
 
-    //-- Healthcheck
-    @Bean
-    HealthIndicator authHealthIndicator (){
-        return new AuthHealthIndicator();
-    }
-
-    //-- Services
-    @Bean
-    AccessTokenService accessTokenService(){
-        return new AccessTokenServiceImpl();
-    }
-
-    @Bean
-    PermissionService permissionService() {
-        return new PermissionServiceImpl();
-    }
-
     //-- DAO
     @Bean
     AttachmentDao attachmentDao () {
@@ -153,7 +130,7 @@ public class AppConfig {
     }
 
     @Bean CreatePostCommand createTextCommand () {
-        return new CreateTextCommandImpl();
+        return new CreatePostCommandImpl();
     }
 
     @Bean UpdatePostCommand updateTextCommand(){

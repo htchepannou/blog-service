@@ -9,11 +9,8 @@ import com.tchepannou.blog.service.DeletePostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.Collections;
-
 @Transactional
-public class DeletePostCommandImpl extends AbstractSecuredCommand<Void, Void> implements DeletePostCommand {
+public class DeletePostCommandImpl extends AbstractCommand<Void, Void> implements DeletePostCommand {
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -41,23 +38,6 @@ public class DeletePostCommandImpl extends AbstractSecuredCommand<Void, Void> im
     @Override
     protected String getEventName() {
         return Constants.EVENT_DELETE_POST;
-    }
-
-    @Override
-    protected Collection<String> getRequiredPermissions() {
-        return Collections.singletonList(Constants.PERMISSION_DELETE);
-    }
-
-    @Override
-    protected Collection<String> getPermissions(CommandContext context) {
-        Collection<String> permissions = super.getPermissions(context);
-        if (!permissions.contains(Constants.PERMISSION_DELETE) && !isAnonymousUser()){
-            Post post = getPost(context);
-            if (post.getUserId() == getUserId().getAsLong()){
-                permissions.add(Constants.PERMISSION_DELETE);
-            }
-        }
-        return permissions;
     }
 
     private Post getPost (CommandContext context){

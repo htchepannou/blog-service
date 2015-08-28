@@ -15,8 +15,6 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.OptionalLong;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -130,11 +128,6 @@ public class AbstractCommandTest {
         public OptionalLong getUserId() {
             return OptionalLong.of(userId);
         }
-
-        @Override
-        protected Collection<String> getRequiredPermissions() {
-            return Collections.emptyList();
-        }
     }
 
     private class ExceptionCommand extends AbstractCommand<Long, Long> {
@@ -158,11 +151,6 @@ public class AbstractCommandTest {
         @Override
         protected String getEventName() {
             return name;
-        }
-
-        @Override
-        protected Collection<String> getRequiredPermissions() {
-            return Collections.emptyList();
         }
     }
 }

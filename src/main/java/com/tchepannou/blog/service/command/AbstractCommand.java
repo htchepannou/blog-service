@@ -5,8 +5,9 @@ import com.codahale.metrics.Timer;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.common.base.Strings;
 import com.tchepannou.blog.Constants;
-import com.tchepannou.blog.domain.EventLog;
+import com.tchepannou.blog.client.v1.PostRequest;
 import com.tchepannou.blog.client.v1.PostResponse;
+import com.tchepannou.blog.domain.EventLog;
 import com.tchepannou.blog.service.Command;
 import com.tchepannou.blog.service.CommandContext;
 import org.apache.commons.lang.exception.ExceptionUtils;
@@ -17,7 +18,6 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.jms.core.JmsTemplate;
 
 import javax.annotation.Resource;
-import java.util.Collection;
 import java.util.Date;
 import java.util.OptionalLong;
 
@@ -54,8 +54,6 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
 
     protected abstract String getEventName();
 
-    protected abstract Collection<String> getRequiredPermissions();
-
 
     //-- Command Override
     @Override
@@ -67,7 +65,6 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
 
             /* pre */
             authenticate(context);
-            authorize(context);
 
             /* execute */
             O response = doExecute(request, context);
@@ -88,10 +85,6 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
     protected void authenticate (final CommandContext context) {
     }
 
-    protected void authorize (final CommandContext context) {
-
-    }
-
     protected Logger getLogger () {
         return logger;
     }
@@ -108,8 +101,8 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
         event.setName(name);
         event.setBlogId(context.getBlogId());
 
-        if (!isAnonymousUser()) {
-            event.setUserId(getUserId().getAsLong());
+        if (request instanceof PostRequest) {
+            event.setUserId(((PostRequest)request).getUserId());
         }
 
         if (response instanceof PostResponse) {
@@ -135,10 +128,12 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
     }
 
     //-- Getter
+    @Deprecated
     public boolean isAnonymousUser (){
         return !getUserId().isPresent();
     }
 
+    @Deprecated
     public OptionalLong getUserId (){
         return OptionalLong.empty();
     }

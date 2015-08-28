@@ -31,7 +31,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,18 +102,15 @@ public class BlogController {
     @ApiOperation(value="Delete a post")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
-            @ApiResponse(code=404, message = "Post not found"),
-            @ApiResponse(code=401, message = "Access token expired or is invalid"),
-            @ApiResponse(code=403, message = "User not allowed to delete the post.")
+            @ApiResponse(code=404, message = "Post not found")
     })
     public void delete(
-            @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id
     ) {
         deletePostCommand.execute(
                 null,
-                new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id)
+                new CommandContextImpl().withBlogId(bid).withId(id)
         );
     }
 
@@ -125,16 +121,13 @@ public class BlogController {
             @ApiResponse(code=201, message = "Success - Post successfully added"),
             @ApiResponse(code=200, message = "Success - Post was already in blog"),
             @ApiResponse(code=404, message = "Post not found"),
-            @ApiResponse(code=401, message = "Access token expired or is invalid"),
-            @ApiResponse(code=403, message = "User not allowed to re-blog the post.")
     })
     public ResponseEntity reblog(
-            @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id
     ) {
         try {
-            reblogPostCommand.execute(null, new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id));
+            reblogPostCommand.execute(null, new CommandContextImpl().withBlogId(bid).withId(id));
             return new ResponseEntity(HttpStatus.CREATED);
         } catch (DuplicatePostException e){ // NOSONAR
             return new ResponseEntity(HttpStatus.OK);
@@ -145,19 +138,15 @@ public class BlogController {
     @ApiOperation(value="Create a new Post")
     @ApiResponses({
             @ApiResponse(code=201, message = "Success"),
-            @ApiResponse(code=404, message = "Post not found"),
-            @ApiResponse(code=401, message = "Access token expired or is invalid"),
-            @ApiResponse(code=403, message = "User not allowed to delete the post."),
             @ApiResponse(code=404, message = "Bad request data.")
     })
     public ResponseEntity<PostResponse> create(
-            @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @Valid @RequestBody CreatePostRequest request
     ) {
         PostResponse response = createTextCommand.execute(
                 request,
-                new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid)
+                new CommandContextImpl().withUserId(request.getUserId()).withBlogId(bid)
         );
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
@@ -172,14 +161,13 @@ public class BlogController {
             @ApiResponse(code=404, message = "Invalid request data.")
     })
     public PostResponse update(
-            @RequestHeader(value=Http.HEADER_ACCESS_TOKEN, required = false) String accessToken,
             @PathVariable long bid,
             @PathVariable long id,
             @RequestBody @Valid UpdatePostRequest request
     ) {
         return updateTextCommand.execute(
                 request,
-                new CommandContextImpl().withAccessTokenId(accessToken).withBlogId(bid).withId(id)
+                new CommandContextImpl().withUserId(request.getUserId()).withBlogId(bid).withId(id)
         );
     }
 

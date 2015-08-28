@@ -6,7 +6,7 @@ public class CommandContextImpl implements CommandContext {
     //-- Attributes
     private long id;
     private long blogId;
-    private String accessTokenId;
+    private long userId;
     private int limit;
     private int offset;
 
@@ -16,8 +16,8 @@ public class CommandContextImpl implements CommandContext {
         return this;
     }
 
-    public CommandContextImpl withAccessTokenId(String accessTokenId){
-        this.accessTokenId = accessTokenId;
+    public CommandContextImpl withUserId(long userId){
+        this.userId = userId;
         return this;
     }
 
@@ -48,8 +48,8 @@ public class CommandContextImpl implements CommandContext {
     }
 
     @Override
-    public String getAccessTokenId() {
-        return accessTokenId;
+    public long getUserId() {
+        return userId;
     }
 
     @Override
