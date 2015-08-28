@@ -39,6 +39,26 @@ CREATE TABLE post_entry(
 ) ENGINE=INNODB;
 CREATE INDEX idx_post_entry__posted ON post_entry (posted);
 
+CREATE TABLE attachment(
+  id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  post_fk BIGINT NOT NULL,
+  name VARCHAR(255),
+  description TEXT,
+  url VARCHAR(255),
+  oembed BIT,
+  content_type VARCHAR(20),
+  content_length BIGINT,
+  thumbnail_url VARCHAR(255),
+  xid VARCHAR(20),
+  duration_seconds INT,
+  width INT,
+  height INT,
+  deleted BIT,
+  created DATETIME,
+
+  CONSTRAINT fk_attachment__post_fk FOREIGN KEY (post_fk) REFERENCES post(id)
+);
+
 CREATE TABLE event_log(
   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   blog_id BIGINT NOT NULL,

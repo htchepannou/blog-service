@@ -1,5 +1,6 @@
 package com.tchepannou.blog;
 
+import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 
@@ -33,6 +34,27 @@ public class Fixture {
         post.setType(Post.Type.text);
         post.setUpdated(new Date());
         return post;
+    }
+
+    public static Attachment createAttachment (long postId){
+        long id = ++uid;
+        Attachment obj = new Attachment();
+        obj.setId(id);
+        obj.setContentLength(id);
+        obj.setContentType(id%2 == 0 ? "text/plain" : "text/xml");
+        obj.setCreated(new Date());
+        obj.setDeleted(false);
+        obj.setDescription("This is the content of " + id);
+        obj.setName("attachment #" + id);
+        obj.setDurationSeconds(100);
+        obj.setHeight(10);
+        obj.setOembed(true);
+        obj.setPostId(postId);
+        obj.setThumbnailUrl("http://www.you.be/embed/fdlkfd.png");
+        obj.setUrl("http://www.you.be/embed/fdlkfd");
+        obj.setWidth(20);
+
+        return obj;
     }
 
 }

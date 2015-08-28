@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static com.jayway.restassured.RestAssured.when;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -81,6 +82,30 @@ public class PostGetIT {
             .body("updated", notNullValue())
             .body("published", notNullValue())
             .body("tags", hasItems("tag4", "tag3", "tag2"))
+
+            .body("attachments", hasSize(2))
+            .body("attachments[0].id", is(1100))
+            .body("attachments[0].name", is("video1"))
+            .body("attachments[0].description", is("this is a video"))
+            .body("attachments[0].thumbnailUrl", is("http://www.img.com/1100_thumb.png"))
+            .body("attachments[0].oembed", is(false))
+            .body("attachments[0].contentType", is("movie/quick-time"))
+            .body("attachments[0].contentLength", is(143043))
+            .body("attachments[0].durationSeconds", is(30))
+            .body("attachments[0].width", is(0))
+            .body("attachments[0].height", is(0))
+                
+            .body("attachments[1].id", is(1101))
+            .body("attachments[1].name", is("image1"))
+            .body("attachments[1].description", is("this is an image"))
+            .body("attachments[1].url", is("http://www.img.com/1101.png"))
+            .body("attachments[1].thumbnailUrl", is("http://www.img.com/1101_thumb.png"))
+            .body("attachments[1].oembed", is(false))
+            .body("attachments[1].contentType", is("image/png"))
+            .body("attachments[1].contentLength", is(430394))
+            .body("attachments[1].durationSeconds", is(0))
+            .body("attachments[1].width", is(120))
+            .body("attachments[1].height", is(144))
         ;
         // @formatter:on
     }

@@ -1,10 +1,12 @@
 package com.tchepannou.blog.config;
 
+import com.tchepannou.blog.dao.AttachmentDao;
 import com.tchepannou.blog.dao.EventLogDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
+import com.tchepannou.blog.dao.jdbc.AttachmentDaoImpl;
 import com.tchepannou.blog.dao.jdbc.JdbcEventLogDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostEntryDao;
@@ -104,7 +106,13 @@ public class AppConfig {
     }
 
     //-- DAO
-    @Bean EventLogDao eventLogDao (){
+    @Bean
+    AttachmentDao attachmentDao () {
+        return new AttachmentDaoImpl(dataSource());
+    }
+
+    @Bean
+    EventLogDao eventLogDao (){
         return new JdbcEventLogDao(dataSource());
     }
 

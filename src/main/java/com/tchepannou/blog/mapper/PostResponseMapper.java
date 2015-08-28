@@ -1,9 +1,10 @@
 package com.tchepannou.blog.mapper;
 
 import com.google.common.base.Preconditions;
+import com.tchepannou.blog.client.v1.PostResponse;
+import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.client.v1.PostResponse;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,6 +13,7 @@ public class PostResponseMapper {
     //-- Attribute
     private Post post;
     private Collection<Tag> tags = new ArrayList<>();
+    private Collection<Attachment> attachments = new ArrayList<>();
 
     //-- Public
     public PostResponse map (){
@@ -19,7 +21,8 @@ public class PostResponseMapper {
 
         PostResponse response = new PostResponse();
         map(response, post);
-        map(response, tags);
+        mapTags(response, tags);
+        mapAttachmens(response, attachments);
         return response;
     }
 
@@ -29,6 +32,11 @@ public class PostResponseMapper {
     }
     public PostResponseMapper withTags (Collection<Tag> tags){
         this.tags = tags;
+        return this;
+    }
+
+    public PostResponseMapper withAttachments(Collection<Attachment> attachments){
+        this.attachments = attachments;
         return this;
     }
 
@@ -47,8 +55,16 @@ public class PostResponseMapper {
         response.setUserId (post.getUserId());
     }
 
-    private void map(PostResponse response, Collection<Tag> tags){
+    private void mapTags(PostResponse response, Collection<Tag> tags){
         tags.stream()
             .forEach(tag -> response.addTag(tag.getName()));
+    }
+
+    private void mapAttachmens(PostResponse response, Collection<Attachment> attachments){
+        AttachmentResponseMapper mapper = new AttachmentResponseMapper();
+        attachments.stream()
+                .forEach(attachment -> response.addAttachment(
+                        mapper.withAttachment(attachment).build()
+                ));
     }
 }

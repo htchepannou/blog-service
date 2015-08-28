@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92585ef6-f4ef-4a3e-a6bc-0c86e042baf4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Attachment.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/AttachmentDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/AttachmentDaoImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/AttachmentResponseMapper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/sql/is_migration.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/Fixture.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/Fixture.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetIT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostResponseMapper.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostResponseMapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/mapper/PostResponseMapperTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/mapper/PostResponseMapperTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/db/migration/V1_0__Initial.sql" afterPath="$PROJECT_DIR$/src/main/resources/db/migration/V1_0__Initial.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/db/clean.sql" afterPath="$PROJECT_DIR$/src/test/resources/db/clean.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/db/get_post.sql" afterPath="$PROJECT_DIR$/src/test/resources/db/get_post.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blog-service.iws" />
@@ -33,12 +46,36 @@
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
       </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
       <PATH_ELEMENT>
         <option name="myItemId" value="MySQL - blog_db@localhost" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
         <option name="myItemId" value="blog_db" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="MySQL - blog_db@localhost" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="blog_db" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="attachment" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -49,28 +86,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="GetPostCommandImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
               <folding>
-                <marker date="1440460614000" expanded="true" signature="2961:2992" placeholder="DROP DATABAS..." />
-                <marker date="1440460614000" expanded="true" signature="3026:3049" placeholder="CREATE DATAB..blog_db..." />
+                <element signature="method#doExecute#0;class#GetPostCommandImpl#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlogController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java">
+      <file leaf-file-name="get_post.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/resources/db/get_post.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.3729978">
-              <caret line="211" column="114" selection-start-line="211" selection-start-column="114" selection-end-line="211" selection-end-column="114" />
+            <state vertical-scroll-proportion="-9.827586">
+              <caret line="19" column="59" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PostGetIT.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetIT.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33251232">
+              <caret line="93" column="32" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AttachmentResponseMapper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/AttachmentResponseMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8109#8110#0" expanded="true" />
-                <element signature="e#8203#8204#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,26 +161,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/http/HttpClientProvider.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/service/impl/AbstractCommandTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/exception/AuthorizationException.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/PostUtils.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/CreateTextIT.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/AbstractSecuredCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/CreateTextCommandImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/UpdateTextCommandImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/DeletePostCommandImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/impl/AbstractCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/CreateTextCommandImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/auth/AuthServer.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/UpdateTextIT.java" />
         <option value="$PROJECT_DIR$/src/test/resources/db/update_text.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/UpdateTextCommandImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/DeletePostCommandImpl.java" />
         <option value="$PROJECT_DIR$/src/test/resources/db/delete_post.sql" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/DeletePostIT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/service/command/AbstractCommandTest.java" />
         <option value="$PROJECT_DIR$/src/test/resources/db/reblog_text.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/exception/DuplicatePostException.java" />
@@ -138,13 +181,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractSecuredCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionService.java" />
         <option value="$PROJECT_DIR$/src/main/resources/config/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/db/migration/V1_0__Initial.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/rr/CreateTextRequest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/HealthCheckIT.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/Fixture.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/client/v1/CreateTextRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostCollectionResponseMapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/PostUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AccessTokenServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AuthHealthIndicator.java" />
@@ -153,8 +192,26 @@
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostReblogIT.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/TextUpdateIT.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/TextCreateIT.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/EventLog.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/9ac38e74-ae14-452e-aec7-200d0e9cdc3b/console.sql" />
+        <option value="$PROJECT_DIR$/src/main/sql/is_migration.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Attachment.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/db/migration/V1_0__Initial.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/AttachmentDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/AttachmentDaoImpl.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostCollectionResponseMapper.java" />
+        <option value="$MAVEN_REPOSITORY$/com/tchepannou/blog/blog-client/1.0/blog-client-1.0.jar!/com/tchepannou/blog/client/v1/PostResponse.class" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostResponseMapper.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/mapper/PostResponseMapperTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/Fixture.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/db/clean.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/AttachmentResponseMapper.java" />
+        <option value="$PROJECT_DIR$/src/test/resources/db/get_post.sql" />
+        <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetIT.java" />
       </list>
     </option>
   </component>
@@ -188,10 +245,10 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="205" />
-    <option name="y" value="124" />
-    <option name="width" value="1204" />
-    <option name="height" value="771" />
+    <option name="x" value="2074" />
+    <option name="y" value="153" />
+    <option name="width" value="1819" />
+    <option name="height" value="956" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -216,6 +273,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,17 +305,68 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../parent-springboot-rest" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
@@ -302,8 +411,8 @@
       <recent name="com.tchepannou.blog.dao.jdbc" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HealthCheckIT">
-    <configuration default="false" name="PostReblogIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.PostGetIT">
+    <configuration default="false" name="HealthCheckIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.tchepannou.blog.controller.*" />
@@ -314,7 +423,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.tchepannou.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.PostReblogIT" />
+      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.HealthCheckIT" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -329,67 +438,27 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="PostReblogIT.should_reblog_existing_post" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.tchepannou.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="blog-service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.tchepannou.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.PostReblogIT" />
-      <option name="METHOD_NAME" value="should_reblog_existing_post" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="PostReblogIT.should_reblog_new_post" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.tchepannou.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="blog-service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.tchepannou.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.PostReblogIT" />
-      <option name="METHOD_NAME" value="should_reblog_new_post" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="All in blog-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Starter" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.tchepannou.blog.Starter" />
+      <module name="blog-service" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="PostResponseMapperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.tchepannou.blog.mapper.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <module name="blog-service" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" />
+      <option name="PACKAGE_NAME" value="com.tchepannou.blog.mapper" />
+      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.mapper.PostResponseMapperTest" />
       <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="package" />
+      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -402,7 +471,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="HealthCheckIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="TextCreateIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.tchepannou.blog.controller.*" />
@@ -413,7 +482,33 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.tchepannou.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.HealthCheckIT" />
+      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.TextCreateIT" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="PostGetIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.tchepannou.blog.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="blog-service" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.tchepannou.blog.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.PostGetIT" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -695,6 +790,9 @@
       <listeners />
       <method />
     </configuration>
+    <configuration default="true" type="Unknown" factoryName="Unknown">
+      <method />
+    </configuration>
     <configuration default="true" type="executeSpecs" factoryName="Gauge Execution">
       <setting name="environment" value="" />
       <setting name="specsToExecute" value="" />
@@ -749,19 +847,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.PostReblogIT" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.PostReblogIT.should_reblog_existing_post" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.PostReblogIT.should_reblog_new_post" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.All in blog-service" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.HealthCheckIT" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.HealthCheckIT" />
+      <item index="1" class="java.lang.String" itemvalue="Spring Boot.Starter" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.PostResponseMapperTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.TextCreateIT" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.PostGetIT" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.HealthCheckIT" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.All in blog-service" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.PostReblogIT" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.PostReblogIT.should_reblog_new_post" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.PostReblogIT.should_reblog_existing_post" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.PostGetIT" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.TextCreateIT" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.PostResponseMapperTest" />
+        <item index="3" class="java.lang.String" itemvalue="Spring Boot.Starter" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.HealthCheckIT" />
       </list>
     </recent_temporary>
   </component>
@@ -814,7 +912,16 @@
       <workItem from="1440452074568" duration="695000" />
       <workItem from="1440454062844" duration="60000" />
       <workItem from="1440454125271" duration="240000" />
-      <workItem from="1440460585048" duration="271000" />
+      <workItem from="1440460585048" duration="432000" />
+      <workItem from="1440461163016" duration="446000" />
+      <workItem from="1440466806715" duration="1550000" />
+      <workItem from="1440504017428" duration="788000" />
+      <workItem from="1440586472006" duration="1811000" />
+      <workItem from="1440625678878" duration="3434000" />
+      <workItem from="1440694151645" duration="591000" />
+      <workItem from="1440708864086" duration="485000" />
+      <workItem from="1440759653007" duration="2055000" />
+      <workItem from="1440789007567" duration="2349000" />
     </task>
     <task id="LOCAL-00001" summary="rename">
       <created>1439953755419</created>
@@ -826,40 +933,40 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110297000" />
+    <option name="totallyTimeSpent" value="123967000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="205" y="124" width="1204" height="771" extended-state="0" />
-    <editor active="false" />
+    <frame x="2074" y="153" width="1819" height="956" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31516936" sideWeight="0.49381697" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31811488" sideWeight="0.49381697" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24960127" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27181688" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21046709" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4238156" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.330781" sideWeight="0.506183" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32695138" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32547864" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3240059" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14371772" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14629948" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16092943" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19527294" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.43287036" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952547" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3607908" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4874816" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="CheckStyle" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4238156" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3240059" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -893,8 +1000,14 @@
           <properties />
           <option name="timeStamp" value="48" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/AttachmentDaoImpl.java</url>
+          <line>12</line>
+          <properties field="ds" class="com.tchepannou.blog.dao.jdbc.AttachmentDaoImpl" />
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="54" />
+      <option name="time" value="56" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -903,286 +1016,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/DeletePostCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/DeletePostCommandImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="15" selection-start-line="63" selection-start-column="15" selection-end-line="63" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7590361">
-          <caret line="55" column="5" selection-start-line="46" selection-start-column="0" selection-end-line="55" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/service/command/AbstractCommandTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5612745">
-          <caret line="129" column="9" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.1.7.RELEASE/spring-web-4.1.7.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35443038">
-          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/exception/DuplicatePostException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11029412">
-          <caret line="3" column="52" selection-start-line="3" selection-start-column="52" selection-end-line="3" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/resources/db/reblog_text.sql">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4353562">
-          <caret line="11" column="62" selection-start-line="11" selection-start-column="62" selection-end-line="11" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/ReblogPostCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.073529415">
-          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/ReblogPostCommandImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/GetPostListCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommandImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/jms/EventLogReceiver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12875536">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$MAVEN_REPOSITORY$/com/tchepannou/spring/parent-springboot-rest/1.0/parent-springboot-rest-1.0.pom">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.9334764">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="uml://MAVEN/com.tchepannou.blog:blog-service:1.0">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>MAVEN</ID>
-          <OriginalElement>com.tchepannou.blog:blog-service:1.0</OriginalElement>
-          <nodes>
-            <node x="" y="">com.tchepannou.blog:blog-service:1.0</node>
-            <node x="" y="">com.tchepannou.auth:auth-client:jar:1.0</node>
-            <node x="" y="">com.tchepannou.blog:blog-service:jar:1.0</node>
-            <node x="" y="">org.springframework:spring-jms:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jms:jar:4.1.7.RELEASE/org.springframework:spring-aop:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jms:jar:4.1.7.RELEASE/org.springframework:spring-aop:jar:4.1.7.RELEASE/aopalliance:aopalliance:jar:1.0</node>
-            <node x="" y="">org.springframework:spring-jms:jar:4.1.7.RELEASE/org.springframework:spring-beans:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jms:jar:4.1.7.RELEASE/org.springframework:spring-context:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jms:jar:4.1.7.RELEASE/org.springframework:spring-core:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jms:jar:4.1.7.RELEASE/org.springframework:spring-messaging:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jms:jar:4.1.7.RELEASE/org.springframework:spring-tx:jar:4.1.7.RELEASE</node>
-            <node x="" y="">javax.jms:jms-api:jar:1.1-rev-1</node>
-            <node x="" y="">mysql:mysql-connector-java:jar:5.1.35</node>
-            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5</node>
-            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5/org.apache.httpcomponents:httpcore:jar:4.4.1</node>
-            <node x="" y="">org.apache.httpcomponents:httpclient:jar:4.5/commons-codec:commons-codec:jar:1.9</node>
-            <node x="" y="">org.apache.activemq:activemq-broker:jar:5.10.2</node>
-            <node x="" y="">org.apache.activemq:activemq-broker:jar:5.10.2/org.apache.activemq:activemq-client:jar:5.10.2</node>
-            <node x="" y="">org.apache.activemq:activemq-broker:jar:5.10.2/org.apache.activemq:activemq-client:jar:5.10.2/org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar:1.1.1</node>
-            <node x="" y="">org.apache.activemq:activemq-broker:jar:5.10.2/org.apache.activemq:activemq-client:jar:5.10.2/org.fusesource.hawtbuf:hawtbuf:jar:1.10</node>
-            <node x="" y="">org.apache.activemq:activemq-broker:jar:5.10.2/org.apache.activemq:activemq-client:jar:5.10.2/org.apache.geronimo.specs:geronimo-j2ee-management_1.1_spec:jar:1.0.1</node>
-            <node x="" y="">org.apache.activemq:activemq-broker:jar:5.10.2/org.apache.activemq:activemq-openwire-legacy:jar:5.10.2</node>
-            <node x="" y="">com.tchepannou.core.domain:core-domain:jar:1.0</node>
-            <node x="" y="">com.tchepannou.core.domain:core-domain:jar:1.0/org.apache.commons:commons-lang3:jar:3.4</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-autoconfigure:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.2.4.RELEASE/org.slf4j:jcl-over-slf4j:jar:1.7.12</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.2.4.RELEASE/org.slf4j:jul-to-slf4j:jar:1.7.12</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.2.4.RELEASE/org.slf4j:log4j-over-slf4j:jar:1.7.12</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.2.4.RELEASE/ch.qos.logback:logback-classic:jar:1.1.3</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter-logging:jar:1.2.4.RELEASE/ch.qos.logback:logback-classic:jar:1.1.3/ch.qos.logback:logback-core:jar:1.1.3</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-starter:jar:1.2.4.RELEASE/org.yaml:snakeyaml:jar:1.14</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/com.fasterxml.jackson.core:jackson-databind:jar:2.4.6</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/com.fasterxml.jackson.core:jackson-databind:jar:2.4.6/com.fasterxml.jackson.core:jackson-annotations:jar:2.4.6</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.hibernate:hibernate-validator:jar:5.1.3.Final</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.hibernate:hibernate-validator:jar:5.1.3.Final/javax.validation:validation-api:jar:1.1.0.Final</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.hibernate:hibernate-validator:jar:5.1.3.Final/org.jboss.logging:jboss-logging:jar:3.1.3.GA</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework:spring-web:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-web:jar:1.2.4.RELEASE/org.springframework:spring-webmvc:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310/org.eclipse.jetty.toolchain:jetty-schemas:jar:3.1.M0</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310/javax.servlet:javax.servlet-api:jar:3.1.0</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310/javax.servlet.jsp:javax.servlet.jsp-api:jar:2.3.1</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310/org.glassfish.web:javax.servlet.jsp:jar:2.3.2</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310/org.eclipse.jetty.orbit:javax.servlet.jsp.jstl:jar:1.2.0.v201105211821</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310/org.glassfish.web:javax.servlet.jsp.jstl:jar:1.2.2</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310/org.glassfish:javax.el:jar:3.0.0</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-jsp:jar:9.2.10.v20150310/org.eclipse.jetty.orbit:org.eclipse.jdt.core:jar:3.8.2.v20130121</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-webapp:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-webapp:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-xml:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-webapp:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-xml:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-util:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-webapp:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-servlet:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty:jetty-webapp:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-servlet:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-security:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:websocket-server:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:websocket-server:jar:9.2.10.v20150310/org.eclipse.jetty.websocket:websocket-common:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:websocket-server:jar:9.2.10.v20150310/org.eclipse.jetty.websocket:websocket-common:jar:9.2.10.v20150310/org.eclipse.jetty.websocket:websocket-api:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:websocket-server:jar:9.2.10.v20150310/org.eclipse.jetty.websocket:websocket-client:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:websocket-server:jar:9.2.10.v20150310/org.eclipse.jetty.websocket:websocket-servlet:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:websocket-server:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-http:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-annotations:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-annotations:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-plus:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-annotations:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-plus:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-jndi:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-annotations:jar:9.2.10.v20150310/javax.annotation:javax.annotation-api:jar:1.2</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-annotations:jar:9.2.10.v20150310/org.ow2.asm:asm:jar:5.0.1</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-annotations:jar:9.2.10.v20150310/org.ow2.asm:asm-commons:jar:5.0.1</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-annotations:jar:9.2.10.v20150310/org.ow2.asm:asm-commons:jar:5.0.1/org.ow2.asm:asm-tree:jar:5.0.1</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/org.eclipse.jetty.websocket:javax-websocket-client-impl:jar:9.2.10.v20150310</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-jetty:jar:1.2.4.RELEASE/org.eclipse.jetty.websocket:javax-websocket-server-impl:jar:9.2.10.v20150310/javax.websocket:javax.websocket-api:jar:1.0</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-actuator:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-actuator:jar:1.2.4.RELEASE/org.springframework.boot:spring-boot-actuator:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-security:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-security:jar:1.2.4.RELEASE/org.springframework:spring-expression:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-security:jar:1.2.4.RELEASE/org.springframework.security:spring-security-config:jar:3.2.7.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-security:jar:1.2.4.RELEASE/org.springframework.security:spring-security-config:jar:3.2.7.RELEASE/org.springframework.security:spring-security-core:jar:3.2.7.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-security:jar:1.2.4.RELEASE/org.springframework.security:spring-security-web:jar:3.2.7.RELEASE</node>
-            <node x="" y="">org.springframework:spring-jdbc:jar:4.1.7.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-tomcat:jar:1.2.4.RELEASE</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-tomcat:jar:1.2.4.RELEASE/org.apache.tomcat.embed:tomcat-embed-core:jar:8.0.23</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-tomcat:jar:1.2.4.RELEASE/org.apache.tomcat.embed:tomcat-embed-el:jar:8.0.23</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-tomcat:jar:1.2.4.RELEASE/org.apache.tomcat.embed:tomcat-embed-logging-juli:jar:8.0.23</node>
-            <node x="" y="">org.springframework.boot:spring-boot-starter-tomcat:jar:1.2.4.RELEASE/org.apache.tomcat.embed:tomcat-embed-websocket:jar:8.0.23</node>
-            <node x="" y="">com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.4.0</node>
-            <node x="" y="">com.fasterxml.jackson.datatype:jackson-datatype-jsr310:jar:2.4.0/com.fasterxml.jackson.core:jackson-core:jar:2.4.6</node>
-            <node x="" y="">com.fasterxml.jackson.datatype:jackson-datatype-jdk8:jar:2.4.3</node>
-            <node x="" y="">io.dropwizard.metrics:metrics-core:jar:3.1.2</node>
-            <node x="" y="">io.dropwizard.metrics:metrics-core:jar:3.1.2/org.slf4j:slf4j-api:jar:1.7.12</node>
-            <node x="" y="">io.dropwizard.metrics:metrics-jvm:jar:3.1.2</node>
-            <node x="" y="">io.dropwizard.metrics:metrics-jetty9:jar:3.1.2</node>
-            <node x="" y="">io.dropwizard.metrics:metrics-jetty9:jar:3.1.2/org.eclipse.jetty:jetty-server:jar:9.2.10.v20150310</node>
-            <node x="" y="">io.dropwizard.metrics:metrics-jetty9:jar:3.1.2/org.eclipse.jetty:jetty-server:jar:9.2.10.v20150310/org.eclipse.jetty:jetty-io:jar:9.2.10.v20150310</node>
-            <node x="" y="">com.ryantenney.metrics:metrics-spring:jar:3.0.3</node>
-            <node x="" y="">com.ryantenney.metrics:metrics-spring:jar:3.0.3/com.codahale.metrics:metrics-core:jar:3.0.2</node>
-            <node x="" y="">com.ryantenney.metrics:metrics-spring:jar:3.0.3/com.codahale.metrics:metrics-healthchecks:jar:3.0.2</node>
-            <node x="" y="">com.ryantenney.metrics:metrics-spring:jar:3.0.3/com.codahale.metrics:metrics-annotation:jar:3.0.2</node>
-            <node x="" y="">com.ryantenney.metrics:metrics-spring:jar:3.0.3/org.springframework:spring-context-support:jar:4.1.7.RELEASE</node>
-            <node x="" y="">com.readytalk:metrics3-statsd:jar:4.1.0</node>
-            <node x="" y="">com.readytalk:metrics3-statsd:jar:4.1.0/com.readytalk:metrics-statsd-common:jar:4.1.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/commons-lang:commons-lang:jar:2.4</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.fasterxml.jackson.module:jackson-module-scala_2.10:jar:2.1.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.fasterxml.jackson.module:jackson-module-scala_2.10:jar:2.1.5/org.scala-lang:scala-library:jar:2.10.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.fasterxml.jackson.module:jackson-module-scala_2.10:jar:2.1.5/com.thoughtworks.paranamer:paranamer:jar:2.3</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.fasterxml.jackson.module:jackson-module-scala_2.10:jar:2.1.5/org.scala-lang:scala-reflect:jar:2.10.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.fasterxml.jackson.module:jackson-module-jsonSchema:jar:2.1.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.0.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.0.0/com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.0.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:jar:2.0.0/javax.ws.rs:jsr311-api:jar:1.1.1</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/com.wordnik:swagger-annotations:jar:1.3.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-ext_2.10:jar:3.2.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-ext_2.10:jar:3.2.5/joda-time:joda-time:jar:2.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-ext_2.10:jar:3.2.5/org.joda:joda-convert:jar:1.2</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-native_2.10:jar:3.2.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-native_2.10:jar:3.2.5/org.json4s:json4s-core_2.10:jar:3.2.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-native_2.10:jar:3.2.5/org.json4s:json4s-core_2.10:jar:3.2.5/org.json4s:json4s-ast_2.10:jar:3.2.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-native_2.10:jar:3.2.5/org.json4s:json4s-core_2.10:jar:3.2.5/org.scala-lang:scalap:jar:2.10.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-native_2.10:jar:3.2.5/org.json4s:json4s-core_2.10:jar:3.2.5/org.scala-lang:scalap:jar:2.10.0/org.scala-lang:scala-compiler:jar:2.10.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.wordnik:swagger-core_2.10:jar:1.3.5/org.json4s:json4s-jackson_2.10:jar:3.2.5</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/cglib:cglib:jar:2.2</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.google.guava:guava:jar:15.0</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.mangofactory.swagger:swagger-models:jar:0.8.8</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.mangofactory.swagger:swagger-models:jar:0.8.8/cglib:cglib-nodep:jar:3.1</node>
-            <node x="" y="">com.mangofactory:swagger-springmvc:jar:0.8.8/com.fasterxml:classmate:jar:1.0.0</node>
-            <node x="" y="">org.ajar:swagger-spring-mvc-ui:jar:0.4</node>
-            <node x="" y="">junit:junit:jar:4.12</node>
-            <node x="" y="">junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3</node>
-            <node x="" y="">org.assertj:assertj-core:jar:3.0.0</node>
-            <node x="" y="">org.mockito:mockito-all:jar:1.9.5</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/org.codehaus.groovy:groovy:jar:2.3.11</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/org.codehaus.groovy:groovy-xml:jar:2.3.11</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/org.apache.httpcomponents:httpmime:jar:4.5</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/org.hamcrest:hamcrest-library:jar:1.3</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/org.ccil.cowan.tagsoup:tagsoup:jar:1.2.1</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/com.jayway.restassured:json-path:jar:2.4.0</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/com.jayway.restassured:json-path:jar:2.4.0/org.codehaus.groovy:groovy-json:jar:2.3.11</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/com.jayway.restassured:json-path:jar:2.4.0/com.jayway.restassured:rest-assured-common:jar:2.4.0</node>
-            <node x="" y="">com.jayway.restassured:rest-assured:jar:2.4.0/com.jayway.restassured:xml-path:jar:2.4.0</node>
-            <node x="" y="">org.springframework:spring-test:jar:4.1.7.RELEASE</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.7576493762311227" x="290.0" y="5597.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>All</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractSecuredCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.19098713">
-          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/PermissionService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16094421">
           <caret line="5" column="32" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/auth/AuthServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/EventLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1228,18 +1065,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/Fixture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/Starter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41095892">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1247,14 +1076,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="16" column="6" selection-start-line="0" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostCollectionResponseMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69863015">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1265,36 +1086,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Post.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12328767">
-          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="55" column="28" selection-start-line="55" selection-start-column="28" selection-end-line="55" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db/migration/V1_0__Initial.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/db/delete_post.sql">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="71" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="71" />
         </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetCollectionIT.java">
@@ -1316,7 +1115,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05940594">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1324,13 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.05940594">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AuthHealthIndicator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -1359,22 +1150,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35365853">
           <caret line="24" column="31" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetIT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostReblogIT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.267857">
-          <caret line="201" column="63" selection-start-line="201" selection-start-column="63" selection-end-line="201" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1392,14 +1167,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/TextCreateIT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13385826">
-          <caret line="290" column="63" selection-start-line="290" selection-start-column="63" selection-end-line="290" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/TextUpdateIT.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
@@ -1414,26 +1181,246 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostReblogIT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="64" column="59" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/auth/AuthServer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/EventLog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/auth/AuthHealthIndicator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.034324944">
+          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fa36327d-266f-4db7-8334-b8ebab438316/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/9ac38e74-ae14-452e-aec7-200d0e9cdc3b/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractSecuredCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="31" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/CreateTextCommandImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.49308756">
+          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#doExecute#0;class#CreateTextCommandImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/db/migration/V1_0__Initial.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.50691247">
+          <caret line="112" column="4" selection-start-line="112" selection-start-column="4" selection-end-line="112" selection-end-column="4" />
+          <folding>
+            <element signature="e#2727#2728#0" expanded="true" />
+            <element signature="e#2792#2793#0" expanded="true" />
+            <element signature="e#3428#3429#0" expanded="true" />
+            <element signature="e#3475#3476#0" expanded="true" />
+            <element signature="e#3891#3892#0" expanded="true" />
+            <element signature="e#3949#3950#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Attachment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
+          <folding>
+            <element signature="e#657#658#0" expanded="true" />
+            <element signature="e#685#686#0" expanded="true" />
+            <element signature="e#1373#1374#0" expanded="true" />
+            <element signature="e#1403#1404#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/AttachmentDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56374806">
+          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
           <folding>
-            <marker date="1440460614000" expanded="true" signature="2961:2992" placeholder="DROP DATABAS..." />
-            <marker date="1440460614000" expanded="true" signature="3026:3049" placeholder="CREATE DATAB..blog_db..." />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/AttachmentDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13824885">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/sql/is_migration.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/tchepannou/blog/blog-client/1.0/blog-client-1.0.jar!/com/tchepannou/blog/client/v1/PostResponse.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.98157895">
+          <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
+          <folding>
+            <element signature="e#904#905#0" expanded="true" />
+            <element signature="e#952#953#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostCollectionResponseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84766585">
+          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/PostResponseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="66" column="65" selection-start-line="66" selection-start-column="65" selection-end-line="66" selection-end-column="65" />
+          <folding>
+            <element signature="method#map#1;class#PostResponseMapper#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/mapper/PostResponseMapperTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0178572">
+          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/Fixture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="43" column="50" selection-start-line="43" selection-start-column="50" selection-end-line="43" selection-end-column="50" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.3729978">
-          <caret line="211" column="114" selection-start-line="211" selection-start-column="114" selection-end-line="211" selection-end-column="114" />
+        <state vertical-scroll-proportion="0.7371007">
+          <caret line="174" column="26" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/TextCreateIT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="272" column="24" selection-start-line="272" selection-start-column="24" selection-end-line="272" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/db/clean.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18427518">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/mapper/AttachmentResponseMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8109#8110#0" expanded="true" />
-            <element signature="e#8203#8204#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/resources/db/get_post.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.827586">
+          <caret line="19" column="59" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommandImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding>
+            <element signature="method#doExecute#0;class#GetPostCommandImpl#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetIT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33251232">
+          <caret line="93" column="32" selection-start-line="93" selection-start-column="32" selection-end-line="93" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>

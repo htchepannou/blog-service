@@ -1,12 +1,14 @@
 package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.Constants;
+import com.tchepannou.blog.client.v1.PostResponse;
+import com.tchepannou.blog.dao.AttachmentDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.TagDao;
+import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
-import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.service.CommandContext;
 import com.tchepannou.blog.service.GetPostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class GetPostCommandImpl extends AbstractCommand<Long, PostResponse> impl
     @Autowired
     private TagDao tagDao;
 
+    @Autowired
+    private AttachmentDao attachmentDao;
 
     //-- AbstractCommand overrides
     @Override
@@ -37,10 +41,12 @@ public class GetPostCommandImpl extends AbstractCommand<Long, PostResponse> impl
     public PostResponse doExecute(Long id, CommandContext context) {
         Post post = postDao.findByIdByBlog(id, context.getBlogId());
         List<Tag> tags = tagDao.findByPost(id);
+        List<Attachment> attachments = attachmentDao.findByPost(id);
 
         return new PostResponseMapper()
                 .withPost(post)
                 .withTags(tags)
+                .withAttachments(attachments)
                 .map()
         ;
     }
