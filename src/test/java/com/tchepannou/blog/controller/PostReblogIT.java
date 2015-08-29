@@ -2,7 +2,7 @@ package com.tchepannou.blog.controller;
 
 import com.jayway.restassured.RestAssured;
 import com.tchepannou.blog.Starter;
-import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.PostEntry;
@@ -64,7 +64,7 @@ public class PostReblogIT {
 
         /* event */
         assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(1000, 1, Constants.EVENT_REBLOG_POST, transactionId)
+                new PostEvent(1000, 1, BlogConstants.EVENT_REBLOG_POST, transactionId)
         );
     }
 
@@ -88,7 +88,7 @@ public class PostReblogIT {
 
         /* event */
         assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(2000, 200, Constants.EVENT_REBLOG_POST, transactionId)
+                new PostEvent(2000, 200, BlogConstants.EVENT_REBLOG_POST, transactionId)
         );
     }
 

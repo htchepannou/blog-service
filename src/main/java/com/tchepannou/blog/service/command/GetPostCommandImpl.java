@@ -1,6 +1,6 @@
 package com.tchepannou.blog.service.command;
 
-import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.dao.AttachmentDao;
 import com.tchepannou.blog.dao.PostDao;
@@ -32,7 +32,7 @@ public class GetPostCommandImpl extends AbstractCommand<Long, PostResponse> impl
     //-- AbstractCommand overrides
     @Override
     protected String getMetricName() {
-        return Constants.METRIC_GET_POST;
+        return BlogConstants.METRIC_GET_POST;
     }
 
     @Override

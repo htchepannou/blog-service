@@ -1,6 +1,6 @@
 package com.tchepannou.blog.service.command;
 
-import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.Post;
@@ -33,10 +33,10 @@ public class ReblogPostCommandImpl extends AbstractCommand<Void, Boolean> implem
 
     @Override
     protected String getMetricName() {
-        return Constants.METRIC_REBLOG_POST;
+        return BlogConstants.METRIC_REBLOG_POST;
     }
 
     @Override protected String getEventName() {
-        return Constants.EVENT_REBLOG_POST;
+        return BlogConstants.EVENT_REBLOG_POST;
     }
 }

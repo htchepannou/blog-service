@@ -37,6 +37,10 @@
             <artifactId>jms-api</artifactId>
             <version>${jms.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-broker</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
@@ -44,10 +48,6 @@
             <version>${mysql.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-broker</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

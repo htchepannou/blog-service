@@ -3,7 +3,7 @@ package com.tchepannou.blog.service.command;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
 import com.google.common.base.Strings;
-import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.service.Command;
@@ -86,8 +86,8 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
         }
         if (id > 0) {
             PostEvent event = new PostEvent(id, context.getBlogId(), name, context.getTransactionId());
-            getLogger().info(String.format("Sending %s to %s", event, Constants.QUEUE_EVENT_LOG));
-            jmsTemplate.send(Constants.QUEUE_EVENT_LOG, session -> session.createObjectMessage(event));
+            getLogger().info(String.format("Sending %s to %s", event, BlogConstants.QUEUE_EVENT_LOG));
+            jmsTemplate.send(BlogConstants.QUEUE_EVENT_LOG, session -> session.createObjectMessage(event));
         }
     }
 }

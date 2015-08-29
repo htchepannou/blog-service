@@ -3,7 +3,7 @@ package com.tchepannou.blog.service.command;
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
-import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.controller.CommandContextImpl;
 import com.tchepannou.blog.service.CommandContext;
 import org.junit.Test;
@@ -62,7 +62,7 @@ public class AbstractCommandTest {
         ArgumentCaptor<String> queue = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<MessageCreator> creator = ArgumentCaptor.forClass(MessageCreator.class);
         verify(jmsTemplate).send(queue.capture(), creator.capture());
-        assertThat(queue.getValue()).isEqualTo(Constants.QUEUE_EVENT_LOG);
+        assertThat(queue.getValue()).isEqualTo(BlogConstants.QUEUE_EVENT_LOG);
     }
 
 

@@ -4,7 +4,7 @@ import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.tchepannou.blog.Starter;
-import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.dao.PostTagDao;
@@ -103,7 +103,7 @@ public class PostUpdateIT {
 
         /* event */
         assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(id, 100, Constants.EVENT_UPDATE_POST, transactionId)
+                new PostEvent(id, 100, BlogConstants.EVENT_UPDATE_POST, transactionId)
         );
     }
 

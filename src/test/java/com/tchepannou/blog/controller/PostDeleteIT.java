@@ -2,7 +2,7 @@ package com.tchepannou.blog.controller;
 
 import com.jayway.restassured.RestAssured;
 import com.tchepannou.blog.Starter;
-import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
@@ -80,7 +80,7 @@ public class PostDeleteIT {
 
         /* event */
         assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(1000, 100, Constants.EVENT_DELETE_POST, transactionId)
+                new PostEvent(1000, 100, BlogConstants.EVENT_DELETE_POST, transactionId)
         );
     }
 
@@ -111,7 +111,7 @@ public class PostDeleteIT {
 
         /* event */
         assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(1000, 100, Constants.EVENT_DELETE_POST, transactionId)
+                new PostEvent(1000, 100, BlogConstants.EVENT_DELETE_POST, transactionId)
         );
     }
 
@@ -138,7 +138,7 @@ public class PostDeleteIT {
 
         /* event */
         assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(2000, 100, Constants.EVENT_DELETE_POST, transactionId)
+                new PostEvent(2000, 100, BlogConstants.EVENT_DELETE_POST, transactionId)
         );
     }
 

@@ -1,6 +1,6 @@
 package com.tchepannou.blog.service.command;
 
-import com.tchepannou.blog.client.v1.Constants;
+import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.Post;
@@ -32,12 +32,12 @@ public class DeletePostCommandImpl extends AbstractCommand<Void, Void> implement
 
     @Override
     protected String getMetricName() {
-        return Constants.METRIC_DELETE_POST;
+        return BlogConstants.METRIC_DELETE_POST;
     }
 
     @Override
     protected String getEventName() {
-        return Constants.EVENT_DELETE_POST;
+        return BlogConstants.EVENT_DELETE_POST;
     }
 
     private Post getPost (CommandContext context){
