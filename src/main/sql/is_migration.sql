@@ -34,14 +34,6 @@ INSERT INTO post(
 UPDATE post JOIN is5.nattr ON id=nattr_node_fk SET title=nattr_value WHERE nattr_name='title';
 UPDATE post JOIN is5.nattr ON id=nattr_node_fk SET content=nattr_value WHERE nattr_name='content';
 
--- post_entry
-INSERT INTO post_entry(
-  post_fk,
-  blog_id
-)
-  SELECT nprel_node_fk, nprel_party_fk
-  FROM is5.nprel
-  WHERE nprel_type_fk=1;
 
 -- Attachments
 INSERT INTO attachment (
@@ -98,4 +90,34 @@ UPDATE attachment
   JOIN is5.nattr ON nrel_source_fk=nattr_node_fk
 SET oembed=true, url=nattr_value
 WHERE nattr_name='oembed';
+
+
+-- post_entry
+INSERT INTO post_entry(
+  post_fk,
+  blog_id
+)
+  SELECT nprel_node_fk, nprel_party_fk
+  FROM is5.nprel
+  WHERE nprel_type_fk=1;
+
+
+INSERT INTO post_entry(
+  post_fk,
+  blog_id
+)
+  SELECT nprel_node_fk, nprel_party_fk
+  FROM is5.nprel
+  WHERE nprel_type_fk=1;
+
+
+INSERT INTO post_entry(
+  post_fk,
+  blog_id
+)
+  SELECT nprel_node_fk, prel_source_fk
+    FROM is5.nprel JOIN is5.prel ON nprel_party_fk=prel_dest_fk
+    WHERE
+      nprel_type_fk=1 AND prel_type_fk=10
+;
 

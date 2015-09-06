@@ -4,7 +4,6 @@ import com.tchepannou.blog.client.v1.CreatePostRequest;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.client.v1.UpdatePostRequest;
-import com.tchepannou.blog.exception.AccessTokenException;
 import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.service.CreatePostCommand;
 import com.tchepannou.blog.service.DeletePostCommand;
@@ -202,34 +201,27 @@ public class BlogController {
     //-- Exception Handler
     @ResponseStatus(value= HttpStatus.NOT_FOUND)
     @ExceptionHandler(EmptyResultDataAccessException.class)
-    public ErrorResponse notFound(final HttpServletRequest request) {
+    public ErrorResponse notFoundError(final HttpServletRequest request) {
         return createErrorResponse(HttpStatus.NOT_FOUND.value(), "not_found", request);
-    }
-
-    @ResponseStatus(value= HttpStatus.UNAUTHORIZED)
-    @ExceptionHandler(AccessTokenException.class)
-    public ErrorResponse authenticationFailed(final AccessTokenException exception, final HttpServletRequest request) {
-        LOG.error("Authentication error", exception);
-        return createErrorResponse(HttpStatus.UNAUTHORIZED.value(),  exception.getMessage(), request);
     }
 
     @ResponseStatus(value= HttpStatus.FORBIDDEN)
     @ExceptionHandler(AuthorizationException.class)
-    public ErrorResponse authorizationFailed(Exception exception, final HttpServletRequest request) {
+    public ErrorResponse authorizationError(Exception exception, final HttpServletRequest request) {
         LOG.error("Authorization failed", exception);
         return createErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage(), request);
     }
 
     @ResponseStatus(value= HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ErrorResponse validationFailed(MethodArgumentNotValidException ex, final HttpServletRequest request) {
+    public ErrorResponse validationError(MethodArgumentNotValidException ex, final HttpServletRequest request) {
         List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
         return createErrorResponse(HttpStatus.BAD_REQUEST.value(), fieldErrors.get(0).getDefaultMessage(), request);
     }
 
     @ResponseStatus(value= HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ErrorResponse failure(final Exception exception, final HttpServletRequest request) {
+    public ErrorResponse internalError(final Exception exception, final HttpServletRequest request) {
         LOG.error("Unexpected error", exception);
         return createErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage(), request);
     }

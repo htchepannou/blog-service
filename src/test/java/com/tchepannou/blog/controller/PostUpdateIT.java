@@ -5,7 +5,6 @@ import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.client.v1.BlogConstants;
-import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
@@ -25,6 +24,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,6 +60,8 @@ public class PostUpdateIT {
 
     @Test
     public void should_update_text() throws Exception {
+        final Date now = new Date ();
+
         UpdatePostRequest req = new UpdatePostRequest();
         req.setContent("<div>hello world</div>");
         req.setStatus(Post.Status.published.name());
@@ -102,9 +104,11 @@ public class PostUpdateIT {
         assertThat(postTags).hasSize(3);
 
         /* event */
-        assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(id, 100, BlogConstants.EVENT_UPDATE_POST, transactionId)
-        );
+        assertThat(PostEventReceiver.lastEvent.getBlogId()).isEqualTo(100);
+        assertThat(PostEventReceiver.lastEvent.getDate()).isAfter(now);
+        assertThat(PostEventReceiver.lastEvent.getId()).isEqualTo(1000);
+        assertThat(PostEventReceiver.lastEvent.getTransactionId()).isEqualTo(transactionId);
+        assertThat(PostEventReceiver.lastEvent.getType()).isEqualTo(BlogConstants.EVENT_UPDATE_POST);
     }
 
     @Test

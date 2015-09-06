@@ -6,7 +6,6 @@ import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.client.v1.CreatePostRequest;
-import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
@@ -28,6 +27,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,6 +79,8 @@ public class PostCreateIT {
         req.setTitle("sample title");
         req.setUserId(101L);
 
+        final Date now = new Date ();
+
         // @formatter:off
         int id = given()
                 .contentType(ContentType.JSON)
@@ -122,9 +124,11 @@ public class PostCreateIT {
         assertThat(entries).hasSize(1);
 
         /* event */
-        assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(id, 100, BlogConstants.EVENT_CREATE_POST, transactionId)
-        );
+        assertThat(PostEventReceiver.lastEvent.getBlogId()).isEqualTo(100);
+        assertThat(PostEventReceiver.lastEvent.getDate()).isAfter(now);
+        assertThat(PostEventReceiver.lastEvent.getId()).isEqualTo(id);
+        assertThat(PostEventReceiver.lastEvent.getTransactionId()).isEqualTo(transactionId);
+        assertThat(PostEventReceiver.lastEvent.getType()).isEqualTo(BlogConstants.EVENT_CREATE_POST);
     }
 
     @Test

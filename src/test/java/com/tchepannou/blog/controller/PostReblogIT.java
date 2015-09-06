@@ -3,7 +3,6 @@ package com.tchepannou.blog.controller;
 import com.jayway.restassured.RestAssured;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.client.v1.BlogConstants;
-import com.tchepannou.blog.client.v1.PostEvent;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.jms.PostEventReceiver;
@@ -18,6 +17,7 @@ import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,6 +47,8 @@ public class PostReblogIT {
 
     @Test
     public void should_reblog_new_post() throws Exception {
+        final Date now = new Date ();
+
         // @formatter:off
         given()
                 .header(Http.HEADER_TRANSACTION_ID, transactionId)
@@ -63,14 +65,18 @@ public class PostReblogIT {
         assertThat(entries).hasSize(2);
 
         /* event */
-        assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(1000, 1, BlogConstants.EVENT_REBLOG_POST, transactionId)
-        );
+        assertThat(PostEventReceiver.lastEvent.getBlogId()).isEqualTo(1);
+        assertThat(PostEventReceiver.lastEvent.getDate()).isAfter(now);
+        assertThat(PostEventReceiver.lastEvent.getId()).isEqualTo(1000);
+        assertThat(PostEventReceiver.lastEvent.getTransactionId()).isEqualTo(transactionId);
+        assertThat(PostEventReceiver.lastEvent.getType()).isEqualTo(BlogConstants.EVENT_REBLOG_POST);
     }
 
 
     @Test
     public void should_reblog_existing_post() throws Exception {
+        final Date now = new Date ();
+
         // @formatter:off
         given()
                 .header(Http.HEADER_TRANSACTION_ID, transactionId)
@@ -87,9 +93,11 @@ public class PostReblogIT {
         assertThat(entries).hasSize(1);
 
         /* event */
-        assertThat(PostEventReceiver.lastEvent).isEqualToComparingFieldByField(
-                new PostEvent(2000, 200, BlogConstants.EVENT_REBLOG_POST, transactionId)
-        );
+        assertThat(PostEventReceiver.lastEvent.getBlogId()).isEqualTo(200);
+        assertThat(PostEventReceiver.lastEvent.getDate()).isAfter(now);
+        assertThat(PostEventReceiver.lastEvent.getId()).isEqualTo(2000);
+        assertThat(PostEventReceiver.lastEvent.getTransactionId()).isEqualTo(transactionId);
+        assertThat(PostEventReceiver.lastEvent.getType()).isEqualTo(BlogConstants.EVENT_REBLOG_POST);
     }
 
 
