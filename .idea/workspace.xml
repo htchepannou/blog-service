@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92585ef6-f4ef-4a3e-a6bc-0c86e042baf4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/SearchCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommandImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/resources/db/search.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommandImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommandImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java" />
     </list>
     <ignored path="blog-service.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,33 +58,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="search.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/resources/db/search.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SearchCommand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/SearchCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="5" column="60" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PostDao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <caret line="14" column="61" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -98,15 +72,15 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="85" column="39" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
+              <caret line="73" column="38" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
               <folding>
-                <marker date="1441574041000" expanded="true" signature="935:978" placeholder="SELECT * FRO..post..." />
-                <marker date="1441574041000" expanded="true" signature="1260:1433" placeholder="SELECT P.* F..post..." />
-                <marker date="1441574041000" expanded="true" signature="1738:1955" placeholder="SELECT P.* F..post..." />
-                <marker date="1441574041000" expanded="true" signature="2277:2564" placeholder="SELECT P.*, ..post..." />
-                <marker date="1441574041000" expanded="true" signature="3380:3467" placeholder="UPDATE post ..." />
-                <marker date="1441574041000" expanded="true" signature="3909:3945" placeholder="UPDATE post ..." />
-                <marker date="1441574041000" expanded="true" signature="4171:4343" placeholder="INSERT INTO ..." />
+                <marker date="1441574450000" expanded="true" signature="935:978" placeholder="SELECT * FRO..post..." />
+                <marker date="1441574450000" expanded="true" signature="1260:1433" placeholder="SELECT P.*, ..post..." />
+                <marker date="1441574450000" expanded="true" signature="1738:1955" placeholder="SELECT P.* F..post..." />
+                <marker date="1441574450000" expanded="true" signature="2305:2650" placeholder="SELECT P.*, ..post..." />
+                <marker date="1441574450000" expanded="true" signature="3545:3632" placeholder="UPDATE post ..." />
+                <marker date="1441574450000" expanded="true" signature="4074:4110" placeholder="UPDATE post ..." />
+                <marker date="1441574450000" expanded="true" signature="4336:4508" placeholder="INSERT INTO ..." />
               </folding>
             </state>
           </provider>
@@ -115,8 +89,47 @@
       <file leaf-file-name="SearchIT.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43706295">
-              <caret line="132" column="43" selection-start-line="132" selection-start-column="43" selection-end-line="132" selection-end-column="43" />
+            <state vertical-scroll-proportion="-0.10869565">
+              <caret line="184" column="30" selection-start-line="184" selection-start-column="30" selection-end-line="184" selection-end-column="30" />
+              <folding>
+                <element signature="e#1370#1371#0" expanded="true" />
+                <element signature="e#1409#1410#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlogController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="180" column="57" selection-start-line="180" selection-start-column="57" selection-end-line="180" selection-end-column="57" />
+              <folding>
+                <element signature="method#get#0;class#BlogController#0" expanded="false" />
+                <element signature="method#list#0;class#BlogController#0" expanded="false" />
+                <element signature="method#delete#0;class#BlogController#0" expanded="false" />
+                <element signature="method#reblog#0;class#BlogController#0" expanded="false" />
+                <element signature="method#create#0;class#BlogController#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SearchCommandImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommandImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Post.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Post.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -195,11 +208,11 @@
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostUpdateIT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/SearchCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
         <option value="$PROJECT_DIR$/src/test/resources/db/search.sql" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommandImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommandImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java" />
       </list>
     </option>
@@ -342,6 +355,62 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dao" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -905,7 +974,7 @@
       <workItem from="1440860228827" duration="99000" />
       <workItem from="1440862038907" duration="1963000" />
       <workItem from="1441112545593" duration="8000" />
-      <workItem from="1441568987299" duration="5130000" />
+      <workItem from="1441568987299" duration="5698000" />
     </task>
     <task id="LOCAL-00001" summary="rename">
       <created>1439953755419</created>
@@ -917,7 +986,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="140432000" />
+    <option name="totallyTimeSpent" value="141000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="52" y="86" width="1360" height="762" extended-state="0" />
@@ -943,7 +1012,7 @@
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29590288" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5313433" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5313433" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4874816" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -994,23 +1063,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/test/resources/db/delete_post.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2814259">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/DeletePostCommandImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08971292">
-          <caret line="12" column="58" selection-start-line="12" selection-start-column="58" selection-end-line="12" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/tchepannou/blog/blog-client/1.0/blog-client-1.0.jar!/com/tchepannou/blog/client/v1/CreatePostRequest.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.3333333">
@@ -1471,20 +1523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="201" column="33" selection-start-line="201" selection-start-column="33" selection-end-line="201" selection-end-column="33" />
-          <folding>
-            <element signature="method#get#0;class#BlogController#0" expanded="false" />
-            <element signature="method#list#0;class#BlogController#0" expanded="false" />
-            <element signature="method#delete#0;class#BlogController#0" expanded="false" />
-            <element signature="method#reblog#0;class#BlogController#0" expanded="false" />
-            <element signature="method#create#0;class#BlogController#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/tchepannou/blog/blog-client/1.0/blog-client-1.0.jar!/com/tchepannou/blog/client/v1/PostResponse.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2769231">
@@ -1512,14 +1550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommandImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/resources/db/search.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1538,10 +1568,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/tchepannou/blog/blog-client/1.0/blog-client-1.0.jar!/com/tchepannou/blog/client/v1/SearchRequest.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.61403507">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/PostDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <caret line="14" column="61" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="81" />
           <folding />
         </state>
       </provider>
@@ -1549,24 +1587,57 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="85" column="39" selection-start-line="85" selection-start-column="39" selection-end-line="85" selection-end-column="39" />
+          <caret line="73" column="38" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
           <folding>
-            <marker date="1441574041000" expanded="true" signature="935:978" placeholder="SELECT * FRO..post..." />
-            <marker date="1441574041000" expanded="true" signature="1260:1433" placeholder="SELECT P.* F..post..." />
-            <marker date="1441574041000" expanded="true" signature="1738:1955" placeholder="SELECT P.* F..post..." />
-            <marker date="1441574041000" expanded="true" signature="2277:2564" placeholder="SELECT P.*, ..post..." />
-            <marker date="1441574041000" expanded="true" signature="3380:3467" placeholder="UPDATE post ..." />
-            <marker date="1441574041000" expanded="true" signature="3909:3945" placeholder="UPDATE post ..." />
-            <marker date="1441574041000" expanded="true" signature="4171:4343" placeholder="INSERT INTO ..." />
+            <marker date="1441574450000" expanded="true" signature="935:978" placeholder="SELECT * FRO..post..." />
+            <marker date="1441574450000" expanded="true" signature="1260:1433" placeholder="SELECT P.*, ..post..." />
+            <marker date="1441574450000" expanded="true" signature="1738:1955" placeholder="SELECT P.* F..post..." />
+            <marker date="1441574450000" expanded="true" signature="2305:2650" placeholder="SELECT P.*, ..post..." />
+            <marker date="1441574450000" expanded="true" signature="3545:3632" placeholder="UPDATE post ..." />
+            <marker date="1441574450000" expanded="true" signature="4074:4110" placeholder="UPDATE post ..." />
+            <marker date="1441574450000" expanded="true" signature="4336:4508" placeholder="INSERT INTO ..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/domain/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommandImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="180" column="57" selection-start-line="180" selection-start-column="57" selection-end-line="180" selection-end-column="57" />
+          <folding>
+            <element signature="method#get#0;class#BlogController#0" expanded="false" />
+            <element signature="method#list#0;class#BlogController#0" expanded="false" />
+            <element signature="method#delete#0;class#BlogController#0" expanded="false" />
+            <element signature="method#reblog#0;class#BlogController#0" expanded="false" />
+            <element signature="method#create#0;class#BlogController#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43706295">
-          <caret line="132" column="43" selection-start-line="132" selection-start-column="43" selection-end-line="132" selection-end-column="43" />
-          <folding />
+        <state vertical-scroll-proportion="-0.10869565">
+          <caret line="184" column="30" selection-start-line="184" selection-start-column="30" selection-end-line="184" selection-end-column="30" />
+          <folding>
+            <element signature="e#1370#1371#0" expanded="true" />
+            <element signature="e#1409#1410#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

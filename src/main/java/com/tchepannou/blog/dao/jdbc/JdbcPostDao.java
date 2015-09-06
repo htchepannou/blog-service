@@ -67,16 +67,20 @@ public class JdbcPostDao implements PostDao{
     }
 
     @Override
-    public List<Post> findByBlogs(Collection<Long> blogIds, int limit, int offset) {
+    public List<Post> findByBlogsByStatus(Collection<Long> blogIds, Post.Status status, int limit, int offset) {
         final String sql = "SELECT P.*, E.blog_id as entry_blog_id"
                 + " FROM post P JOIN post_entry E ON P.id=E.post_fk"
                 + " WHERE E.blog_id IN (" + JdbcUtils.toParamVars(blogIds) + ") AND P.deleted=?"
+                + (status != null ? " AND status=?" : "")
                 + " ORDER BY P.updated DESC"
                 + " LIMIT ? OFFSET ?";
 
         Collection params = new ArrayList<>();
         params.addAll(blogIds);
         params.add(false);
+        if (status != null){
+            params.add(status.value());
+        }
         params.add(limit);
         params.add(offset);
 

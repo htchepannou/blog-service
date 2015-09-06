@@ -62,8 +62,9 @@ public class SearchIT {
         ;
         // @formatter:on
     }
+    
     @Test
-    public void should_returns_collection (){
+    public void should_returns_all (){
         SearchRequest request = new SearchRequest();
         request.addBlogId(100);
         request.addBlogId(101);
@@ -143,4 +144,52 @@ public class SearchIT {
         ;
         // @formatter:on
     }
+
+
+    @Test
+    public void should_returns_published (){
+        SearchRequest request = new SearchRequest();
+        request.setStatus("published");
+        request.addBlogId(100);
+        request.addBlogId(101);
+
+        // @formatter:off
+        given()
+                .header(Http.HEADER_TRANSACTION_ID, transactionId)
+                .contentType(ContentType.JSON)
+                .content(request, ObjectMapperType.JACKSON_2)
+        .when()
+            .post("/v1/blog/search" )
+        .then()
+            .log()
+                .all()
+            .statusCode(HttpStatus.SC_OK)
+            .body("posts", hasSize(2))
+                
+            .body("posts[0].id", is(1000))
+            .body("posts[0].blogId", is(100))
+            .body("posts[0].userId", is(101))
+            .body("posts[0].title", is("title1000"))
+            .body("posts[0].slug", is("slug1000"))
+            .body("posts[0].content", is("<div>content1000</div>"))
+            .body("posts[0].status", is("published"))
+            .body("posts[0].created", notNullValue())
+            .body("posts[0].updated", notNullValue())
+            .body("posts[0].published", notNullValue())
+            .body("posts[0].tags", hasSize(0))
+
+            .body("posts[1].id", is(1000))
+            .body("posts[1].blogId", is(101))
+            .body("posts[1].userId", is(101))
+            .body("posts[1].title", is("title1000"))
+            .body("posts[1].slug", is("slug1000"))
+            .body("posts[1].content", is("<div>content1000</div>"))
+            .body("posts[1].status", is("published"))
+            .body("posts[1].created", notNullValue())
+            .body("posts[1].updated", notNullValue())
+            .body("posts[1].published", notNullValue())
+            .body("posts[1].tags", hasSize(0))
+        ;
+        // @formatter:on
+    }    
 }

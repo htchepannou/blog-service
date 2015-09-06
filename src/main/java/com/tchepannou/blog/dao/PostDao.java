@@ -12,7 +12,7 @@ public interface PostDao {
 
     List<Post> findByBlog(long blogId, int limit, int offset);
 
-    List<Post> findByBlogs(Collection<Long> blogIds, int limit, int offset);
+    List<Post> findByBlogsByStatus(Collection<Long> blogIds, Post.Status status, int limit, int offset);
 
     void create (Post post);
 

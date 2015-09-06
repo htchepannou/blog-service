@@ -77,6 +77,7 @@ public class BlogController {
     @ApiOperation(value="search posts")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
+            @ApiResponse(code=400, message = "Invalid request.")
     })
     public PostCollectionResponse search(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
@@ -177,7 +178,7 @@ public class BlogController {
     @ApiOperation(value="Create a new Post")
     @ApiResponses({
             @ApiResponse(code=201, message = "Success"),
-            @ApiResponse(code=404, message = "Bad request data.")
+            @ApiResponse(code=404, message = "Bad request.")
     })
     public ResponseEntity<PostResponse> create(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
@@ -199,7 +200,7 @@ public class BlogController {
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
             @ApiResponse(code=404, message = "Post not found"),
-            @ApiResponse(code=400, message = "Invalid request data.")
+            @ApiResponse(code=400, message = "Invalid request.")
     })
     public PostResponse update(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
