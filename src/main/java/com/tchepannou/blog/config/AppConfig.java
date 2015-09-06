@@ -15,12 +15,14 @@ import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.ReblogPostCommand;
+import com.tchepannou.blog.service.SearchCommand;
 import com.tchepannou.blog.service.UpdatePostCommand;
 import com.tchepannou.blog.service.command.CreatePostCommandImpl;
 import com.tchepannou.blog.service.command.DeletePostCommandImpl;
 import com.tchepannou.blog.service.command.GetPostCommandImpl;
 import com.tchepannou.blog.service.command.GetPostListCommandImpl;
 import com.tchepannou.blog.service.command.ReblogPostCommandImpl;
+import com.tchepannou.blog.service.command.SearchCommandImpl;
 import com.tchepannou.blog.service.command.UpdateTextCommandImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -132,5 +134,10 @@ public class AppConfig {
     @Bean
     ReblogPostCommand reblogPostCommand () {
         return new ReblogPostCommandImpl();
+    }
+
+    @Bean
+    SearchCommand searchCommand () {
+        return new SearchCommandImpl();
     }
 }

@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import static com.tchepannou.blog.dao.jdbc.JdbcUtils.toTimestamp;
@@ -34,19 +36,19 @@ public class JdbcPostDao implements PostDao{
         return new JdbcTemplate(dataSource).queryForObject(
                 sql,
                 new Object[]{id, false},
-                (rs, i) -> map(rs)
+                (rs, i) -> map(rs, false)
         );
     }
 
     @Override
     public Post findByIdByBlog(long id, long blogId) {
-        final String sql = "SELECT P.*"
+        final String sql = "SELECT P.*, E.blog_id as entry_blog_id"
                 + " FROM post P JOIN post_entry E ON P.id=E.post_fk"
                 + " WHERE P.id=? AND E.blog_id=? AND P.deleted=?";
         return new JdbcTemplate(dataSource).queryForObject(
                 sql,
                 new Object[]{id, blogId, false},
-                (rs, i) -> map(rs)
+                (rs, i) -> map(rs, true)
         );
     }
 
@@ -60,7 +62,28 @@ public class JdbcPostDao implements PostDao{
         return new JdbcTemplate(dataSource).query(
                 sql,
                 new Object[]{blogId, false, limit, offset},
-                (rs, i) -> map(rs)
+                (rs, i) -> map(rs, false)
+        );
+    }
+
+    @Override
+    public List<Post> findByBlogs(Collection<Long> blogIds, int limit, int offset) {
+        final String sql = "SELECT P.*, E.blog_id as entry_blog_id"
+                + " FROM post P JOIN post_entry E ON P.id=E.post_fk"
+                + " WHERE E.blog_id IN (" + JdbcUtils.toParamVars(blogIds) + ") AND P.deleted=?"
+                + " ORDER BY P.updated DESC"
+                + " LIMIT ? OFFSET ?";
+
+        Collection params = new ArrayList<>();
+        params.addAll(blogIds);
+        params.add(false);
+        params.add(limit);
+        params.add(offset);
+
+        return new JdbcTemplate(dataSource).query(
+                sql,
+                params.toArray(),
+                (rs, i) -> map(rs, true)
         );
     }
 
@@ -123,10 +146,10 @@ public class JdbcPostDao implements PostDao{
         return ps;
     }
 
-    private Post map(ResultSet rs) throws SQLException {
-        Post post = new Post ();
+    private Post map(ResultSet rs, boolean useEntryBlogId) throws SQLException {
+        Post post = new Post();
 
-        post.setBlogId(rs.getLong("blog_id"));
+        post.setBlogId(useEntryBlogId ? rs.getLong("entry_blog_id")  : rs.getLong("blog_id"));
         post.setUserId(rs.getLong("user_id"));
         post.setContent(rs.getString("content"));
         post.setCreated(rs.getTimestamp("created"));

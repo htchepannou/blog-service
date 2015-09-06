@@ -3,6 +3,7 @@ package com.tchepannou.blog.controller;
 import com.tchepannou.blog.client.v1.CreatePostRequest;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.client.v1.PostResponse;
+import com.tchepannou.blog.client.v1.SearchRequest;
 import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.service.CreatePostCommand;
@@ -10,6 +11,7 @@ import com.tchepannou.blog.service.DeletePostCommand;
 import com.tchepannou.blog.service.GetPostCommand;
 import com.tchepannou.blog.service.GetPostListCommand;
 import com.tchepannou.blog.service.ReblogPostCommand;
+import com.tchepannou.blog.service.SearchCommand;
 import com.tchepannou.blog.service.UpdatePostCommand;
 import com.tchepannou.core.client.v1.ErrorResponse;
 import com.tchepannou.core.http.Http;
@@ -45,7 +47,7 @@ import java.util.List;
 @RequestMapping(value="/v1/blog", produces = MediaType.APPLICATION_JSON_VALUE)
 public class BlogController {
 
-    //-- Atributes
+    //-- Attributes
     private static final Logger LOG = LoggerFactory.getLogger(BlogController.class);
 
     @Autowired
@@ -66,8 +68,27 @@ public class BlogController {
     @Autowired
     ReblogPostCommand reblogPostCommand;
 
+    @Autowired
+    SearchCommand searchCommand;
+
 
     //-- REST methods
+    @RequestMapping(method = RequestMethod.POST, value="/search")
+    @ApiOperation(value="search posts")
+    @ApiResponses({
+            @ApiResponse(code=200, message = "Success"),
+    })
+    public PostCollectionResponse search(
+            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
+            @Valid @RequestBody SearchRequest request
+    ) {
+        return searchCommand.execute(
+                request,
+                new CommandContextImpl()
+                    .withTransactionId(transactionId)
+        );
+    }
+
     @RequestMapping(method = RequestMethod.GET, value="/{bid}/post/{id}")
     @ApiOperation(value="Returns a post", notes = "Return a post by its ID")
     @ApiResponses({
@@ -178,9 +199,7 @@ public class BlogController {
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
             @ApiResponse(code=404, message = "Post not found"),
-            @ApiResponse(code=401, message = "Access token expired or is invalid"),
-            @ApiResponse(code=403, message = "User not allowed to update the post."),
-            @ApiResponse(code=404, message = "Invalid request data.")
+            @ApiResponse(code=400, message = "Invalid request data.")
     })
     public PostResponse update(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,

@@ -2,6 +2,7 @@ package com.tchepannou.blog.dao;
 
 import com.tchepannou.blog.domain.Post;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface PostDao {
@@ -10,6 +11,8 @@ public interface PostDao {
     Post findByIdByBlog (long id, long blogId);
 
     List<Post> findByBlog(long blogId, int limit, int offset);
+
+    List<Post> findByBlogs(Collection<Long> blogIds, int limit, int offset);
 
     void create (Post post);
 
