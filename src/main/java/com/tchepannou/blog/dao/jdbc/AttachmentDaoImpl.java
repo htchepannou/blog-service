@@ -16,7 +16,8 @@ public class AttachmentDaoImpl implements AttachmentDao {
         this.ds = ds;
     }
 
-    //-- Attachment overrieds
+    //-- Attachment overrides
+    @Override
     public List<Attachment> findByPost (long postId){
         return new JdbcTemplate(ds).query(
                 "SELECT * FROM attachment WHERE post_fk=? AND deleted=?",

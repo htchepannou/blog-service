@@ -57,7 +57,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
             O response = doExecute(request, context);
 
             /* post */
-            logEvent(request, response, context);
+            logEvent(response, context);
             return response;
         } catch (RuntimeException e) {
             metrics.meter(metricName + "-errors").mark();
@@ -74,7 +74,7 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
     }
 
 
-    protected void logEvent (I request, O response, CommandContext context) {
+    protected void logEvent (O response, CommandContext context) {
         String name = getEventName();
         if (Strings.isNullOrEmpty(name)){
             return;
