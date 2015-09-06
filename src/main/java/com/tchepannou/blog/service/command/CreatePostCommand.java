@@ -1,24 +1,26 @@
 package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.client.v1.BlogConstants;
+import com.tchepannou.blog.client.v1.CreatePostRequest;
 import com.tchepannou.blog.client.v1.PostResponse;
-import com.tchepannou.blog.dao.AttachmentDao;
 import com.tchepannou.blog.dao.PostDao;
+import com.tchepannou.blog.dao.PostEntryDao;
+import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
-import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.blog.service.GetPostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class GetPostCommandImpl extends AbstractCommand<Long, PostResponse> implements GetPostCommand {
+@Transactional
+public class CreatePostCommand extends AbstractCommand<CreatePostRequest, PostResponse> {
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -27,30 +29,32 @@ public class GetPostCommandImpl extends AbstractCommand<Long, PostResponse> impl
     private TagDao tagDao;
 
     @Autowired
-    private AttachmentDao attachmentDao;
+    private PostTagDao postTagDao;
+
+    @Autowired
+    private PostEntryDao postEntryDao;
 
     //-- AbstractCommand overrides
     @Override
-    protected String getMetricName() {
-        return BlogConstants.METRIC_GET_POST;
-    }
-
-    @Override
-    public PostResponse doExecute(Long id, CommandContext context) {
-        Post post = postDao.findByIdByBlog(id, context.getBlogId());
-        List<Tag> tags = tagDao.findByPost(id);
-        List<Attachment> attachments = attachmentDao.findByPost(id);
+    protected PostResponse doExecute(CreatePostRequest request, CommandContext context) {
+        final Post post = PostUtils.createPost(request, context, request.getUserId(), postDao);
+        final List<Tag> tags = PostUtils.addTags(request, tagDao);
+        PostUtils.link(post, tags, postTagDao);
+        PostUtils.addToBlog(post, context, postEntryDao);
 
         return new PostResponseMapper()
                 .withPost(post)
                 .withTags(tags)
-                .withAttachments(attachments)
-                .map()
-        ;
+                .map();
+    }
+
+    @Override
+    protected String getMetricName() {
+        return BlogConstants.METRIC_CREATE_POST;
     }
 
     @Override
     protected String getEventName() {
-        return null;
+        return BlogConstants.EVENT_CREATE_POST;
     }
 }

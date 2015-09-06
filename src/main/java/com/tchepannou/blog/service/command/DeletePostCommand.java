@@ -5,12 +5,11 @@ import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.blog.service.DeletePostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public class DeletePostCommandImpl extends AbstractCommand<Void, Void> implements DeletePostCommand {
+public class DeletePostCommand extends AbstractCommand<Void, Void> {
     //-- Attributes
     @Autowired
     private PostDao postDao;

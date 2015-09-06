@@ -10,20 +10,13 @@ import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostEntryDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
-import com.tchepannou.blog.service.CreatePostCommand;
-import com.tchepannou.blog.service.DeletePostCommand;
-import com.tchepannou.blog.service.GetPostCommand;
-import com.tchepannou.blog.service.GetPostListCommand;
-import com.tchepannou.blog.service.ReblogPostCommand;
-import com.tchepannou.blog.service.SearchCommand;
-import com.tchepannou.blog.service.UpdatePostCommand;
-import com.tchepannou.blog.service.command.CreatePostCommandImpl;
-import com.tchepannou.blog.service.command.DeletePostCommandImpl;
-import com.tchepannou.blog.service.command.GetPostCommandImpl;
-import com.tchepannou.blog.service.command.GetPostListCommandImpl;
-import com.tchepannou.blog.service.command.ReblogPostCommandImpl;
-import com.tchepannou.blog.service.command.SearchCommandImpl;
-import com.tchepannou.blog.service.command.UpdateTextCommandImpl;
+import com.tchepannou.blog.service.command.CreatePostCommand;
+import com.tchepannou.blog.service.command.DeletePostCommand;
+import com.tchepannou.blog.service.command.GetPostCommand;
+import com.tchepannou.blog.service.command.GetPostListCommand;
+import com.tchepannou.blog.service.command.ReblogPostCommand;
+import com.tchepannou.blog.service.command.SearchCommand;
+import com.tchepannou.blog.service.command.UpdatePostCommand;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -110,34 +103,34 @@ public class AppConfig {
     //-- Commands
     @Bean
     GetPostCommand getPostCommand(){
-        return new GetPostCommandImpl();
+        return new GetPostCommand();
     }
 
     @Bean
     GetPostListCommand getPostListCommand(){
-        return new GetPostListCommandImpl();
+        return new GetPostListCommand();
     }
 
     @Bean CreatePostCommand createTextCommand () {
-        return new CreatePostCommandImpl();
+        return new CreatePostCommand();
     }
 
     @Bean UpdatePostCommand updateTextCommand(){
-        return new UpdateTextCommandImpl();
+        return new UpdatePostCommand();
     }
 
     @Bean
     DeletePostCommand deletePostCommand () {
-        return new DeletePostCommandImpl();
+        return new DeletePostCommand();
     }
 
     @Bean
     ReblogPostCommand reblogPostCommand () {
-        return new ReblogPostCommandImpl();
+        return new ReblogPostCommand();
     }
 
     @Bean
     SearchCommand searchCommand () {
-        return new SearchCommandImpl();
+        return new SearchCommand();
     }
 }

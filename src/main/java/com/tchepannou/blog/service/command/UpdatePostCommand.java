@@ -10,14 +10,13 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.blog.service.UpdatePostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Transactional
-public class UpdateTextCommandImpl extends AbstractCommand<UpdatePostRequest, PostResponse> implements UpdatePostCommand {
+public class UpdatePostCommand extends AbstractCommand<UpdatePostRequest, PostResponse> {
     //-- Attributes
     @Autowired
     private PostDao postDao;

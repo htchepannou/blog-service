@@ -5,11 +5,10 @@ import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.blog.service.ReblogPostCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 
-public class ReblogPostCommandImpl extends AbstractCommand<Void, Boolean> implements ReblogPostCommand {
+public class ReblogPostCommand extends AbstractCommand<Void, Boolean> {
     //-- Attributes
     @Autowired
     private PostDao postDao;
