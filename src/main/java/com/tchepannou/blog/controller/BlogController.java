@@ -154,8 +154,8 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.POST, value="/{bid}/post/{id}/reblog")
     @ApiOperation(value="Delete a post")
     @ApiResponses({
-            @ApiResponse(code=201, message = "Success - Post successfully added"),
-            @ApiResponse(code=200, message = "Success - Post was already in blog"),
+            @ApiResponse(code=201, message = "Success - Post successfully added", response = ResponseEntity.class),
+            @ApiResponse(code=200, message = "Success - Post was already in blog", response = ResponseEntity.class),
             @ApiResponse(code=404, message = "Post not found")
     })
     public ResponseEntity reblog(
@@ -177,7 +177,7 @@ public class BlogController {
     @RequestMapping(method = {RequestMethod.POST, RequestMethod.POST}, value="/{bid}/post")
     @ApiOperation(value="Create a new Post")
     @ApiResponses({
-            @ApiResponse(code=201, message = "Success"),
+            @ApiResponse(code=200, message = "Success"),
             @ApiResponse(code=404, message = "Bad request.")
     })
     public ResponseEntity<PostResponse> create(
