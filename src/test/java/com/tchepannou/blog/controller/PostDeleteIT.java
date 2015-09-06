@@ -5,7 +5,6 @@ import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
-import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.jms.PostEventReceiver;
 import com.tchepannou.core.http.Http;
@@ -139,8 +138,12 @@ public class PostDeleteIT {
         // @formatter:on
 
         /* post */
-        Post post = postDao.findById(2000);
-        assertThat(post).isNotNull();
+        try {
+            postDao.findById(2000);
+            fail("");
+        } catch (EmptyResultDataAccessException e){
+
+        }
 
         /* entries */
         List<PostEntry> entries = postEntryDao.findByPost(2000);
