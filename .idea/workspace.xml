@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92585ef6-f4ef-4a3e-a6bc-0c86e042baf4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/AttachmentDaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/AttachmentDaoImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blog-service.iws" />
@@ -55,45 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PostDeleteIT.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostDeleteIT.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.4074073">
-              <caret line="144" column="0" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlogController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="88" column="39" selection-start-line="88" selection-start-column="39" selection-end-line="88" selection-end-column="39" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AttachmentDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/AttachmentDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-              <folding>
-                <marker date="1441576696000" expanded="true" signature="611:665" placeholder="SELECT * FRO..attachment..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AbstractCommand.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6504065">
-              <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.16260162">
+              <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -153,7 +119,6 @@
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetIT.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostGetCollectionIT.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" />
         <option value="$PROJECT_DIR$/src/test/resources/db/clean.sql" />
         <option value="$PROJECT_DIR$/src/main/sql/is_migration.sql" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostCreateIT.java" />
@@ -178,6 +143,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/PostDeleteIT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/AttachmentDaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java" />
       </list>
     </option>
   </component>
@@ -343,7 +309,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog-service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blog" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="service" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="command" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -910,7 +910,7 @@
       <workItem from="1441112545593" duration="8000" />
       <workItem from="1441568987299" duration="5964000" />
       <workItem from="1441575048744" duration="476000" />
-      <workItem from="1441575621087" duration="1085000" />
+      <workItem from="1441575621087" duration="2213000" />
     </task>
     <task id="LOCAL-00001" summary="rename">
       <created>1439953755419</created>
@@ -922,7 +922,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142827000" />
+    <option name="totallyTimeSpent" value="143955000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="421" y="83" width="1007" height="762" extended-state="0" />
@@ -946,7 +946,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15099223" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4041451" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2880829" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5313433" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1389,8 +1389,8 @@
         <state vertical-scroll-proportion="1.5846646">
           <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
           <folding>
-            <element signature="e#1370#1371#0" expanded="true" />
-            <element signature="e#1409#1410#0" expanded="true" />
+            <element signature="e#1370#1371#0" expanded="false" />
+            <element signature="e#1409#1410#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1508,7 +1508,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="88" column="39" selection-start-line="88" selection-start-column="39" selection-end-line="88" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1518,15 +1518,15 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
           <folding>
-            <marker date="1441576696000" expanded="true" signature="611:665" placeholder="SELECT * FRO..attachment..." />
+            <marker date="1441576696000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..attachment..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/AbstractCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6504065">
-          <caret line="17" column="22" selection-start-line="17" selection-start-column="22" selection-end-line="17" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.16260162">
+          <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
           <folding />
         </state>
       </provider>

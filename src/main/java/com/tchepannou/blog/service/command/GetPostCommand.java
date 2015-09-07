@@ -1,6 +1,5 @@
 package com.tchepannou.blog.service.command;
 
-import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.dao.AttachmentDao;
 import com.tchepannou.blog.dao.PostDao;
@@ -29,11 +28,6 @@ public class GetPostCommand extends AbstractCommand<Long, PostResponse> {
     private AttachmentDao attachmentDao;
 
     //-- AbstractCommand overrides
-    @Override
-    protected String getMetricName() {
-        return BlogConstants.METRIC_GET_POST;
-    }
-
     @Override
     public PostResponse doExecute(Long id, CommandContext context) {
         Post post = postDao.findByIdByBlog(id, context.getBlogId());

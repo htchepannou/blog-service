@@ -30,11 +30,6 @@ public class ReblogPostCommand extends AbstractCommand<Void, Boolean> {
         }
     }
 
-    @Override
-    protected String getMetricName() {
-        return BlogConstants.METRIC_REBLOG_POST;
-    }
-
     @Override protected String getEventName() {
         return BlogConstants.EVENT_REBLOG_POST;
     }

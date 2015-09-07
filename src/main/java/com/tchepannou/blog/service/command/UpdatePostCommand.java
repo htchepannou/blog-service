@@ -42,11 +42,6 @@ public class UpdatePostCommand extends AbstractCommand<UpdatePostRequest, PostRe
     }
 
     @Override
-    protected String getMetricName() {
-        return BlogConstants.METRIC_UPDATE_POST;
-    }
-
-    @Override
     protected String getEventName() {
         return BlogConstants.EVENT_UPDATE_POST;
     }

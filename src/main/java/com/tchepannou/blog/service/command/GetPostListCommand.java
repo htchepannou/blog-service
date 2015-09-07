@@ -1,7 +1,6 @@
 package com.tchepannou.blog.service.command;
 
 import com.google.common.collect.Multimap;
-import com.tchepannou.blog.client.v1.BlogConstants;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.TagDao;
@@ -39,11 +38,6 @@ public class GetPostListCommand extends AbstractCommand<Void, PostCollectionResp
                 .withPosts(posts)
                 .withTags(tags)
                 .map();
-    }
-
-    @Override
-    protected String getMetricName() {
-        return BlogConstants.METRIC_GET_POST_LIST;
     }
 
     @Override

@@ -49,11 +49,6 @@ public class CreatePostCommand extends AbstractCommand<CreatePostRequest, PostRe
     }
 
     @Override
-    protected String getMetricName() {
-        return BlogConstants.METRIC_CREATE_POST;
-    }
-
-    @Override
     protected String getEventName() {
         return BlogConstants.EVENT_CREATE_POST;
     }

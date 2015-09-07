@@ -30,11 +30,6 @@ public class DeletePostCommand extends AbstractCommand<Void, Void> {
     }
 
     @Override
-    protected String getMetricName() {
-        return BlogConstants.METRIC_DELETE_POST;
-    }
-
-    @Override
     protected String getEventName() {
         return BlogConstants.EVENT_DELETE_POST;
     }
