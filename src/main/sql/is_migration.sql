@@ -13,7 +13,6 @@ INSERT INTO post(
   blog_id,
   user_id,
   status,
-  type,
   created,
   updated,
   deleted
@@ -22,7 +21,6 @@ INSERT INTO post(
     node_id,
     node_channel_fk,
     node_owner_fk,
-    1,
     1,
     node_date,
     node_date,
@@ -100,24 +98,3 @@ INSERT INTO post_entry(
   SELECT nprel_node_fk, nprel_party_fk
   FROM is5.nprel
   WHERE nprel_type_fk=1;
-
-
-INSERT INTO post_entry(
-  post_fk,
-  blog_id
-)
-  SELECT nprel_node_fk, nprel_party_fk
-  FROM is5.nprel
-  WHERE nprel_type_fk=1;
-
-
-INSERT INTO post_entry(
-  post_fk,
-  blog_id
-)
-  SELECT nprel_node_fk, prel_source_fk
-    FROM is5.nprel JOIN is5.prel ON nprel_party_fk=prel_dest_fk
-    WHERE
-      nprel_type_fk=1 AND prel_type_fk=10
-;
-
