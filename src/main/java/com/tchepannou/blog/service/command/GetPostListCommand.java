@@ -2,8 +2,10 @@ package com.tchepannou.blog.service.command;
 
 import com.google.common.collect.Multimap;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
+import com.tchepannou.blog.dao.AttachmentDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.TagDao;
+import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostCollectionResponseMapper;
@@ -23,6 +25,9 @@ public class GetPostListCommand extends AbstractCommand<Void, PostCollectionResp
     @Autowired
     private TagDao tagDao;
 
+    @Autowired
+    private AttachmentDao attachmentDao;
+
     //-- Public
     @Override
     protected PostCollectionResponse doExecute(Void request, CommandContext context) {
@@ -34,9 +39,12 @@ public class GetPostListCommand extends AbstractCommand<Void, PostCollectionResp
 
         final Multimap<Long, Tag> tags = tagDao.findByPosts(postIds);
 
+        final Multimap<Long, Attachment> attachments = attachmentDao.findByPosts(postIds);
+
         return new PostCollectionResponseMapper()
                 .withPosts(posts)
                 .withTags(tags)
+                .withAttachments(attachments)
                 .map();
     }
 

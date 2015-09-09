@@ -35,6 +35,11 @@ INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(1002, 1003, 2);
 
 INSERT INTO post_tag(post_fk, tag_fk, rank) VALUES(1001, 1004, 1);
 
+INSERT INTO attachment(id, post_fk, name, description, content_type, content_length, width, height, deleted, url, thumbnail_url, created)
+VALUES(1101, 1000, 'image1', 'this is an image', 'image/png', 430394, 120, 144, false, 'http://www.img.com/1101.png', 'http://www.img.com/1101_thumb.png', now());
+
+INSERT INTO attachment(id, post_fk, name, description, content_type, content_length, width, height, deleted, url, thumbnail_url, created)
+VALUES(1102, 1000, 'image2', 'this is an image', 'image/png', 430394, 120, 144, false, 'http://www.img.com/1101.png', 'http://www.img.com/1101_thumb.png', now());
 
 -- should_returns_list_with_limit_offset
 INSERT INTO post (id, blog_id, user_id, status, deleted, created, updated)

@@ -5,7 +5,7 @@ import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
-import com.tchepannou.blog.dao.jdbc.AttachmentDaoImpl;
+import com.tchepannou.blog.dao.jdbc.JdbcAttachmentDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostEntryDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
@@ -77,7 +77,7 @@ public class AppConfig {
     //-- DAO
     @Bean
     AttachmentDao attachmentDao () {
-        return new AttachmentDaoImpl(dataSource());
+        return new JdbcAttachmentDao(dataSource());
     }
 
     @Bean
