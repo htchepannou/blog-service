@@ -18,6 +18,7 @@ import java.util.UUID;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
@@ -81,6 +82,8 @@ public class PostGetCollectionIT {
             .body("posts[0].updated", notNullValue())
             .body("posts[0].published", notNullValue())
             .body("posts[0].tags", hasItems("tag1", "tag2"))
+            .body("posts[0].attachments", hasSize(0))
+            .body("posts[0].mainAttachmentId", nullValue())
 
             .body("posts[1].id", is(1002))
             .body("posts[1].blogId", is(100))
@@ -93,6 +96,8 @@ public class PostGetCollectionIT {
             .body("posts[1].updated", notNullValue())
             .body("posts[1].published", notNullValue())
             .body("posts[1].tags", hasItems("tag2", "tag3"))
+            .body("posts[1].attachments", hasSize(0))
+            .body("posts[1].mainAttachmentId", nullValue())
 
             .body("posts[2].id", is(1000))
             .body("posts[2].blogId", is(100))
@@ -105,6 +110,7 @@ public class PostGetCollectionIT {
             .body("posts[2].updated", notNullValue())
             .body("posts[2].published", notNullValue())
             .body("posts[2].tags", hasSize(0))
+            .body("posts[2].mainAttachmentId", is(1101))
         ;
         // @formatter:on
     }

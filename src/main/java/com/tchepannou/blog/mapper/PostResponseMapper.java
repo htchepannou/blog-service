@@ -1,6 +1,7 @@
 package com.tchepannou.blog.mapper;
 
 import com.google.common.base.Preconditions;
+import com.tchepannou.blog.client.v1.AttachmentResponse;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
@@ -8,9 +9,14 @@ import com.tchepannou.blog.domain.Tag;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 public class PostResponseMapper {
     //-- Attribute
+    private static final int WEIGHT_VIDEO = 8;
+    private static final int WEIGHT_OEMBED = 4;
+    private static final int WEIGHT_IMAGE = 2;
+
     private Post post;
     private Collection<Tag> tags = new ArrayList<>();
     private Collection<Attachment> attachments = new ArrayList<>();
@@ -22,7 +28,7 @@ public class PostResponseMapper {
         PostResponse response = new PostResponse();
         map(response, post);
         mapTags(response, tags);
-        mapAttachmens(response, attachments);
+        mapAttachments(response, attachments);
         return response;
     }
 
@@ -51,7 +57,7 @@ public class PostResponseMapper {
         response.setStatus(post.getStatus().name());
         response.setTitle(post.getTitle());
         response.setUpdated(post.getUpdated());
-        response.setUserId (post.getUserId());
+        response.setUserId(post.getUserId());
     }
 
     private void mapTags(PostResponse response, Collection<Tag> tags){
@@ -59,11 +65,34 @@ public class PostResponseMapper {
             .forEach(tag -> response.addTag(tag.getName()));
     }
 
-    private void mapAttachmens(PostResponse response, Collection<Attachment> attachments){
-        AttachmentResponseMapper mapper = new AttachmentResponseMapper();
+    private void mapAttachments(PostResponse response, Collection<Attachment> attachments){
+        final AttachmentResponseMapper mapper = new AttachmentResponseMapper();
+
         attachments.stream()
-                .forEach(attachment -> response.addAttachment(
-                        mapper.withAttachment(attachment).build()
-                ));
+                .forEach(attachment -> {
+                    response.addAttachment(mapper.withAttachment(attachment).build());
+                });
+
+        if (!response.getAttachments().isEmpty()){
+            Optional<AttachmentResponse> mainAttachment = response.getAttachments().stream()
+                    .filter(i -> weight(i) > 0)
+                    .sorted((i, j) -> weight(j) - weight(i))
+                    .findFirst();
+
+            if (mainAttachment.isPresent()) {
+                response.setMainAttachmentId(mainAttachment.get().getId());
+            }
+        }
+    }
+
+    private int weight(AttachmentResponse attachment){
+        if (attachment.isVideo()){
+            return WEIGHT_VIDEO;
+        } else if (attachment.isImage()){
+            return WEIGHT_IMAGE;
+        } else if (attachment.getOembed() == Boolean.TRUE){
+            return WEIGHT_OEMBED;
+        }
+        return 0;
     }
 }

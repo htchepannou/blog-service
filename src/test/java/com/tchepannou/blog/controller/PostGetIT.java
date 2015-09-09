@@ -71,7 +71,7 @@ public class PostGetIT {
     }
 
     @Test
-    public void should_returns_text (){
+    public void should_returns_post (){
         // @formatter:off
         given()
                 .header(Http.HEADER_TRANSACTION_ID, transactionId)
@@ -92,6 +92,7 @@ public class PostGetIT {
             .body("updated", notNullValue())
             .body("published", notNullValue())
             .body("tags", hasItems("tag4", "tag3", "tag2"))
+            .body("mainAttachmentId", is(1100))
 
             .body("attachments", hasSize(2))
             .body("attachments[0].id", is(1100))
@@ -99,7 +100,7 @@ public class PostGetIT {
             .body("attachments[0].description", is("this is a video"))
             .body("attachments[0].thumbnailUrl", is("http://www.img.com/1100_thumb.png"))
             .body("attachments[0].oembed", is(false))
-            .body("attachments[0].contentType", is("movie/quick-time"))
+            .body("attachments[0].contentType", is("video/quick-time"))
             .body("attachments[0].contentLength", is(143043))
             .body("attachments[0].durationSeconds", is(30))
             .body("attachments[0].width", is(0))
