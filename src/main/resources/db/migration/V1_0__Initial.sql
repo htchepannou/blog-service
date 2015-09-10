@@ -40,10 +40,9 @@ CREATE INDEX idx_post_entry__posted ON post_entry (posted);
 
 CREATE TABLE attachment(
   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  post_fk BIGINT NOT NULL,
   name VARCHAR(255),
   description TEXT,
-  url VARCHAR(255),
+  url VARCHAR(2048),
   oembed BIT,
   content_type VARCHAR(20),
   content_length BIGINT,
@@ -53,7 +52,16 @@ CREATE TABLE attachment(
   width INT,
   height INT,
   deleted BIT,
-  created DATETIME,
+  created DATETIME
+)  ENGINE=INNODB;
 
-  CONSTRAINT fk_attachment__post_fk FOREIGN KEY (post_fk) REFERENCES post(id)
-);
+CREATE TABLE post_attachment(
+  post_fk BIGINT NOT NULL,
+  attachment_fk BIGINT NOT NULL,
+  rank INT,
+
+  PRIMARY KEY(post_fk, attachment_fk),
+  CONSTRAINT fk_post_attachment__post_fk FOREIGN KEY (post_fk) REFERENCES post(id),
+  CONSTRAINT fk_post_attachment__attachment_fk FOREIGN KEY (attachment_fk) REFERENCES attachment(id)
+
+) ENGINE=INNODB;

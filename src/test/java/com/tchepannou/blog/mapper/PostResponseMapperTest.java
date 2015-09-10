@@ -21,8 +21,8 @@ public class PostResponseMapperTest {
         Tag tag2 = createTag();
         Tag tag3 = createTag();
 
-        Attachment att1 = createAttachment(post.getId());
-        Attachment att2 = createAttachment(post.getId());
+        Attachment att1 = createAttachment();
+        Attachment att2 = createAttachment();
 
         // When
         PostResponse response = new PostResponseMapper()

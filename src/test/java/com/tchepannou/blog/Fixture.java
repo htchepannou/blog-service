@@ -35,7 +35,7 @@ public class Fixture {
         return post;
     }
 
-    public static Attachment createAttachment (long postId){
+    public static Attachment createAttachment (){
         long id = ++uid;
         Attachment obj = new Attachment();
         obj.setId(id);
@@ -48,7 +48,6 @@ public class Fixture {
         obj.setDurationSeconds(100);
         obj.setHeight(10);
         obj.setOembed(true);
-        obj.setPostId(postId);
         obj.setThumbnailUrl("http://www.you.be/embed/fdlkfd.png");
         obj.setUrl("http://www.you.be/embed/fdlkfd");
         obj.setWidth(20);

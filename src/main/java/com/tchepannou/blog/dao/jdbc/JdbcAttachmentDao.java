@@ -23,8 +23,12 @@ public class JdbcAttachmentDao implements AttachmentDao {
     //-- Attachment overrides
     @Override
     public List<Attachment> findByPost (long postId){
+        final String sql = "SELECT * FROM attachment"
+                + " JOIN post_attachment ON id=attachment_fk"
+                + " WHERE post_fk=? AND deleted=?"
+                + " ORDER BY rank";
         return new JdbcTemplate(ds).query(
-                "SELECT * FROM attachment WHERE post_fk=? AND deleted=?",
+                sql,
                 new Object[] {postId, false},
                 (rs, i) -> map(rs)
         );
@@ -36,17 +40,23 @@ public class JdbcAttachmentDao implements AttachmentDao {
             return LinkedListMultimap.create();
         }
 
-        List params = new ArrayList<>(postIds);
-        params.add(false);
-        List<Attachment> attachments = new JdbcTemplate(ds).query(
-                "SELECT * FROM attachment WHERE post_fk IN (" + JdbcUtils.toParamVars(postIds) + ") AND deleted=?",
-                params.toArray(),
-                (rs, i) -> map(rs)
-        );
+        final String sql = "SELECT * FROM attachment"
+                + " JOIN post_attachment ON id=attachment_fk"
+                + " WHERE post_fk IN (" + JdbcUtils.toParamVars(postIds) + ")"
+                + " AND deleted=?"
+                + " ORDER BY rank";
 
         final Multimap<Long, Attachment> result = LinkedListMultimap.create();
-        attachments.forEach(
-                att -> result.put(att.getPostId(), att)
+        List params = new ArrayList<>(postIds);
+        params.add(false);
+        new JdbcTemplate(ds).query(
+                sql,
+                params.toArray(),
+                (rs, i) -> {
+                    Attachment att =  map(rs);
+                    result.put(rs.getLong("post_fk"), att);
+                    return att;
+                }
         );
 
         return result;
@@ -56,7 +66,6 @@ public class JdbcAttachmentDao implements AttachmentDao {
     private Attachment map(ResultSet rs) throws SQLException {
         Attachment obj = new Attachment();
         obj.setId(rs.getLong("id"));
-        obj.setPostId(rs.getLong("post_fk"));
         obj.setXvideoId(rs.getString("xid"));
         obj.setDeleted(rs.getBoolean("deleted"));
         obj.setName(rs.getString("name"));

@@ -5,7 +5,6 @@ import java.util.Date;
 public class Attachment extends Model {
     //-- Attributes
     private long id;
-    private long postId;
     private String xvideoId;
     private String name;
     private String description;
@@ -28,14 +27,6 @@ public class Attachment extends Model {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getPostId() {
-        return postId;
-    }
-
-    public void setPostId(long postId) {
-        this.postId = postId;
     }
 
     public String getXvideoId() {
