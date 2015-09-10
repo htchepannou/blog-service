@@ -95,11 +95,13 @@ WHERE nattr_name='oembed';
 
 INSERT INTO post_attachment (
   attachment_fk,
-  post_fk
+  post_fk,
+  rank
 )
   SELECT DISTINCT
     A.id,
-    R.nrel_dest_fk
+    R.nrel_dest_fk,
+    R.nrel_rank
   FROM
     attachment A
     JOIN is5.nrel R ON A.id=R.nrel_source_fk

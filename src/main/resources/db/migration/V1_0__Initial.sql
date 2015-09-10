@@ -58,7 +58,7 @@ CREATE TABLE attachment(
 CREATE TABLE post_attachment(
   post_fk BIGINT NOT NULL,
   attachment_fk BIGINT NOT NULL,
-  rank INT,
+  rank BIGINT,
 
   PRIMARY KEY(post_fk, attachment_fk),
   CONSTRAINT fk_post_attachment__post_fk FOREIGN KEY (post_fk) REFERENCES post(id),
