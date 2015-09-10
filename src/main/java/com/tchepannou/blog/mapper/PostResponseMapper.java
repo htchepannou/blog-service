@@ -69,9 +69,7 @@ public class PostResponseMapper {
         final AttachmentResponseMapper mapper = new AttachmentResponseMapper();
 
         attachments.stream()
-                .forEach(attachment -> {
-                    response.addAttachment(mapper.withAttachment(attachment).build());
-                });
+                .forEach(attachment -> response.addAttachment(mapper.withAttachment(attachment).build()) );
 
         if (!response.getAttachments().isEmpty()){
             Optional<AttachmentResponse> mainAttachment = response.getAttachments().stream()
