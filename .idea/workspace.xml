@@ -2,19 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92585ef6-f4ef-4a3e-a6bc-0c86e042baf4" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/CreatePostCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/CreateCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/DeletePostCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/DeleteCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetPostListCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/GetCollectionCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/ReblogPostCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/ReblogCommand.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/UpdatePostCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/UpdateCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/config/AppConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/controller/BlogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/dao/jdbc/JdbcPostDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommand.java" afterPath="$PROJECT_DIR$/src/main/java/com/tchepannou/blog/service/command/SearchCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java" afterPath="$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/config/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/config/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/resources/db/search.sql" afterPath="$PROJECT_DIR$/src/test/resources/db/search.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="blog-service.iws" />
@@ -90,7 +77,7 @@
       <file leaf-file-name="SearchIT.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.78">
+            <state vertical-scroll-proportion="1.75">
               <caret line="125" column="54" selection-start-line="125" selection-start-column="54" selection-end-line="125" selection-end-column="54" />
               <folding>
                 <element signature="method#should_returns_published#0;class#SearchIT#0" expanded="false" />
@@ -334,40 +321,6 @@
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blog-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blog-service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -584,7 +537,7 @@
       <recent name="com.tchepannou.blog.auth" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SearchIT">
+  <component name="RunManager" selected="JUnit.All in blog-service">
     <configuration default="false" name="PostGetCollectionIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -599,32 +552,6 @@
       <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.PostGetCollectionIT" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
-    <configuration default="false" name="PostGetIT.should_returns_post" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.tchepannou.blog.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="blog-service" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.tchepannou.blog.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.PostGetIT" />
-      <option name="METHOD_NAME" value="should_returns_post" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -684,6 +611,27 @@
       <option name="MAIN_CLASS_NAME" value="com.tchepannou.blog.controller.SearchIT" />
       <option name="METHOD_NAME" value="should_returns_published" />
       <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="All in blog-service" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="blog-service" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -1018,18 +966,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.PostGetCollectionIT" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.PostGetIT.should_returns_post" />
-      <item index="2" class="java.lang.String" itemvalue="Spring Boot.Starter" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SearchIT" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SearchIT.should_returns_published" />
+      <item index="1" class="java.lang.String" itemvalue="Spring Boot.Starter" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.SearchIT" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.SearchIT.should_returns_published" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.All in blog-service" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SearchIT" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SearchIT.should_returns_published" />
-        <item index="2" class="java.lang.String" itemvalue="Spring Boot.Starter" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.PostGetCollectionIT" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.PostGetIT.should_returns_post" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.All in blog-service" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SearchIT" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SearchIT.should_returns_published" />
+        <item index="3" class="java.lang.String" itemvalue="Spring Boot.Starter" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.PostGetCollectionIT" />
       </list>
     </recent_temporary>
   </component>
@@ -1116,7 +1064,7 @@
       <workItem from="1441927663744" duration="91000" />
       <workItem from="1441928498889" duration="1131000" />
       <workItem from="1441930084842" duration="2001000" />
-      <workItem from="1441936360985" duration="3588000" />
+      <workItem from="1441936360985" duration="3779000" />
     </task>
     <task id="LOCAL-00001" summary="rename">
       <created>1439953755419</created>
@@ -1128,11 +1076,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166432000" />
+    <option name="totallyTimeSpent" value="166623000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="22" y="23" width="1201" height="751" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1154,7 +1102,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2640207" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.569044" sideWeight="0.4874372" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.569044" sideWeight="0.4874372" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952547" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48542273" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
@@ -1751,7 +1699,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/tchepannou/blog/controller/SearchIT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78">
+        <state vertical-scroll-proportion="1.75">
           <caret line="125" column="54" selection-start-line="125" selection-start-column="54" selection-end-line="125" selection-end-column="54" />
           <folding>
             <element signature="method#should_returns_published#0;class#SearchIT#0" expanded="false" />
