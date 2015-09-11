@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class GetPostListCommand extends AbstractCommand<Void, PostCollectionResponse> {
+public class GetCollectionCommand extends AbstractCommand<Void, PostCollectionResponse> {
     @Autowired
     private PostDao postDao;
 

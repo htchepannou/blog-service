@@ -16,7 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.List;
 
 @Scope(value = WebApplicationContext.SCOPE_REQUEST)
-public class GetPostCommand extends AbstractCommand<Long, PostResponse> {
+public class GetCommand extends AbstractCommand<Long, PostResponse> {
     //-- Attributes
     @Autowired
     private PostDao postDao;

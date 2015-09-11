@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
-public class DeletePostCommand extends AbstractCommand<Void, Void> {
+public class DeleteCommand extends AbstractCommand<Void, Void> {
     //-- Attributes
     @Autowired
     private PostDao postDao;

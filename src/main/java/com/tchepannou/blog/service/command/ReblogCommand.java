@@ -8,7 +8,7 @@ import com.tchepannou.blog.service.CommandContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 
-public class ReblogPostCommand extends AbstractCommand<Void, Boolean> {
+public class ReblogCommand extends AbstractCommand<Void, Boolean> {
     //-- Attributes
     @Autowired
     private PostDao postDao;

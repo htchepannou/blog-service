@@ -1,9 +1,10 @@
 package com.tchepannou.blog.service.command;
 
 import com.tchepannou.blog.client.v1.BlogConstants;
+import com.tchepannou.blog.client.v1.CreatePostRequest;
 import com.tchepannou.blog.client.v1.PostResponse;
-import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.dao.PostDao;
+import com.tchepannou.blog.dao.PostEntryDao;
 import com.tchepannou.blog.dao.PostTagDao;
 import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
@@ -11,12 +12,15 @@ import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
 import com.tchepannou.blog.service.CommandContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
+@Scope(value = WebApplicationContext.SCOPE_REQUEST)
 @Transactional
-public class UpdatePostCommand extends AbstractCommand<UpdatePostRequest, PostResponse> {
+public class CreateCommand extends AbstractCommand<CreatePostRequest, PostResponse> {
     //-- Attributes
     @Autowired
     private PostDao postDao;
@@ -27,13 +31,16 @@ public class UpdatePostCommand extends AbstractCommand<UpdatePostRequest, PostRe
     @Autowired
     private PostTagDao postTagDao;
 
-    //-- AbstractSecuredCommand overrides
-    @Override
-    protected PostResponse doExecute(UpdatePostRequest request, CommandContext context) {
-        final Post post = PostUtils.updatePost(request, context, postDao);
+    @Autowired
+    private PostEntryDao postEntryDao;
 
+    //-- AbstractCommand overrides
+    @Override
+    protected PostResponse doExecute(CreatePostRequest request, CommandContext context) {
+        final Post post = PostUtils.createPost(request, context, request.getUserId(), postDao);
         final List<Tag> tags = PostUtils.addTags(request, tagDao);
         PostUtils.link(post, tags, postTagDao);
+        PostUtils.addToBlog(post, context, postEntryDao);
 
         return new PostResponseMapper()
                 .withPost(post)
@@ -43,6 +50,6 @@ public class UpdatePostCommand extends AbstractCommand<UpdatePostRequest, PostRe
 
     @Override
     protected String getEventName() {
-        return BlogConstants.EVENT_UPDATE_POST;
+        return BlogConstants.EVENT_CREATE_POST;
     }
 }

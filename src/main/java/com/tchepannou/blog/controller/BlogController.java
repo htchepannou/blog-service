@@ -6,13 +6,13 @@ import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.client.v1.SearchRequest;
 import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.exception.AuthorizationException;
-import com.tchepannou.blog.service.command.CreatePostCommand;
-import com.tchepannou.blog.service.command.DeletePostCommand;
-import com.tchepannou.blog.service.command.GetPostCommand;
-import com.tchepannou.blog.service.command.GetPostListCommand;
-import com.tchepannou.blog.service.command.ReblogPostCommand;
+import com.tchepannou.blog.service.command.CreateCommand;
+import com.tchepannou.blog.service.command.DeleteCommand;
+import com.tchepannou.blog.service.command.GetCollectionCommand;
+import com.tchepannou.blog.service.command.GetCommand;
+import com.tchepannou.blog.service.command.ReblogCommand;
 import com.tchepannou.blog.service.command.SearchCommand;
-import com.tchepannou.blog.service.command.UpdatePostCommand;
+import com.tchepannou.blog.service.command.UpdateCommand;
 import com.tchepannou.core.client.v1.ErrorResponse;
 import com.tchepannou.core.http.Http;
 import com.wordnik.swagger.annotations.Api;
@@ -51,22 +51,22 @@ public class BlogController {
     private static final Logger LOG = LoggerFactory.getLogger(BlogController.class);
 
     @Autowired
-    GetPostCommand getPostService;
+    GetCommand getPostService;
 
     @Autowired
-    GetPostListCommand getPostListService;
+    GetCollectionCommand getPostListService;
 
     @Autowired
-    CreatePostCommand createTextCommand;
+    CreateCommand createTextCommand;
 
     @Autowired
-    UpdatePostCommand updateTextCommand;
+    UpdateCommand updateTextCommand;
 
     @Autowired
-    DeletePostCommand deletePostCommand;
+    DeleteCommand deletePostCommand;
 
     @Autowired
-    ReblogPostCommand reblogPostCommand;
+    ReblogCommand reblogPostCommand;
 
     @Autowired
     SearchCommand searchCommand;

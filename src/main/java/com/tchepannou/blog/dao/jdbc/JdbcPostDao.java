@@ -72,6 +72,7 @@ public class JdbcPostDao implements PostDao{
                 + " FROM post P JOIN post_entry E ON P.id=E.post_fk"
                 + " WHERE E.blog_id IN (" + JdbcUtils.toParamVars(blogIds) + ") AND P.deleted=?"
                 + (status != null ? " AND status=?" : "")
+                + " GROUP BY E.post_fk"
                 + " ORDER BY P.updated DESC"
                 + " LIMIT ? OFFSET ?";
 
