@@ -1,16 +1,13 @@
 package com.tchepannou.blog.controller;
 
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.client.v1.SearchRequest;
 import com.tchepannou.core.http.Http;
 import org.apache.http.HttpStatus;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -19,7 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.UUID;
 
 import static com.jayway.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
@@ -31,16 +29,8 @@ import static org.hamcrest.core.Is.is;
         "/db/clean.sql",
         "/db/search.sql"
 })
-public class SearchIT {
-    @Value("${server.port}")
-    private int port;
-
+public class SearchIT extends AbstractPostIT{
     private String transactionId = UUID.randomUUID().toString();
-
-    @Before
-    public void setUp (){
-        RestAssured.port = port;
-    }
 
     //-- Test
     @Test

@@ -1,6 +1,5 @@
 package com.tchepannou.blog.controller;
 
-import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.tchepannou.blog.Starter;
@@ -13,11 +12,9 @@ import com.tchepannou.blog.domain.PostTag;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.jms.PostEventReceiver;
 import com.tchepannou.core.http.Http;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -40,10 +37,7 @@ import static org.hamcrest.core.Is.is;
         "/db/clean.sql",
         "/db/update_post.sql"
 })
-public class PostUpdateIT {
-    @Value("${server.port}")
-    private int port;
-
+public class PostUpdateIT extends AbstractPostIT{
     @Autowired
     private TagDao tagDao;
 
@@ -53,11 +47,6 @@ public class PostUpdateIT {
     private String transactionId = UUID.randomUUID().toString();
 
     //-- Test
-    @Before
-    public void setUp (){
-        RestAssured.port = port;
-    }
-
     @Test
     public void should_update_text() throws Exception {
         final Date now = new Date ();
