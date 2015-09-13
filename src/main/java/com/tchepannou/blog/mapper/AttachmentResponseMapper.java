@@ -19,6 +19,7 @@ public class AttachmentResponseMapper {
         response.setThumbnailUrl(attachment.getThumbnailUrl());
         response.setUrl(attachment.getUrl());
         response.setWidth(attachment.getWidth());
+        response.setXvideoId(attachment.getXvideoId());
         return response;
     }
 

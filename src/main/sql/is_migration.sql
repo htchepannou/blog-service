@@ -92,6 +92,14 @@ UPDATE attachment
 SET oembed=true
 WHERE nattr_name='oembed';
 
+UPDATE attachment SET content_type='image/jpg' WHERE LOWER(url) LIKE '%jpg';
+UPDATE attachment SET content_type='image/png' WHERE LOWER(url) LIKE '%png';
+UPDATE attachment SET content_type='image/gif' WHERE LOWER(url) LIKE '%gif';
+UPDATE attachment SET content_type='video/mp4' WHERE LOWER(url) LIKE '%mp4';
+UPDATE attachment SET content_type='video/x-flx' WHERE LOWER(url) LIKE '%flv';
+UPDATE attachment SET content_type='video/quicktime' WHERE LOWER(url) LIKE '%mov';
+UPDATE attachment SET content_type='video/x-msvideo' WHERE LOWER(url) LIKE '%avi';
+UPDATE attachment SET content_type='video/x-ms-wmv'  WHERE LOWER(url) LIKE '%wmv';
 
 INSERT INTO post_attachment (
   attachment_fk,

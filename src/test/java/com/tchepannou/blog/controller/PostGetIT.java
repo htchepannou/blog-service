@@ -18,6 +18,7 @@ import java.util.UUID;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 
@@ -96,6 +97,7 @@ public class PostGetIT {
 
             .body("attachments", hasSize(2))
             .body("attachments[0].id", is(1100))
+            .body("attachments[0].xvideoId", is("2309sdkjl"))
             .body("attachments[0].name", is("video1"))
             .body("attachments[0].description", is("this is a video"))
             .body("attachments[0].thumbnailUrl", is("http://www.img.com/1100_thumb.png"))
@@ -108,6 +110,7 @@ public class PostGetIT {
                 
             .body("attachments[1].id", is(1101))
             .body("attachments[1].name", is("image1"))
+            .body("attachments[1].xvideoId", nullValue())
             .body("attachments[1].description", is("this is an image"))
             .body("attachments[1].url", is("http://www.img.com/1101.png"))
             .body("attachments[1].thumbnailUrl", is("http://www.img.com/1101_thumb.png"))
