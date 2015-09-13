@@ -15,6 +15,8 @@ public class UrlServiceImpl implements UrlService {
     public static final String YOUBUTE_EMBED_URL = "https://youtube.com/embed/%s";
     public static final String VIMEO_PATTERN = "vimeo\\.com/(.*)";
     public static final String VIMEO_EMBED_URL = "https://player.vimeo.com/video/%s";
+    public static final String INSIDESOCCER_PATTERN = "insidesoccer.com/?\\?isf=video\\&id=(.*)";
+    public static final String INSIDESOCCER_EMBED_URL = "https://www.insidesoccer.com/is-oembed-web/video/iframe?id=%s";
 
     private List<Embeder> embeders = new ArrayList<>();
 
@@ -24,6 +26,7 @@ public class UrlServiceImpl implements UrlService {
         embeders.add(new EmbederImpl(YOUBUTE_PATTERN2, YOUBUTE_EMBED_URL));
         embeders.add(new EmbederImpl(YOUBUTE_PATTERN3, YOUBUTE_EMBED_URL));
         embeders.add(new EmbederImpl(VIMEO_PATTERN, VIMEO_EMBED_URL));
+        embeders.add(new EmbederImpl(INSIDESOCCER_PATTERN, INSIDESOCCER_EMBED_URL));
     }
 
     //-- UrlService overrides
