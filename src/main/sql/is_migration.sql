@@ -100,6 +100,7 @@ UPDATE attachment SET content_type='video/x-flx' WHERE LOWER(url) LIKE '%flv';
 UPDATE attachment SET content_type='video/quicktime' WHERE LOWER(url) LIKE '%mov';
 UPDATE attachment SET content_type='video/x-msvideo' WHERE LOWER(url) LIKE '%avi';
 UPDATE attachment SET content_type='video/x-ms-wmv'  WHERE LOWER(url) LIKE '%wmv';
+UPDATE attachment SET oembed=true  WHERE url LIKE 'http://www.insidesoccer.com/?isf=video&%';
 
 INSERT INTO post_attachment (
   attachment_fk,
