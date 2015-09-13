@@ -5,6 +5,7 @@ import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
+import com.tchepannou.blog.service.url.UrlServiceImpl;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -23,12 +24,14 @@ public class PostResponseMapperTest {
 
         Attachment att1 = createAttachment();
         Attachment att2 = createAttachment();
+        Attachment att3 = createOEmbedAttachment();
 
         // When
         PostResponse response = new PostResponseMapper()
                 .withPost(post)
                 .withTags(Arrays.asList(tag1, tag2, tag3))
-                .withAttachments(Arrays.asList(att1, att2))
+                .withAttachments(Arrays.asList(att1, att2, att3))
+                .withUrlService(new UrlServiceImpl())
                 .map();
 
         // Then
@@ -44,7 +47,7 @@ public class PostResponseMapperTest {
         assertThat(response.getUpdated()).isEqualTo(post.getUpdated());
         assertThat(response.getUserId()).isEqualTo(post.getUserId());
 
-        assertThat(response.getAttachments()).hasSize(2);
+        assertThat(response.getAttachments()).hasSize(3);
 
         AttachmentResponse xatt1 = response.getAttachments().get(0);
         assertThat (xatt1.getContentLength()).isEqualTo(att1.getContentLength());
@@ -58,6 +61,7 @@ public class PostResponseMapperTest {
         assertThat (xatt1.getThumbnailUrl()).isEqualTo(att1.getThumbnailUrl());
         assertThat (xatt1.getUrl()).isEqualTo(att1.getUrl());
         assertThat (xatt1.getWidth()).isEqualTo(att1.getWidth());
+        assertThat (xatt1.getEmbedUrl()).isNull();
 
         AttachmentResponse xatt2 = response.getAttachments().get(1);
         assertThat (xatt2.getContentLength()).isEqualTo(att2.getContentLength());
@@ -71,7 +75,21 @@ public class PostResponseMapperTest {
         assertThat (xatt2.getThumbnailUrl()).isEqualTo(att2.getThumbnailUrl());
         assertThat (xatt2.getUrl()).isEqualTo(att2.getUrl());
         assertThat (xatt2.getWidth()).isEqualTo(att2.getWidth());
+        assertThat (xatt2.getEmbedUrl()).isNull();
 
+        AttachmentResponse xatt3 = response.getAttachments().get(2);
+        assertThat (xatt3.getContentLength()).isEqualTo(att3.getContentLength());
+        assertThat (xatt3.getContentType()).isEqualTo(att3.getContentType());
+        assertThat (xatt3.getDescription()).isEqualTo(att3.getDescription());
+        assertThat (xatt3.getDurationSeconds()).isEqualTo(att3.getDurationSeconds());
+        assertThat (xatt3.getHeight()).isEqualTo(att3.getHeight());
+        assertThat (xatt3.getId()).isEqualTo(att3.getId());
+        assertThat (xatt3.getName()).isEqualTo(att3.getName());
+        assertThat (xatt3.getOembed()).isEqualTo(att3.getOembed());
+        assertThat (xatt3.getThumbnailUrl()).isEqualTo(att3.getThumbnailUrl());
+        assertThat (xatt3.getUrl()).isEqualTo(att3.getUrl());
+        assertThat (xatt3.getWidth()).isEqualTo(att3.getWidth());
+        assertThat (xatt3.getEmbedUrl()).isNotNull();
     }
 
     @Test(expected = IllegalStateException.class)

@@ -10,6 +10,7 @@ import com.tchepannou.blog.dao.jdbc.JdbcPostDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostEntryDao;
 import com.tchepannou.blog.dao.jdbc.JdbcPostTagDao;
 import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
+import com.tchepannou.blog.service.UrlService;
 import com.tchepannou.blog.service.command.CreateCommand;
 import com.tchepannou.blog.service.command.DeleteCommand;
 import com.tchepannou.blog.service.command.GetCollectionCommand;
@@ -17,6 +18,7 @@ import com.tchepannou.blog.service.command.GetCommand;
 import com.tchepannou.blog.service.command.ReblogCommand;
 import com.tchepannou.blog.service.command.SearchCommand;
 import com.tchepannou.blog.service.command.UpdateCommand;
+import com.tchepannou.blog.service.url.UrlServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -98,6 +100,12 @@ public class AppConfig {
     @Bean
     TagDao tagDao (){
         return new JdbcTagDao(dataSource());
+    }
+
+    //-- Service
+    @Bean
+    UrlService urlService(){
+        return new UrlServiceImpl();
     }
 
     //-- Commands

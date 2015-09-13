@@ -47,12 +47,31 @@ public class Fixture {
         obj.setName("attachment #" + id);
         obj.setDurationSeconds(100);
         obj.setHeight(10);
-        obj.setOembed(true);
+        obj.setOembed(false);
         obj.setThumbnailUrl("http://www.you.be/embed/fdlkfd.png");
-        obj.setUrl("http://www.you.be/embed/fdlkfd");
+        obj.setUrl("http://www.foofldkfld/fdlkfd." + (id%2 == 0 ? "txt" : "xml"));
         obj.setWidth(20);
 
         return obj;
     }
 
+    public static Attachment createOEmbedAttachment (){
+        long id = ++uid;
+        Attachment obj = new Attachment();
+        obj.setId(id);
+        obj.setContentLength(id);
+        obj.setContentType(id%2 == 0 ? "text/plain" : "text/xml");
+        obj.setCreated(new Date());
+        obj.setDeleted(false);
+        obj.setDescription("This is the content of " + id);
+        obj.setName("attachment #" + id);
+        obj.setDurationSeconds(100);
+        obj.setHeight(10);
+        obj.setOembed(true);
+        obj.setThumbnailUrl("http://www.you.be/embed/fdlkfd.png");
+        obj.setUrl("https://www.youtube.com/watch?v=PJRjPUKULQ8&index=12&list=UU1yBKRuGpC1tSM73A0ZjYjQ");
+        obj.setWidth(20);
+
+        return obj;
+    }
 }

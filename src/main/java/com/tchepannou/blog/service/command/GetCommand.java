@@ -9,6 +9,7 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
 import com.tchepannou.blog.service.CommandContext;
+import com.tchepannou.blog.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
@@ -27,6 +28,9 @@ public class GetCommand extends AbstractCommand<Long, PostResponse> {
     @Autowired
     private AttachmentDao attachmentDao;
 
+    @Autowired
+    private UrlService urlService;
+
     //-- AbstractCommand overrides
     @Override
     public PostResponse doExecute(Long id, CommandContext context) {
@@ -38,6 +42,7 @@ public class GetCommand extends AbstractCommand<Long, PostResponse> {
                 .withPost(post)
                 .withTags(tags)
                 .withAttachments(attachments)
+                .withUrlService(urlService)
                 .map()
         ;
     }

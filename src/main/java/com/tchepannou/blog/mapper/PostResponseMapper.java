@@ -6,6 +6,7 @@ import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
+import com.tchepannou.blog.service.UrlService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -20,6 +21,7 @@ public class PostResponseMapper {
     private Post post;
     private Collection<Tag> tags = new ArrayList<>();
     private Collection<Attachment> attachments = new ArrayList<>();
+    private UrlService urlService;
 
     //-- Public
     public PostResponse map (){
@@ -46,6 +48,11 @@ public class PostResponseMapper {
         return this;
     }
 
+    public PostResponseMapper withUrlService(UrlService urlService) {
+        this.urlService = urlService;
+        return this;
+    }
+
     //-- Private
     private void map(PostResponse response, Post post){
         response.setBlogId(post.getBlogId());
@@ -66,7 +73,8 @@ public class PostResponseMapper {
     }
 
     private void mapAttachments(PostResponse response, Collection<Attachment> attachments){
-        final AttachmentResponseMapper mapper = new AttachmentResponseMapper();
+        final AttachmentResponseMapper mapper = new AttachmentResponseMapper()
+                .withUrlService(urlService);
 
         attachments.stream()
                 .forEach(attachment -> response.addAttachment(mapper.withAttachment(attachment).build()) );

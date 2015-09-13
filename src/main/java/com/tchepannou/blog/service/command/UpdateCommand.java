@@ -10,6 +10,7 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
 import com.tchepannou.blog.service.CommandContext;
+import com.tchepannou.blog.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,6 +28,9 @@ public class UpdateCommand extends AbstractCommand<UpdatePostRequest, PostRespon
     @Autowired
     private PostTagDao postTagDao;
 
+    @Autowired
+    private UrlService urlService;
+
     //-- AbstractSecuredCommand overrides
     @Override
     protected PostResponse doExecute(UpdatePostRequest request, CommandContext context) {
@@ -38,6 +42,7 @@ public class UpdateCommand extends AbstractCommand<UpdatePostRequest, PostRespon
         return new PostResponseMapper()
                 .withPost(post)
                 .withTags(tags)
+                .withUrlService(urlService)
                 .map();
     }
 

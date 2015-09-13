@@ -6,6 +6,7 @@ import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
+import com.tchepannou.blog.service.UrlService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 public class PostCollectionResponseMapper {
     //-- Attribute
     private List<Post> posts = new ArrayList<>();
+    private UrlService urlService;
     private Multimap<Long, Tag> tags = LinkedListMultimap.create();
     private Multimap<Long, Attachment> attachements = LinkedListMultimap.create();
 
@@ -41,6 +43,11 @@ public class PostCollectionResponseMapper {
         return this;
     }
 
+    public PostCollectionResponseMapper withUrlService(UrlService urlService) {
+        this.urlService = urlService;
+        return this;
+    }
+
     //-- Private
     private void map(PostCollectionResponse response, List<Post> posts, Multimap<Long, Tag> tagMap, Multimap<Long, Attachment> attachmentMap){
         PostResponseMapper postMapper = new PostResponseMapper();
@@ -63,6 +70,7 @@ public class PostCollectionResponseMapper {
                                     .withPost(post)
                                     .withTags(tagz)
                                     .withAttachments(attachments)
+                                    .withUrlService(urlService)
                                     .map();
                         })
                         .collect(Collectors.toList())
