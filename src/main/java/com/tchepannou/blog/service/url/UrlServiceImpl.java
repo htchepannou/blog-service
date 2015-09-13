@@ -12,7 +12,7 @@ public class UrlServiceImpl implements UrlService {
     public static final String YOUBUTE_PATTERN1 = "youtube\\.com/watch\\?v=([^#&?]*)";
     public static final String YOUBUTE_PATTERN2 = "youtube\\.com/embed/([^#&?]*)";
     public static final String YOUBUTE_PATTERN3 = "youtu\\.be/([^#&?]*)";
-    public static final String YOUBUTE_EMBED_URL = "https://youtu.be/%s";
+    public static final String YOUBUTE_EMBED_URL = "https://youtube.com/embed/%s";
     public static final String VIMEO_PATTERN = "vimeo\\.com/(.*)";
     public static final String VIMEO_EMBED_URL = "https://player.vimeo.com/video/%s";
 

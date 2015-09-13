@@ -11,16 +11,16 @@ public class UrlServiceImplTest {
     @Test
     public void testYouTube() throws Exception {
         assertThat(service.embedUrl("https://www.youtube.com/watch?v=sOkitpK-wKI&list=UU1yBKRuGpC1tSM73A0ZjYjQ&index=16"))
-                .isEqualTo("https://youtu.be/sOkitpK-wKI");
+                .isEqualTo("https://youtube.com/embed/sOkitpK-wKI");
 
         assertThat(service.embedUrl("http://www.youtube.com/watch?v=0zM4nApSvMg"))
-                .isEqualTo("https://youtu.be/0zM4nApSvMg");
+                .isEqualTo("https://youtube.com/embed/0zM4nApSvMg");
 
         assertThat(service.embedUrl("http://www.youtube.com/watch?v=0zM4nApSvMg"))
-                .isEqualTo("https://youtu.be/0zM4nApSvMg");
+                .isEqualTo("https://youtube.com/embed/0zM4nApSvMg");
 
         assertThat(service.embedUrl("http://www.youtube.com/embed/0zM4nApSvMg?rel=0"))
-                .isEqualTo("https://youtu.be/0zM4nApSvMg");
+                .isEqualTo("https://youtube.com/embed/0zM4nApSvMg");
     }
 
 
