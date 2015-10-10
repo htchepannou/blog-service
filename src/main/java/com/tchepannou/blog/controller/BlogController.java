@@ -77,7 +77,7 @@ public class BlogController {
 
 
     //-- REST methods
-    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    @RequestMapping(method = RequestMethod.GET, value="/{bid}")
     @ApiOperation(value="Return all the published posts")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
@@ -85,14 +85,14 @@ public class BlogController {
     })
     public PostCollectionResponse all(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
-            @PathVariable(value = "id") String id,
+            @PathVariable(value = "bid") String bid,
             @RequestParam (value = "limit", defaultValue = "20") int limit,
             @RequestParam (value = "offset", defaultValue = "0") int offset
     ) {
-        return all(transactionId, id, SearchRequest.DEFAULT_STATUS, limit, offset);
+        return all(transactionId, bid, SearchRequest.DEFAULT_STATUS, limit, offset);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/published")
+    @RequestMapping(method = RequestMethod.GET, value="/{bid}/published")
     @ApiOperation(value="Return all the published posts")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
@@ -100,11 +100,11 @@ public class BlogController {
     })
     public PostCollectionResponse published(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
-            @PathVariable(value = "id") String id,
+            @PathVariable(value = "bid") String bid,
             @RequestParam (value = "limit", defaultValue = "20") int limit,
             @RequestParam (value = "offset", defaultValue = "0") int offset
     ) {
-        return all(transactionId, id, Post.Status.published.name(), limit, offset);
+        return all(transactionId, bid, Post.Status.published.name(), limit, offset);
     }
 
     private PostCollectionResponse all (
