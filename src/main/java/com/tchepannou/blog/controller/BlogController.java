@@ -268,7 +268,7 @@ public class BlogController {
     private Long toLong (String str){
         try{
             return Long.parseLong(str.trim());
-        } catch (Exception e){
+        } catch (Exception e){  // NOSONAR
             return null;
         }
     }
