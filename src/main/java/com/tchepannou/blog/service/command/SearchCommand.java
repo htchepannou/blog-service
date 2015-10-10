@@ -44,7 +44,11 @@ public class SearchCommand extends AbstractCommand<SearchRequest, PostCollection
                 ? null
                 : Post.Status.valueOf(request.getStatus());
 
-        final List<Post> posts = postDao.findByBlogsByStatus(request.getBlogIds(), status, request.getLimit(), request.getOffset());
+        final List<Post> posts = postDao.findByBlogsByStatus(
+                request.getBlogIds(),
+                status,
+                context.getLimit(),
+                context.getOffset());
 
         final List<Long> postIds = posts.stream()
                 .map(Post::getId)

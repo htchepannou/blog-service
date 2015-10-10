@@ -1,7 +1,5 @@
 package com.tchepannou.blog.controller;
 
-import com.jayway.restassured.http.ContentType;
-import com.jayway.restassured.internal.mapper.ObjectMapperType;
 import com.tchepannou.blog.Starter;
 import com.tchepannou.blog.client.v1.SearchRequest;
 import com.tchepannou.core.http.Http;
@@ -29,44 +27,17 @@ import static org.hamcrest.core.Is.is;
         "/db/clean.sql",
         "/db/search.sql"
 })
-public class SearchIT extends AbstractPostIT{
+public class GetAllIT extends AbstractPostIT{
     private String transactionId = UUID.randomUUID().toString();
 
     //-- Test
     @Test
-    public void should_returns_empty_for_empty_request (){
-        SearchRequest request = new SearchRequest();
-
-        // @formatter:off
-        given()
-                .header(Http.HEADER_TRANSACTION_ID, transactionId)
-                .contentType(ContentType.JSON)
-                .content(request, ObjectMapperType.JACKSON_2)
-        .when()
-            .post("/v1/blog/search" )
-        .then()
-            .log()
-                .all()
-            .statusCode(HttpStatus.SC_OK)
-            .body("posts", hasSize(0))
-        ;
-        // @formatter:on
-    }
-    
-    @Test
     public void should_returns_all (){
-        SearchRequest request = new SearchRequest();
-        request.addBlogId(100);
-        request.addBlogId(101);
-        request.addBlogId(102);
-
         // @formatter:off
         given()
                 .header(Http.HEADER_TRANSACTION_ID, transactionId)
-                .contentType(ContentType.JSON)
-                .content(request, ObjectMapperType.JACKSON_2)
         .when()
-            .post("/v1/blog/search" )
+            .get("/v1/blog/100,101,102" )
         .then()
             .log()
                 .all()
@@ -130,10 +101,8 @@ public class SearchIT extends AbstractPostIT{
         // @formatter:off
         given()
                 .header(Http.HEADER_TRANSACTION_ID, transactionId)
-                .contentType(ContentType.JSON)
-                .content(request, ObjectMapperType.JACKSON_2)
         .when()
-            .post("/v1/blog/search" )
+            .get("/v1/blog/100,101,102/published" )
         .then()
             .log()
                 .all()

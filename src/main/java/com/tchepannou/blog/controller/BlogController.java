@@ -5,6 +5,7 @@ import com.tchepannou.blog.client.v1.PostCollectionResponse;
 import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.client.v1.SearchRequest;
 import com.tchepannou.blog.client.v1.UpdatePostRequest;
+import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.service.command.CreateCommand;
 import com.tchepannou.blog.service.command.DeleteCommand;
@@ -40,7 +41,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @Api(basePath = "/v1/blog", value = "Blog API", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -73,20 +77,53 @@ public class BlogController {
 
 
     //-- REST methods
-    @RequestMapping(method = RequestMethod.POST, value="/search")
-    @ApiOperation(value="search posts")
+    @RequestMapping(method = RequestMethod.GET, value="/{id}")
+    @ApiOperation(value="Return all the published posts")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success"),
             @ApiResponse(code=400, message = "Invalid request.")
     })
-    public PostCollectionResponse search(
+    public PostCollectionResponse all(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
-            @Valid @RequestBody SearchRequest request
+            @PathVariable(value = "id") String id,
+            @RequestParam (value = "limit", defaultValue = "20") int limit,
+            @RequestParam (value = "offset", defaultValue = "0") int offset
     ) {
+        return all(transactionId, id, SearchRequest.DEFAULT_STATUS, limit, offset);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/published")
+    @ApiOperation(value="Return all the published posts")
+    @ApiResponses({
+            @ApiResponse(code=200, message = "Success"),
+            @ApiResponse(code=400, message = "Invalid request.")
+    })
+    public PostCollectionResponse published(
+            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
+            @PathVariable(value = "id") String id,
+            @RequestParam (value = "limit", defaultValue = "20") int limit,
+            @RequestParam (value = "offset", defaultValue = "0") int offset
+    ) {
+        return all(transactionId, id, Post.Status.published.name(), limit, offset);
+    }
+
+    private PostCollectionResponse all (
+            final String transactionId,
+            final String id,
+            final String status,
+            final int limit,
+            final int offset
+    ){
+        SearchRequest request = new SearchRequest();
+        request.setBlogIds(toLongList(id));
+        request.setStatus(status);
+
         return searchCommand.execute(
                 request,
                 new CommandContextImpl()
-                    .withTransactionId(transactionId)
+                        .withTransactionId(transactionId)
+                        .withLimit(limit)
+                        .withOffset(offset)
         );
     }
 
@@ -217,6 +254,24 @@ public class BlogController {
         );
     }
 
+
+    //-- Private
+
+    private Set<Long> toLongList (String id){
+        return Arrays.asList(id.split(","))
+                .stream()
+                .map( i -> toLong(i) )
+                .filter(i -> i > 0)
+                .collect(Collectors.toSet());
+    }
+
+    private Long toLong (String str){
+        try{
+            return Long.parseLong(str.trim());
+        } catch (Exception e){
+            return null;
+        }
+    }
 
     //-- Exception Handler
     @ResponseStatus(value= HttpStatus.NOT_FOUND)
