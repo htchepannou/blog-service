@@ -80,8 +80,7 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.GET, value="/{bid}")
     @ApiOperation(value="Return all the published posts")
     @ApiResponses({
-            @ApiResponse(code=200, message = "Success"),
-            @ApiResponse(code=400, message = "Invalid request.")
+            @ApiResponse(code=200, message = "Success")
     })
     public PostCollectionResponse all(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
@@ -95,8 +94,7 @@ public class BlogController {
     @RequestMapping(method = RequestMethod.GET, value="/{bid}/published")
     @ApiOperation(value="Return all the published posts")
     @ApiResponses({
-            @ApiResponse(code=200, message = "Success"),
-            @ApiResponse(code=400, message = "Invalid request.")
+            @ApiResponse(code=200, message = "Success")
     })
     public PostCollectionResponse published(
             @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
@@ -258,7 +256,7 @@ public class BlogController {
     //-- Private
 
     private Set<Long> toLongList (String id){
-        return Arrays.asList(id.split(","))
+        return Arrays.asList(id.split("\\+"))
                 .stream()
                 .map( i -> toLong(i) )
                 .filter(i -> i > 0)
