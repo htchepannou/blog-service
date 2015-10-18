@@ -6,7 +6,6 @@ import com.tchepannou.blog.client.v1.PostResponse;
 import com.tchepannou.blog.client.v1.SearchRequest;
 import com.tchepannou.blog.client.v1.UpdatePostRequest;
 import com.tchepannou.blog.domain.Post;
-import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.service.command.CreateCommand;
 import com.tchepannou.blog.service.command.DeleteCommand;
 import com.tchepannou.blog.service.command.GetCommand;
@@ -251,13 +250,6 @@ public class BlogController {
     @ExceptionHandler(EmptyResultDataAccessException.class)
     public ErrorResponse notFoundError(final HttpServletRequest request) {
         return createErrorResponse(HttpStatus.NOT_FOUND.value(), "not_found", request);
-    }
-
-    @ResponseStatus(value= HttpStatus.FORBIDDEN)
-    @ExceptionHandler(AuthorizationException.class)
-    public ErrorResponse authorizationError(Exception exception, final HttpServletRequest request) {
-        LOG.error("Authorization failed", exception);
-        return createErrorResponse(HttpStatus.FORBIDDEN.value(), exception.getMessage(), request);
     }
 
     @ResponseStatus(value= HttpStatus.BAD_REQUEST)
