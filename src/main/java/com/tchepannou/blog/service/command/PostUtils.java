@@ -9,7 +9,6 @@ import com.tchepannou.blog.dao.TagDao;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.PostEntry;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.service.CommandContext;
 
 import java.util.ArrayList;
@@ -37,10 +36,6 @@ public class PostUtils {
 
     public static Post updatePost(UpdatePostRequest request, CommandContext context, PostDao dao) {
         Post post = dao.findByIdByBlog(context.getId (), context.getBlogId());
-        if (post.getBlogId() != context.getBlogId()){
-            throw new AuthorizationException("invalid_blog");
-        }
-
         post.setBlogId(context.getBlogId());
         post.setContent(request.getContent());
         post.setPublished(request.getPublished());
