@@ -82,6 +82,7 @@ public class PostReblogIT extends AbstractPostIT{
         assertThat(entries).hasSize(1);
 
         /* event */
+        Thread.sleep(500);
         assertThat(PostEventReceiver.lastEvent.getBlogId()).isEqualTo(200);
         assertThat(PostEventReceiver.lastEvent.getDate()).isAfter(now);
         assertThat(PostEventReceiver.lastEvent.getId()).isEqualTo(2000);
