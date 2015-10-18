@@ -1,7 +1,9 @@
 package com.tchepannou.blog.controller;
 
+import com.jayway.restassured.RestAssured;
 import com.tchepannou.blog.Starter;
 import org.apache.http.HttpStatus;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +21,10 @@ public class HealthCheckIT {
     @Value ("${server.port}")
     private int port;
 
+    @Before
+    public final void setUp() {
+        RestAssured.port = port;
+    }
 
     //-- Tests
     @Test
