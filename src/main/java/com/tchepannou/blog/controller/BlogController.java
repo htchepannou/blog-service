@@ -9,7 +9,6 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.exception.AuthorizationException;
 import com.tchepannou.blog.service.command.CreateCommand;
 import com.tchepannou.blog.service.command.DeleteCommand;
-import com.tchepannou.blog.service.command.GetCollectionCommand;
 import com.tchepannou.blog.service.command.GetCommand;
 import com.tchepannou.blog.service.command.ReblogCommand;
 import com.tchepannou.blog.service.command.SearchCommand;
@@ -56,9 +55,6 @@ public class BlogController {
 
     @Autowired
     GetCommand getPostService;
-
-    @Autowired
-    GetCollectionCommand getPostListService;
 
     @Autowired
     CreateCommand createTextCommand;

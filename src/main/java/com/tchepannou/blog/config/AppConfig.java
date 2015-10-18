@@ -13,7 +13,6 @@ import com.tchepannou.blog.dao.jdbc.JdbcTagDao;
 import com.tchepannou.blog.service.UrlService;
 import com.tchepannou.blog.service.command.CreateCommand;
 import com.tchepannou.blog.service.command.DeleteCommand;
-import com.tchepannou.blog.service.command.GetCollectionCommand;
 import com.tchepannou.blog.service.command.GetCommand;
 import com.tchepannou.blog.service.command.ReblogCommand;
 import com.tchepannou.blog.service.command.SearchCommand;
@@ -111,10 +110,6 @@ public class AppConfig {
     //-- Commands
     @Bean GetCommand getPostCommand(){
         return new GetCommand();
-    }
-
-    @Bean GetCollectionCommand getPostListCommand(){
-        return new GetCollectionCommand();
     }
 
     @Bean CreateCommand createTextCommand () {
