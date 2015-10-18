@@ -6,7 +6,6 @@ import com.tchepannou.blog.client.v1.SearchRequest;
 import com.tchepannou.blog.dao.AttachmentDao;
 import com.tchepannou.blog.dao.PostDao;
 import com.tchepannou.blog.dao.TagDao;
-import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostCollectionResponseMapper;
@@ -56,13 +55,12 @@ public class SearchCommand extends AbstractCommand<SearchRequest, PostCollection
 
         final Multimap<Long, Tag> tags = tagDao.findByPosts(postIds);
 
-        final Multimap<Long, Attachment> attachments = attachmentDao.findByPosts(postIds);
+        final Multimap<Long, Long> attachmentIds = attachmentDao.findIdsByPosts(postIds);
 
         return new PostCollectionResponseMapper()
                 .withPosts(posts)
                 .withTags(tags)
-                .withAttachments(attachments)
-                .withUrlService(urlService)
+                .withAttachmentIds(attachmentIds)
                 .map();
     }
 

@@ -11,7 +11,6 @@ import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
 import com.tchepannou.blog.mapper.PostResponseMapper;
 import com.tchepannou.blog.service.CommandContext;
-import com.tchepannou.blog.service.UrlService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,21 +34,18 @@ public class CreateCommand extends AbstractCommand<CreatePostRequest, PostRespon
     @Autowired
     private PostEntryDao postEntryDao;
 
-    @Autowired
-    private UrlService urlService;
-
     //-- AbstractCommand overrides
     @Override
     protected PostResponse doExecute(CreatePostRequest request, CommandContext context) {
         final Post post = PostUtils.createPost(request, context, request.getUserId(), postDao);
         final List<Tag> tags = PostUtils.addTags(request, tagDao);
+
         PostUtils.link(post, tags, postTagDao);
         PostUtils.addToBlog(post, context, postEntryDao);
 
         return new PostResponseMapper()
                 .withPost(post)
                 .withTags(tags)
-                .withUrlService(urlService)
                 .map();
     }
 

@@ -77,8 +77,8 @@ public class BlogController {
 
 
     //-- REST methods
-    @RequestMapping(method = RequestMethod.GET, value="/{bid}")
-    @ApiOperation(value="Return all the published posts")
+    @RequestMapping(method = RequestMethod.GET, value="/{bid}/posts")
+    @ApiOperation(value="Return all the posts")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success")
     })
@@ -91,7 +91,7 @@ public class BlogController {
         return all(transactionId, bid, SearchRequest.DEFAULT_STATUS, limit, offset);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/{bid}/published")
+    @RequestMapping(method = RequestMethod.GET, value="/{bid}/posts/published")
     @ApiOperation(value="Return all the published posts")
     @ApiResponses({
             @ApiResponse(code=200, message = "Success")
@@ -141,27 +141,6 @@ public class BlogController {
                 new CommandContextImpl()
                         .withBlogId(bid)
                         .withTransactionId(transactionId)
-        );
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value="/{bid}/posts")
-    @ApiOperation(value="List posts", notes = "Return a post by its ID")
-    @ApiResponses({
-            @ApiResponse(code=200, message = "Success"),
-            @ApiResponse(code=404, message = "Post not found")
-    })
-    public PostCollectionResponse list(
-            @RequestHeader(Http.HEADER_TRANSACTION_ID) String transactionId,
-            @PathVariable long bid,
-            @RequestParam(value = "limit", defaultValue = "20") int limit,
-            @RequestParam(value="offset", defaultValue = "0") int offset
-    ) {
-        return getPostListService.execute(null,
-                new CommandContextImpl()
-                        .withTransactionId(transactionId)
-                        .withBlogId(bid)
-                        .withLimit(limit)
-                        .withOffset(offset)
         );
     }
 

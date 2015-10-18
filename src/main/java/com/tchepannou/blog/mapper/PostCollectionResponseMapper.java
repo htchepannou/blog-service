@@ -3,10 +3,8 @@ package com.tchepannou.blog.mapper;
 import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 import com.tchepannou.blog.client.v1.PostCollectionResponse;
-import com.tchepannou.blog.domain.Attachment;
 import com.tchepannou.blog.domain.Post;
 import com.tchepannou.blog.domain.Tag;
-import com.tchepannou.blog.service.UrlService;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,14 +15,13 @@ import java.util.stream.Collectors;
 public class PostCollectionResponseMapper {
     //-- Attribute
     private List<Post> posts = new ArrayList<>();
-    private UrlService urlService;
     private Multimap<Long, Tag> tags = LinkedListMultimap.create();
-    private Multimap<Long, Attachment> attachements = LinkedListMultimap.create();
+    private Multimap<Long, Long> attachementIds = LinkedListMultimap.create();
 
     //-- Public
     public PostCollectionResponse map (){
         PostCollectionResponse response = new PostCollectionResponse();
-        map(response, posts, tags, attachements);
+        map(response, posts, tags, attachementIds);
         return response;
     }
 
@@ -38,18 +35,13 @@ public class PostCollectionResponseMapper {
         return this;
     }
 
-    public PostCollectionResponseMapper withAttachments(Multimap<Long, Attachment> attachements){
-        this.attachements = attachements;
-        return this;
-    }
-
-    public PostCollectionResponseMapper withUrlService(UrlService urlService) {
-        this.urlService = urlService;
+    public PostCollectionResponseMapper withAttachmentIds(Multimap<Long, Long> attachementIds){
+        this.attachementIds = attachementIds;
         return this;
     }
 
     //-- Private
-    private void map(PostCollectionResponse response, List<Post> posts, Multimap<Long, Tag> tagMap, Multimap<Long, Attachment> attachmentMap){
+    private void map(PostCollectionResponse response, List<Post> posts, Multimap<Long, Tag> tagMap, Multimap<Long, Long> attachmentIdMap){
         PostResponseMapper postMapper = new PostResponseMapper();
 
         response.setPosts(
@@ -62,15 +54,14 @@ public class PostCollectionResponseMapper {
                                     ? tagMap.get(postId)
                                     : Collections.emptyList();
 
-                            final Collection<Attachment> attachments = attachmentMap.containsKey(postId)
-                                    ? attachmentMap.get(postId)
+                            final Collection<Long> attachmentIds = attachmentIdMap.containsKey(postId)
+                                    ? attachmentIdMap.get(postId)
                                     : Collections.emptyList();
 
                             return postMapper
                                     .withPost(post)
                                     .withTags(tagz)
-                                    .withAttachments(attachments)
-                                    .withUrlService(urlService)
+                                    .withAttachmentIds(attachmentIds)
                                     .map();
                         })
                         .collect(Collectors.toList())

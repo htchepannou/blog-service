@@ -16,8 +16,8 @@ import java.util.UUID;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -37,7 +37,7 @@ public class GetAllIT extends AbstractPostIT{
         given()
                 .header(Http.HEADER_TRANSACTION_ID, transactionId)
         .when()
-            .get("/v1/blog/100+101+102" )
+            .get("/v1/blog/100+101+102/posts" )
         .then()
             .log()
                 .all()
@@ -55,36 +55,7 @@ public class GetAllIT extends AbstractPostIT{
             .body("posts[0].updated", notNullValue())
             .body("posts[0].published", notNullValue())
             .body("posts[0].tags", hasItems("tag1", "tag2"))
-            .body("posts[0].attachments", hasSize(0))
-            .body("posts[0].mainAttachmentId", nullValue())
-                
-            .body("posts[1].id", is(1002))
-            .body("posts[1].blogId", is(100))
-            .body("posts[1].userId", is(101))
-            .body("posts[1].title", is("title1002"))
-            .body("posts[1].slug", is("slug1002"))
-            .body("posts[1].content", is("<div>content1002</div>"))
-            .body("posts[1].status", is("draft"))
-            .body("posts[1].created", notNullValue())
-            .body("posts[1].updated", notNullValue())
-            .body("posts[1].published", notNullValue())
-            .body("posts[1].tags", hasItems("tag2", "tag3"))
-            .body("posts[1].attachments", hasSize(2))
-            .body("posts[1].mainAttachmentId", nullValue())
-
-            .body("posts[3].id", is(1000))
-            .body("posts[3].blogId", is(100))
-            .body("posts[3].userId", is(101))
-            .body("posts[3].title", is("title1000"))
-            .body("posts[3].slug", is("slug1000"))
-            .body("posts[3].content", is("<div>content1000</div>"))
-            .body("posts[3].status", is("published"))
-            .body("posts[3].created", notNullValue())
-            .body("posts[3].updated", notNullValue())
-            .body("posts[3].published", notNullValue())
-            .body("posts[3].tags", hasSize(0))
-            .body("posts[3].attachments", hasSize(2))
-            .body("posts[3].mainAttachmentId", is(1100))
+            .body("posts[0].attachmentIds", nullValue())
         ;
         // @formatter:on
     }
@@ -102,7 +73,7 @@ public class GetAllIT extends AbstractPostIT{
         given()
                 .header(Http.HEADER_TRANSACTION_ID, transactionId)
         .when()
-            .get("/v1/blog/100+101+102/published" )
+            .get("/v1/blog/100+101+102/posts/published" )
         .then()
             .log()
                 .all()
@@ -121,22 +92,7 @@ public class GetAllIT extends AbstractPostIT{
             .body("posts[0].published", notNullValue())
             .body("posts[0].tags", hasSize(1))
             .body("posts[0].tags", hasItems("tag4"))
-            .body("posts[0].attachments", hasSize(1))
-            .body("posts[0].mainAttachmentId", nullValue())
-
-            .body("posts[1].id", is(1000))
-            .body("posts[1].blogId", is(100))
-            .body("posts[1].userId", is(101))
-            .body("posts[1].title", is("title1000"))
-            .body("posts[1].slug", is("slug1000"))
-            .body("posts[1].content", is("<div>content1000</div>"))
-            .body("posts[1].status", is("published"))
-            .body("posts[1].created", notNullValue())
-            .body("posts[1].updated", notNullValue())
-            .body("posts[1].published", notNullValue())
-            .body("posts[1].tags", hasSize(0))
-            .body("posts[1].attachments", hasSize(2))
-            .body("posts[1].mainAttachmentId", is(1100))
+            .body("posts[0].attachmentIds", hasItems(1101))
         ;
         // @formatter:on
     }    

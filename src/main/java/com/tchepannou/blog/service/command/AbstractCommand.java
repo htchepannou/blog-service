@@ -33,7 +33,9 @@ public abstract class AbstractCommand<I, O> implements Command<I, O> {
     //-- Abstract
     protected abstract O doExecute (I request, CommandContext context);
 
-    protected abstract String getEventName();
+    protected String getEventName() {
+        return null;
+    }
 
 
     //-- Command Override
